@@ -1,6 +1,14 @@
 (function getApis() {
   return {
-    '/api/hero/list': '../json/heroList.json',
+    '/api/hero/history': {
+      success: true,
+      code: '200',
+      message: '',
+      data: {
+        time: "",
+        content: ""
+      },
+    },
     '/api/hero/\\d+': {
       supportRegexp: true,
       get: {
@@ -22,18 +30,11 @@
         code: '200',
         message: '',
         data: {
-          name:
+          name: 'wx'
         },
       },
     },
-    '/api/hero/history': {
-      success: true,
-      code: '200',
-      message: '',
-      data: {
-        time: "",
-        content: ""
-      },
-    }
+
+    '/api/hero/list': '../json/heroList.json',
   };
 })();
