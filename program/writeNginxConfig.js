@@ -35,7 +35,7 @@ function generateServerConfig(config) {
         listen ${config.listenPort};
         #WebServer
         location ${config.apiPrefix} {
-           proxy_pass ${config.serviceUrl}/${config.programName}/;
+           proxy_pass ${config.serviceUrl}/${config.programName}${config.apiPrefix};
            client_max_body_size 64m;
         }
         location ${config.programPrefix} {
