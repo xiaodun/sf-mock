@@ -1,6 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 const commonUtils = require("./utils/commonUtils");
+const darkUtils = require("./utils/darkUtils");
 const ip = commonUtils.getIp();
 
 function start() {
@@ -13,10 +14,9 @@ function start() {
   var server = http.createServer(function (request, response) {
     try {
 
-      const apis = eval(
-        fs.readFileSync('./mockApi.js', 'utf-8'),
-      );
-      let url = request.url.split('?')[0];
+      const mockData = darkUtils.getMockData(request.url);
+      const apis = mockData.apis;
+      let url = mockData.url.split('?')[0];
       if (!apis[url]) {
         //
         for (const [key, value] of Object.entries(apis)) {

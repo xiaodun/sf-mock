@@ -7,20 +7,24 @@ if (!fs.existsSync(dataFolderPath)) {
 }
 for (const programName in programConfig) {
     const programPath = `${dataFolderPath}/${programName}`;
-    if (!fs.existsSync(programPath)) {
-        fs.mkdir(programPath, () => { });
+    const values = programConfig[programName];
+    if (values.withFileStructure) {
 
-    }
-    const mockApiPath = `${programPath}/${programName}-mock-api.js`;
-    if (!fs.existsSync(mockApiPath)) {
-        fs.writeFileSync(mockApiPath, `
-        (function getApis() {
-            return {
-            
-            };
-          })();
-          
-        `)
+        if (!fs.existsSync(programPath)) {
+            fs.mkdir(programPath, () => { });
+
+        }
+        const mockApiPath = `${programPath}/${programName}-mock-api.js`;
+        if (!fs.existsSync(mockApiPath)) {
+            fs.writeFileSync(mockApiPath, `
+            (function getApis() {
+                return {
+                
+                };
+              })();
+              
+            `)
+        }
     }
 
 }
