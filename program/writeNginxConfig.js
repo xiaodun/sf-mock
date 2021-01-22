@@ -1,3 +1,7 @@
+/**
+ * 根据programConfig.js里的配置,自动生成配置写入到nginx.conf文件
+ * 只会覆盖#program-service-start 到  #program-service-end 之间的内容
+ */
 const fs = require('fs');
 const nginxConfContent = fs.readFileSync("../nginx-1.19.6/conf/nginx.conf", "utf-8");
 const nginxConfRegexp = /#program-service-start([\s\S]*?)#program-service-end/g;
@@ -10,13 +14,14 @@ const serverConfigList = [];
 for (const programName in programConfig) {
     const { mockListenPort, jointListenPort, jointServiceUrl, ...values } = programConfig[programName];
     if (values.withNginxConf) {
-
+        //生成本地测试服务器对应的server配置
         const mockConfig = generateServerConfig({
             programName,
             listenPort: mockListenPort,
             serviceUrl: mockServiceUrl,
             ...values,
         })
+        //生成联调服务器对应的server配置
         const jointConfig = generateServerConfig({
             programName,
             listenPort: jointListenPort,
@@ -29,7 +34,13 @@ for (const programName in programConfig) {
 }
 const generateNginxConfContent = nginxConfContent.replace(nginxConfRegexp, (all, group1) => all.replace(group1, "\n" + serverConfigList.join("\n")))
 fs.writeFileSync("../nginx-1.19.6/conf/nginx.conf", generateNginxConfContent)
+/**
+ * 生成nginx.conf 的 server配置
+ */
 function generateServerConfig(config) {
+    /**
+     * /sockjs-node  用于webpack的热更新
+     */
     const serverConfig = ` 
     server {
         listen ${config.listenPort};

@@ -18,7 +18,6 @@ function start() {
       const apis = mockData.apis;
       let url = mockData.url.split('?')[0];
       if (!apis[url]) {
-        //
         for (const [key, value] of Object.entries(apis)) {
           if (value.supportRegexp) {
             if (new RegExp(key).test(url)) {

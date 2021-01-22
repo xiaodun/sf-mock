@@ -1,16 +1,27 @@
 (function () {
     const webpackHotUrl = "http://127.0.0.1:8080";
     return {
-
+        // 键值是项目名
         // "graphic-consultation-patient-h5": {
+        //     //配置是否参与到nginx.conf文件server配置的生成
         //     withNginxConf: true,
+        //     //配置是否参与用于提供mock数据的文件目录结构生成
+        //     withFileStructure: true,
+        //     //nginx.conf => server配置 => location => 转发接口请求前缀
         //     apiPrefix: "/p/h5/",
+        //     //nginx.conf => server配置 => location => 转发非接口请求前缀
         //     programPrefix: "/patient_consult_h5",
+        //     //nginx.conf => server配置 => 使用本地测试服务器时监听的端口
         //     mockListenPort: 9000,
-        //     jointListenPort: 9010,
+        //     //nginx.conf => server配置 => 用于联调时监听的端口
+        //     jointListenPort: 9001,
+        //     //nginx.conf => server配置 => 用于联调时转发的地址
         //     jointServiceUrl: "http://10.200.0.3:52123",
+        //     //nginx.conf => server配置 => 前端项目的根目录
         //     programUrl: "http://10.220.203.80:8080/patient_consult_h5",
+        //     // 前端项目的热更新地址
         //     webpackHotUrl,
-        // }
+        // },
+
     }
 })()
