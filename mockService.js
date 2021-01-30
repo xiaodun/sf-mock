@@ -1,44 +1,58 @@
 const http = require('http');
 const fs = require('fs');
-const commonUtils = require("./utils/commonUtils");
-const darkUtils = require("./utils/darkUtils");
+const commonUtils = require('./utils/commonUtils');
+const darkUtils = require('./utils/darkUtils');
 const ip = commonUtils.getIp();
 
 function start() {
-
   const config = eval(
-    commonUtils.replaceInterpolation(fs.readFileSync('./config/mockConfig.js', 'utf-8'), { remoteIp: ip })
-
+    commonUtils.replaceInterpolation(
+      fs.readFileSync('./config/mockConfig.js', 'utf-8'),
+      { remoteIp: ip },
+    ),
   );
   const headers = config.rspHeaders;
   var server = http.createServer(function (request, response) {
+    if (request.url === config.debuggerPath) {
+      response.writeHead(200, headers);
+      return;
+    }
     try {
+      //获取mock文件
+      const mockFile = darkUtils.getMockData(request.url);
+      const apis = mockFile.apis;
+      //url带有查询参数的将被忽略
+      let url = mockFile.url.split('?')[0];
+      let mockData = apis[url];
 
-      const mockData = darkUtils.getMockData(request.url);
-      const apis = mockData.apis;
-      let url = mockData.url.split('?')[0];
-      if (!apis[url]) {
+      if (!mockData) {
+        //是否存在动态路径
         for (const [key, value] of Object.entries(apis)) {
           if (value.supportRegexp) {
             if (new RegExp(key).test(url)) {
               url = key;
+              mockData = apis[url];
               break;
             }
           }
         }
       }
-      console.log({ [url]: apis[url] });
+      console.log({ [url]: mockData });
       const method = request.method.toLowerCase();
-      if (apis[url]) {
+      if (mockData) {
         response.writeHead(200, headers);
-        if (typeof apis[url] === 'string') {
-          const json = fs.readFileSync(apis[url], 'utf-8');
+        if (typeof mockData === 'string') {
+          if (mockData.endsWith('.json')) {
+            const json = fs.readFileSync(mockData, 'utf-8');
 
-          response.end(json);
+            response.end(json);
+          } else {
+            response.end(mockData);
+          }
         } else {
-          let data = apis[url][method];
+          let data = mockData[method];
           if (!data) {
-            data = apis[url];
+            data = mockData;
           }
           response.end(JSON.stringify(data));
         }
