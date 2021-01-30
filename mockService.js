@@ -25,7 +25,7 @@ function start() {
       let url = mockFile.url.split('?')[0];
       let mockData = apis[url];
 
-      if (!mockData) {
+      if (mockData == undefined) {
         //是否存在动态路径
         for (const [key, value] of Object.entries(apis)) {
           if (value.supportRegexp) {
@@ -39,50 +39,58 @@ function start() {
       }
       console.log({ [url]: mockData });
       const method = request.method.toLowerCase();
-      if (mockData) {
-        if (mockData.statusCode) {
-          response.writeHead(mockData.statusCode, headers);
-          response.end(mockData.statusCode + '');
+      if (mockData != undefined) {
+        if (typeof mockData === 'number') {
+          response.end(mockData + '');
+        } else if (Array.isArray(mockData)) {
+          response.end(JSON.stringify(mockData));
         } else {
-          response.writeHead(200, headers);
-          if (typeof mockData === 'string') {
-            if (mockData.endsWith('.json')) {
-              if (!fs.existsSync(mockData)) {
-                fs.writeFileSync(mockData, '{}', 'utf-8');
-              }
-              const json = fs.readFileSync(mockData, 'utf-8');
+          if (mockData.statusCode) {
+            response.writeHead(mockData.statusCode, headers);
+            response.end(mockData.statusCode + '');
+          } else {
+            response.writeHead(200, headers);
+            if (typeof mockData === 'string') {
+              if (mockData.endsWith('.json')) {
+                if (!fs.existsSync(mockData)) {
+                  fs.writeFileSync(mockData, '{}', 'utf-8');
+                }
+                const json = fs.readFileSync(mockData, 'utf-8');
 
-              response.end(json);
-            } else if (mockData.endsWith('.js')) {
-              if (!fs.existsSync(mockData)) {
-                fs.writeFileSync(
-                  mockData,
-                  `(function () {
-                    return ({ req }) => {
-                      return {};
-                    };
-                  })();
-                  `,
-                  'utf-8',
+                response.end(json);
+              } else if (mockData.endsWith('.js')) {
+                if (!fs.existsSync(mockData)) {
+                  fs.writeFileSync(
+                    mockData,
+                    `(function () {
+                      return ({ req }) => {
+                        return {};
+                      };
+                    })();
+                    `,
+                    'utf-8',
+                  );
+                }
+                const mockFunc = eval(
+                  fs.readFileSync(mockData, 'utf-8'),
                 );
+                response.end(
+                  JSON.stringify(mockFunc({ req: request })),
+                );
+              } else {
+                response.end(mockData);
               }
-              const mockFunc = eval(
-                fs.readFileSync(mockData, 'utf-8'),
-              );
+            } else if (typeof mockData === 'function') {
               response.end(
-                JSON.stringify(mockFunc({ req: request })),
+                JSON.stringify(mockData({ req: request })),
               );
             } else {
-              response.end(mockData);
+              let data = mockData[method];
+              if (!data) {
+                data = mockData;
+              }
+              response.end(JSON.stringify(data));
             }
-          } else if (typeof mockData === 'function') {
-            response.end(JSON.stringify(mockData({ req: request })));
-          } else {
-            let data = mockData[method];
-            if (!data) {
-              data = mockData;
-            }
-            response.end(JSON.stringify(data));
           }
         }
       } else {
