@@ -103,7 +103,7 @@ function start() {
           jointCopyConfig = {},
         } = darkUtils.getProgramConfig(request.url);
         if (jointCopyConfig.open) {
-          // 使用了superagent来发起请求
+          // copy远程数据
           const serviceUrl = new URL(jointServiceUrl);
           var sreq = http.request(
             {
@@ -114,7 +114,12 @@ function start() {
             },
             function (sres) {
               sres.on('data', function (rspData) {
-                darkUtils.writeFile(request.url, rspData.toString());
+                if (jointCopyConfig.mode === 'create') {
+                  darkUtils.writeFile(
+                    request.url,
+                    rspData.toString(),
+                  );
+                }
               });
               sres.pipe(response);
             },
