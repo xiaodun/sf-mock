@@ -47,12 +47,36 @@ function start() {
           response.writeHead(200, headers);
           if (typeof mockData === 'string') {
             if (mockData.endsWith('.json')) {
+              if (!fs.existsSync(mockData)) {
+                fs.writeFileSync(mockData, '{}', 'utf-8');
+              }
               const json = fs.readFileSync(mockData, 'utf-8');
 
               response.end(json);
+            } else if (mockData.endsWith('.js')) {
+              if (!fs.existsSync(mockData)) {
+                fs.writeFileSync(
+                  mockData,
+                  `(function () {
+                    return ({ req }) => {
+                      return {};
+                    };
+                  })();
+                  `,
+                  'utf-8',
+                );
+              }
+              const mockFunc = eval(
+                fs.readFileSync(mockData, 'utf-8'),
+              );
+              response.end(
+                JSON.stringify(mockFunc({ req: request })),
+              );
             } else {
               response.end(mockData);
             }
+          } else if (typeof mockData === 'function') {
+            response.end(JSON.stringify(mockData({ req: request })));
           } else {
             let data = mockData[method];
             if (!data) {

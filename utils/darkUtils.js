@@ -1,5 +1,5 @@
 /**
- * Dark 模式新增的功能集中写在这里
+ * Dark-处理多个项目数据 模式新增的功能集中写在这里
  */
 const fs = require('fs');
 const path = require('path');
@@ -35,9 +35,26 @@ const darkUtils = {
         'utf-8',
       ),
     );
+    //补足文件的路径
+    let newApis = {};
+    for (let key in apis) {
+      const mockData = apis[key];
+      newApis[key] = mockData;
+      if (
+        typeof mockData === 'string' &&
+        mockData.search(/\.json|\.js/) !== -1
+      ) {
+        newApis[key] = path.join(
+          __dirname,
+          '../data',
+          programName,
+          mockData,
+        );
+      }
+    }
 
     return {
-      apis,
+      apis: newApis,
       url: api,
     };
   },
