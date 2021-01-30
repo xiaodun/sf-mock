@@ -6,16 +6,23 @@ const path = require('path');
 const darkUtils = {
   /**
    *
-   * @param {string} url  待着项目名称前缀的接口请求路径字符串
+   * @param {string} reqUrl  待着项目名称前缀的接口请求路径字符串
    *
    */
-  getMockData(url) {
+  parseUrl(reqUrl) {
     const pattern = /\/([\w\W]+?)(\/[\w\W]+)/;
-    const result = pattern.exec(url) || {};
+    const result = pattern.exec(reqUrl) || {};
     //获取项目名称
     const programName = result[1];
     //获取api路径
     const api = result[2];
+    return {
+      programName,
+      api,
+    };
+  },
+  getMockData(reqUrl) {
+    const { programName, api } = this.parseUrl(reqUrl);
     console.log('项目名:', programName);
 
     //获取mock数据
@@ -33,6 +40,46 @@ const darkUtils = {
       apis,
       url: api,
     };
+  },
+  getProgramConfig(reqUrl) {
+    const { programName } = this.parseUrl(reqUrl);
+    const programConfig = eval(
+      fs.readFileSync(
+        path.join(__dirname, '../program/programConfig.js'),
+        'utf-8',
+      ),
+    )[programName];
+    return programConfig;
+  },
+  writeFile(reqUrl, data = '') {
+    const { programName, api } = this.parseUrl(reqUrl);
+    const mockFileData = fs
+      .readFileSync(
+        path.join(
+          __dirname,
+          `../data/${programName}/${programName}-mock-api.js`,
+        ),
+      )
+      .toString();
+
+    const regexp = /return\s+\{([\w\W]*?)\};/gm;
+    let newFileData = mockFileData.replace(regexp, (all, group) => {
+      let str = `"${api}":${data}`;
+      console.log('wx', group);
+
+      return all.replace(
+        group,
+        group + (group.trim().endsWith(',') ? str + ',' : ',' + str),
+      );
+    });
+    fs.writeFileSync(
+      path.join(
+        __dirname,
+        `../data/${programName}/${programName}-mock-api.js`,
+      ),
+      newFileData,
+    );
+    console.log('wx', newFileData);
   },
 };
 module.exports = darkUtils;

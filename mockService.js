@@ -3,7 +3,6 @@ const fs = require('fs');
 const commonUtils = require('./utils/commonUtils');
 const darkUtils = require('./utils/darkUtils');
 const ip = commonUtils.getIp();
-
 function start() {
   const config = eval(
     commonUtils.replaceInterpolation(
@@ -62,8 +61,41 @@ function start() {
           }
         }
       } else {
-        response.writeHead(500, headers);
-        response.end('404');
+        response.setHeader(
+          'Content-Type',
+          'application/json,charset=utf-8',
+        );
+        const {
+          jointServiceUrl,
+          jointCopyConfig = {},
+        } = darkUtils.getProgramConfig(request.url);
+        if (jointCopyConfig.open) {
+          // 使用了superagent来发起请求
+          const serviceUrl = new URL(jointServiceUrl);
+          console.log('wx', serviceUrl);
+          var sreq = http.request(
+            {
+              ...request,
+              host: serviceUrl.hostname, // 目标主机
+              path: url, // 目标路径
+              port: serviceUrl.port,
+            },
+            function (sres) {
+              sres.on('data', function (rspData) {
+                darkUtils.writeFile(request.url, rspData.toString());
+              });
+              sres.pipe(response);
+            },
+          );
+          if (/POST|PUT/i.test(request.method)) {
+            request.pipe(sreq);
+          } else {
+            sreq.end();
+          }
+        } else {
+          response.writeHead(404, headers);
+          response.end('404');
+        }
       }
     } catch (error) {
       dealError(response, error);
