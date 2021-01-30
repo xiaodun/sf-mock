@@ -65,8 +65,6 @@ const darkUtils = {
     const regexp = /return\s+\{([\w\W]*?)\};/gm;
     let newFileData = mockFileData.replace(regexp, (all, group) => {
       let str = `"${api}":${data}`;
-      console.log('wx', group);
-
       return all.replace(
         group,
         group + (group.trim().endsWith(',') ? str + ',' : ',' + str),
@@ -79,7 +77,6 @@ const darkUtils = {
       ),
       newFileData,
     );
-    console.log('wx', newFileData);
   },
 };
 module.exports = darkUtils;

@@ -3,6 +3,7 @@ const fs = require('fs');
 const commonUtils = require('./utils/commonUtils');
 const darkUtils = require('./utils/darkUtils');
 const ip = commonUtils.getIp();
+const _ = require('lodash');
 function start() {
   const config = eval(
     commonUtils.replaceInterpolation(
@@ -72,10 +73,9 @@ function start() {
         if (jointCopyConfig.open) {
           // 使用了superagent来发起请求
           const serviceUrl = new URL(jointServiceUrl);
-          console.log('wx', serviceUrl);
           var sreq = http.request(
             {
-              ...request,
+              ..._.merge(request, jointCopyConfig.request),
               host: serviceUrl.hostname, // 目标主机
               path: url, // 目标路径
               port: serviceUrl.port,

@@ -1,0 +1,23 @@
+{
+  "name": "sf-mock",
+  "version": "1.0.0",
+  "description": "对代码零入侵的mock解决方案",
+  "main": "mockService.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiaodun/sf-mock.git"
+  },
+  "keywords": [
+    "mock"
+  ],
+  "author": "xiaodun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xiaodun/sf-mock/issues"
+  },
+  "homepage": "https://github.com/xiaodun/sf-mock#readme",
+  "dependencies": {
+    "lodash": "^4.17.20"
+  }
+}
