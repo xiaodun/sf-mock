@@ -40,21 +40,26 @@ function start() {
       console.log({ [url]: mockData });
       const method = request.method.toLowerCase();
       if (mockData) {
-        response.writeHead(200, headers);
-        if (typeof mockData === 'string') {
-          if (mockData.endsWith('.json')) {
-            const json = fs.readFileSync(mockData, 'utf-8');
-
-            response.end(json);
-          } else {
-            response.end(mockData);
-          }
+        if (mockData.statusCode) {
+          response.writeHead(mockData.statusCode, headers);
+          response.end(mockData.statusCode + '');
         } else {
-          let data = mockData[method];
-          if (!data) {
-            data = mockData;
+          response.writeHead(200, headers);
+          if (typeof mockData === 'string') {
+            if (mockData.endsWith('.json')) {
+              const json = fs.readFileSync(mockData, 'utf-8');
+
+              response.end(json);
+            } else {
+              response.end(mockData);
+            }
+          } else {
+            let data = mockData[method];
+            if (!data) {
+              data = mockData;
+            }
+            response.end(JSON.stringify(data));
           }
-          response.end(JSON.stringify(data));
         }
       } else {
         response.writeHead(500, headers);
