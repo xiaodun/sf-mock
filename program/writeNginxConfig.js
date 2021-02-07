@@ -26,6 +26,7 @@ for (const programName in programConfig) {
     ...values
   } = programConfig[programName];
   if (values.withNginxConf) {
+    const apiPrefix = Array.isArray(values.apiPrefix) ? values.apiPrefix : [values.apiPrefix];
     //生成本地测试服务器对应的server配置
     const mockConfig = generateServerConfig({
       isServer: false,
@@ -33,6 +34,7 @@ for (const programName in programConfig) {
       listenPort: mockListenPort,
       serviceUrl: mockServiceUrl,
       ...values,
+      apiPrefix,
     });
     //生成联调服务器对应的server配置
     const jointConfig = generateServerConfig({
@@ -41,6 +43,7 @@ for (const programName in programConfig) {
       listenPort: jointListenPort,
       serviceUrl: jointServiceUrl,
       ...values,
+      apiPrefix,
     });
     serverConfigList.push(mockConfig);
     serverConfigList.push(jointConfig);
@@ -62,16 +65,18 @@ function generateServerConfig(config) {
   /**
    * /sockjs-node  用于webpack的热更新
    */
-  const serverConfig = ` 
+  const jointConfigs = config.apiPrefix.map(prefix => {
+    return `location ${prefix} {
+      proxy_pass ${config.serviceUrl}${config.isServer ? '' : '/' + config.programName
+      }${prefix};
+      client_max_body_size 64m;
+   }`
+  }).join("")
+  const serverConfig = `
     server {
         listen ${config.listenPort};
         #WebServer
-        location ${config.apiPrefix} {
-           proxy_pass ${config.serviceUrl}${
-    config.isServer ? '' : '/' + config.programName
-  }${config.apiPrefix};
-           client_max_body_size 64m;
-        }
+        ${jointConfigs}
         location ${config.programPrefix} {
            proxy_pass ${config.programUrl};
         }
