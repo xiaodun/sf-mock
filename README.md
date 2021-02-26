@@ -11,7 +11,7 @@ sf-mock 等同于"本地 mock 数据解决方案" + 实现,从此告别部署在
 
 # 运作原理
 
-现有 sf-notes 一个脚手架项目，项目地值是 http://192.168.10.131:8000， 用nginx代理它，代理地址是http://192.168.10.131:9000， 当我通过代理地址访问时，可以让/访问的继续走项目地址，/api访问的走本地mock服务器地址,以/api/notes/getNoteList为例,映射到http://192.168.10.131:9192/sf-notes/api/notes/getNoteList， mock服务器会解析为项目:sf-notes,可确认一个映射表，url: api/notes/getNoteList,可得到 mock 数据的格式，解析之后返回。
+现有 sf-notes 一个脚手架项目，项目地值是 http://192.168.10.131:8000， 用 nginx 代理它，代理地址是http://192.168.10.131:9000， 当我通过代理地址访问时，可以让/访问的继续走项目地址，/api 访问的走本地 mock 服务器地址,以/api/notes/getNoteList 为例,映射到http://192.168.10.131:9192/sf-notes/api/notes/getNoteList， mock 服务器会解析为项目:sf-notes,可确认一个映射表，url: api/notes/getNoteList,可得到 mock 数据的格式，解析之后返回。
 
 再换一个端口代理，让/api 访问到远程服务器，就可以做联调了。
 
@@ -21,7 +21,7 @@ sf-mock 等同于"本地 mock 数据解决方案" + 实现,从此告别部署在
 
 mock 服务器用到的信息,修改 startPort 需要重启服务，其余的配置则不需要，如果您只能在项目上直接访问 mock 服务器，就会产生跨域的问题，可以在这里解决。
 
-${remoteIp},访问的地址,会被自动注入
+${remoteOrigin},访问的地址,会被自动注入,例如:http://10.210.2.133:8085/
 
 ### program/progrmConfig.js
 
