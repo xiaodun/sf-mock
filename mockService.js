@@ -5,15 +5,25 @@ const darkUtils = require("./utils/darkUtils");
 const ip = commonUtils.getIp();
 const _ = require("lodash");
 function start() {
-  const config = eval(
+  let config = eval(
     commonUtils.replaceInterpolation(
       fs.readFileSync("./config/mockConfig.js", "utf-8"),
-      { remoteIp: ip }
+      { remoteOrigin: ip }
     )
   );
-  const headers = config.rspHeaders;
+  let headers = config.rspHeaders;
+
   var server = http.createServer(function (request, response) {
+    console.log("wx", request);
+    config = eval(
+      commonUtils.replaceInterpolation(
+        fs.readFileSync("./config/mockConfig.js", "utf-8"),
+        { remoteOrigin: request.headers.origin }
+      )
+    );
+    headers = config.rspHeaders;
     if (request.url === config.debuggerPath) {
+      //使用chrome调试
       response.writeHead(200, headers);
       return;
     }
@@ -48,7 +58,6 @@ function start() {
           ).toGMTString()} `
         );
       }
-      console.log("wx", cookieList, mockData.cookies);
       response.setHeader("Set-Cookie", cookieList);
       const method = request.method.toLowerCase();
       if (mockData != undefined) {
