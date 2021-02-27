@@ -49,16 +49,7 @@ function start() {
         }
       }
       console.log({ [url]: mockData });
-      //写入cookie
-      let cookieList = [];
-      for (const key in mockData.cookies || {}) {
-        cookieList.push(
-          `${key}=${mockData.cookies[key]};path=/;Expires=${new Date(
-            Date.now() + 1000 * 10000
-          ).toGMTString()} `
-        );
-      }
-      response.setHeader("Set-Cookie", cookieList);
+
       const method = request.method.toLowerCase();
       if (mockData != undefined) {
         if (typeof mockData === "number") {
@@ -67,6 +58,7 @@ function start() {
           response.end(JSON.stringify(mockData));
         } else {
           if (mockData.statusCode) {
+            //测试指定的http状态
             response.writeHead(mockData.statusCode, headers);
             response.end(mockData.statusCode + "");
           } else {
@@ -116,27 +108,35 @@ function start() {
         } = darkUtils.getProgramConfig(request.url);
         if (jointCopyConfig.open) {
           // copy远程数据
+          console.log(`从联调地址${jointServiceUrl}中克隆数据...`);
           const serviceUrl = new URL(jointServiceUrl);
-          var sreq = http.request(
-            {
-              ..._.merge(request, jointCopyConfig.request),
-              host: serviceUrl.hostname, // 目标主机
-              path: url, // 目标路径
-              port: serviceUrl.port,
-            },
-            function (sres) {
-              sres.on("data", function (rspData) {
-                if (jointCopyConfig.mode === "create") {
-                  darkUtils.writeFile(request.url, rspData.toString());
-                }
-              });
-              sres.pipe(response);
+          try {
+            var sreq = http.request(
+              {
+                ..._.merge(request, jointCopyConfig.request),
+                host: serviceUrl.hostname, // 目标主机
+                path: url, // 目标路径
+                port: serviceUrl.port,
+              },
+              function (sres) {
+                sres.on("data", function (rspData) {
+                  isTimeout = false;
+                  if (jointCopyConfig.mode === "create") {
+                    darkUtils.writeFile(request.url, rspData.toString());
+                  }
+                });
+                sres.pipe(response);
+              }
+            );
+
+            if (/POST|PUT/i.test(request.method)) {
+              request.pipe(sreq);
+            } else {
+              sreq.end();
             }
-          );
-          if (/POST|PUT/i.test(request.method)) {
-            request.pipe(sreq);
-          } else {
-            sreq.end();
+          } catch (error) {
+            console.log(error);
+            console.log("克隆过程中发生了问题");
           }
         } else {
           response.writeHead(404, headers);
