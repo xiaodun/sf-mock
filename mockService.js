@@ -14,7 +14,11 @@ function start() {
   let headers = config.rspHeaders;
 
   var server = http.createServer(function (request, response) {
-    console.log("wx", request);
+    if(["/favicon.ico"].includes(request.url)){
+      response.end();
+      return;
+    }
+    console.log(request.url);
     config = eval(
       commonUtils.replaceInterpolation(
         fs.readFileSync("./config/mockConfig.js", "utf-8"),
@@ -62,14 +66,14 @@ function start() {
             response.writeHead(mockData.statusCode, headers);
             response.end(mockData.statusCode + "");
           } else {
-            response.writeHead(200, headers);
+            
             if (typeof mockData === "string") {
               if (mockData.endsWith(".json")) {
                 if (!fs.existsSync(mockData)) {
                   fs.writeFileSync(mockData, "{}", "utf-8");
                 }
                 const json = fs.readFileSync(mockData, "utf-8");
-
+                response.writeHead(200, headers);
                 response.end(json);
               } else if (mockData.endsWith(".js")) {
                 if (!fs.existsSync(mockData)) {
@@ -85,17 +89,27 @@ function start() {
                   );
                 }
                 const mockFunc = eval(fs.readFileSync(mockData, "utf-8"));
+                response.writeHead(200, headers);
                 response.end(JSON.stringify(mockFunc({ req: request })));
               } else {
+               //返回简单的字符串
+               response.writeHead(200, headers);
                 response.end(mockData);
               }
             } else if (typeof mockData === "function") {
+              response.writeHead(200, headers);
               response.end(JSON.stringify(mockData({ req: request })));
             } else {
+              //普通对象
               let data = mockData[method];
               if (!data) {
                 data = mockData;
               }
+              else{
+
+                darkUtils.setCookie(response,data.cookies)
+              }
+              response.writeHead(200, headers);
               response.end(JSON.stringify(data));
             }
           }

@@ -95,5 +95,17 @@ const darkUtils = {
       newFileData,
     );
   },
+  setCookie(response, cookies = {}) {
+    //写入cookie
+    let cookieList = [];
+    for (const key in cookies) {
+      cookieList.push(
+        `${key}=${cookies[key]};path=/;Expires=${new Date(
+          Date.now() + 1000 * 10000,
+        ).toGMTString()} `,
+      );
+    }
+    response.setHeader('Set-Cookie', cookieList);
+  },
 };
 module.exports = darkUtils;
