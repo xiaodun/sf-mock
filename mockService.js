@@ -109,6 +109,7 @@ function start() {
 
                 darkUtils.setCookie(response,data.cookies)
               }
+              delete data.cookies
               response.writeHead(200, headers);
               response.end(JSON.stringify(data));
             }

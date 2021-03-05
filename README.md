@@ -6,7 +6,7 @@ sf-mock 等同于"本地 mock 数据解决方案" + 实现,从此告别部署在
 - 实现配置化、模块化,因为 node 环境下，在任何地方您都可以通过 require 的方式扩展能力。
 - 分项目进行数据管理,提供文件自动生成目录结构
 - 提供文件自动写入 nginx.conf，只需切换端口，即可在本都服务器、远程服务器做切换
-- 支持 copy 远程服务的数据到本地
+- 支持 copy 远程服务的数据到本地(体验不是很好，有待完善)
 - mock 数据更改无需重启服务，支持 js 文件、json 文件、函数、对象，正则 url 等，可定义程度高
 
 # 运作原理
@@ -104,6 +104,31 @@ statusCode: 404, 指定状态码，方便做测试,找不到 mock 数据的时�
       return {
 
       };
+    },
+```
+
+对 cookie 的支持,仅限返回对象
+
+```
+  '/test': {
+      cookies:{
+        token:"sdkadhjaskhdsakjas"
+      },
+      get:{
+        name: 2,
+      }
+    },
+```
+
+```
+  '/test': {
+
+      get:{
+        cookies:{
+        token:"sdkadhjaskhdsakjas"
+      },
+        name: 2,
+      }
     },
 ```
 
