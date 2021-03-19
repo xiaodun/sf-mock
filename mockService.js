@@ -69,7 +69,7 @@ function start() {
             
             if (typeof mockData === "string") {
               if (mockData.endsWith(".json")) {
-                if (!fs.existsSync(mockData)) {
+                if (!fs.existsSync(mockData)) {s
                   fs.writeFileSync(mockData, "{}", "utf-8");
                 }
                 const json = fs.readFileSync(mockData, "utf-8");
@@ -80,7 +80,7 @@ function start() {
                   fs.writeFileSync(
                     mockData,
                     `(function () {
-                      return ({ req }) => {
+                      return ({ req,rsp,headers  }) => {
                         return {};
                       };
                     })();
