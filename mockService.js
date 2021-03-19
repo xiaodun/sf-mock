@@ -89,8 +89,8 @@ function start() {
                   );
                 }
                 const mockFunc = eval(fs.readFileSync(mockData, "utf-8"));
-                response.writeHead(200, headers);
-                response.end(JSON.stringify(mockFunc({ req: request })));
+                mockFunc({ req: request ,rsp:response,headers})
+               
               } else {
                //返回简单的字符串
                response.writeHead(200, headers);
