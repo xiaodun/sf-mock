@@ -7,21 +7,22 @@ const _ = require("lodash");
 function start() {
   let config = eval(
     commonUtils.replaceInterpolation(
-      fs.readFileSync("./config/mockConfig.js", "utf-8"),
+      fs.readFileSync("./config/serviceConfig.js", "utf-8"),
       { remoteOrigin: ip }
     )
   );
   let headers = config.rspHeaders;
 
   var server = http.createServer(function (request, response) {
-    if(["/favicon.ico"].includes(request.url)){
+    if (["/favicon.ico"].includes(request.url)) {
       response.end();
       return;
     }
+    console.log("wx", response);
     console.log(request.url);
     config = eval(
       commonUtils.replaceInterpolation(
-        fs.readFileSync("./config/mockConfig.js", "utf-8"),
+        fs.readFileSync("./config/serviceConfig.js", "utf-8"),
         { remoteOrigin: request.headers.origin }
       )
     );
@@ -56,106 +57,59 @@ function start() {
 
       const method = request.method.toLowerCase();
       if (mockData != undefined) {
-        if (typeof mockData === "number") {
-          response.end(mockData + "");
-        } else if (Array.isArray(mockData)) {
-          response.end(JSON.stringify(mockData));
-        } else {
-          if (mockData.statusCode) {
-            //测试指定的http状态
-            response.writeHead(mockData.statusCode, headers);
-            response.end(mockData.statusCode + "");
-          } else {
-            
-            if (typeof mockData === "string") {
-              if (mockData.endsWith(".json")) {
-                if (!fs.existsSync(mockData)) {s
-                  fs.writeFileSync(mockData, "{}", "utf-8");
-                }
-                const json = fs.readFileSync(mockData, "utf-8");
-                response.writeHead(200, headers);
-                response.end(json);
-              } else if (mockData.endsWith(".js")) {
-                if (!fs.existsSync(mockData)) {
-                  fs.writeFileSync(
-                    mockData,
-                    `(function () {
-                      return ({ req,rsp,headers  }) => {
-                        return {};
-                      };
-                    })();
-                    `,
-                    "utf-8"
-                  );
-                }
-                const mockFunc = eval(fs.readFileSync(mockData, "utf-8"));
-                mockFunc({ req: request ,rsp:response,headers})
-               
-              } else {
-               //返回简单的字符串
-               response.writeHead(200, headers);
-                response.end(mockData);
-              }
-            } else if (typeof mockData === "function") {
-              response.writeHead(200, headers);
-              response.end(JSON.stringify(mockData({ req: request })));
-            } else {
-              //普通对象
-              let data = mockData[method];
-              if (!data) {
-                data = mockData;
-              }
-              else{
-
-                darkUtils.setCookie(response,data.cookies)
-              }
-              delete data.cookies
-              response.writeHead(200, headers);
-              response.end(JSON.stringify(data));
-            }
-          }
+        mockData = _.merge({
+          ...{ response: {}, options: { ingoreMethod: true } },
+          ...mockData,
+        });
+        if (mockData.options.ingoreMethod === false) {
+          mockData.body = mockData.body[method];
+          console.log(method + "请求");
         }
-      } else {
-        response.setHeader("Content-Type", "application/json,charset=utf-8");
-        const {
-          jointServiceUrl,
-          jointCopyConfig = {},
-        } = darkUtils.getProgramConfig(request.url);
-        if (jointCopyConfig.open) {
-          // copy远程数据
-          console.log(`从联调地址${jointServiceUrl}中克隆数据...`);
-          const serviceUrl = new URL(jointServiceUrl);
-          try {
-            var sreq = http.request(
-              {
-                ..._.merge(request, jointCopyConfig.request),
-                host: serviceUrl.hostname, // 目标主机
-                path: url, // 目标路径
-                port: serviceUrl.port,
-              },
-              function (sres) {
-                sres.on("data", function (rspData) {
-                  isTimeout = false;
-                  if (jointCopyConfig.mode === "create") {
-                    darkUtils.writeFile(request.url, rspData.toString());
-                  }
-                });
-                sres.pipe(response);
-              }
-            );
-
-            if (/POST|PUT/i.test(request.method)) {
-              request.pipe(sreq);
-            } else {
-              sreq.end();
-            }
-          } catch (error) {
-            console.log(error);
-            console.log("克隆过程中发生了问题");
-          }
+        if (mockData.response.statusCode != null) {
+          response.writeHead(mockData.statusCode, headers);
+          response.end(mockData.statusCode + "");
+        } else if (mockData.body == null) {
+          response.end(JSON.stringify(mockData.body));
+        } else if (typeof mockData.body === "number") {
+          response.end(mockData.body + "");
+        } else if (Array.isArray(mockData.body)) {
+          response.end(JSON.stringify(mockData.body));
         } else {
-          response.writeHead(404, headers);
-          response.end("404");
+          if (typeof mockData.body === "string") {
+            if (mockData.body.endsWith(".json")) {
+              if (!fs.existsSync(mockData.body)) {
+                fs.writeFileSync(mockData.body, "{}", "utf-8");
+              }
+              const json = fs.readFileSync(mockData, body, "utf-8");
+              response.writeHead(200, headers);
+              response.end(json);
+            } else if (mockData.body.endsWith(".js")) {
+              if (!fs.existsSync(mockData.body)) {
+                fs.writeFileSync(
+                  mockData.body,
+                  `(function () {
+                    return ({ req,rsp,headers  }) => {
+                      return {};
+                    };
+                  })();
+                  `,
+                  "utf-8"
+                );
+              }
+              const mockFunc = eval(fs.readFileSync(mockData.body, "utf-8"));
+              mockFunc({ req: request, rsp: response, headers });
+            } else {
+              //返回简单的字符串
+              response.writeHead(200, headers);
+              response.end(mockData.body);
+            }
+          } else if (typeof mockData.body === "function") {
+            response.writeHead(200, headers);
+            response.end(JSON.stringify(mockData({ req: request })));
+          } else if (typeof mockData.body === "object") {
+            response.writeHead(200, headers);
+            response.end(JSON.stringify(mockData.body));
+          }
         }
       }
     } catch (error) {
