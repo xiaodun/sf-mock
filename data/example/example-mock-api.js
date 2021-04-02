@@ -36,5 +36,14 @@
         ingoreMethod: false,
       },
     },
+    //动态路径
+    "/api/regexp/\\w+/\\d+$": {
+      body: {
+        color: "red",
+      },
+      options: {
+        supportRegexp: true,
+      },
+    },
   };
 })();

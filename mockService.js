@@ -18,7 +18,6 @@ function start() {
       response.end();
       return;
     }
-    console.log("wx", response);
     console.log(request.url);
     config = eval(
       commonUtils.replaceInterpolation(
@@ -44,7 +43,8 @@ function start() {
       if (mockData == undefined) {
         //是否存在动态路径
         for (const [key, value] of Object.entries(apis)) {
-          if (value.supportRegexp) {
+          if (value.options && value.options.supportRegexp) {
+            console.log("key:" + key);
             if (new RegExp(key).test(url)) {
               url = key;
               mockData = apis[url];
@@ -111,6 +111,9 @@ function start() {
             response.end(JSON.stringify(mockData.body));
           }
         }
+      } else {
+        response.writeHead(404, headers);
+        response.end(JSON.stringify(404));
       }
     } catch (error) {
       dealError(response, error);
