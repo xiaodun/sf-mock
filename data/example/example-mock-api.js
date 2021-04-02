@@ -38,6 +38,7 @@
     },
     //动态路径
     "/api/regexp/\\w+/\\d+$": {
+      // /api/regexp/name/200
       body: {
         color: "red",
       },

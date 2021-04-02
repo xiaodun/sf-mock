@@ -44,8 +44,9 @@ function start() {
         //是否存在动态路径
         for (const [key, value] of Object.entries(apis)) {
           if (value.options && value.options.supportRegexp) {
-            console.log("key:" + key);
+            console.log("动态路径:" + key);
             if (new RegExp(key).test(url)) {
+              console.log("匹配成功");
               url = key;
               mockData = apis[url];
               break;
