@@ -67,8 +67,8 @@ function start() {
           console.log(method + "请求");
         }
         if (mockData.response.statusCode != null) {
-          response.writeHead(mockData.statusCode, headers);
-          response.end(mockData.statusCode + "");
+          response.writeHead(mockData.response.statusCode, headers);
+          response.end(mockData.response.statusCode + "");
         } else if (mockData.body == null) {
           response.end(JSON.stringify(mockData.body));
         } else if (typeof mockData.body === "number") {

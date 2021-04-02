@@ -46,5 +46,14 @@
         supportRegexp: true,
       },
     },
+    //设置HTPP 状态码
+    "/api/statusCode": {
+      response: {
+        statusCode: 404,
+      },
+      body: {
+        color: "red",
+      },
+    },
   };
 })();
