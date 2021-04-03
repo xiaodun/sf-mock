@@ -84,8 +84,20 @@
       },
     },
     "/api/function/json": {
-      body: ({ req, rsp, params }) => {
+      body: (data) => {
         return "hero.json";
+      },
+    },
+    //js文件
+    "/api/js": {
+      body: "able.js",
+    },
+    "/api/js/method": {
+      body: {
+        get: "able.js",
+      },
+      options: {
+        ingoreMethod: false,
       },
     },
   };

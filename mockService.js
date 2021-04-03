@@ -43,14 +43,12 @@ function start() {
     };
     const method = request.method.toLowerCase();
     if (["post", "put"].includes(method)) {
-      // 通过req的data事件监听函数，每当接受到请求体的数据，就累加到post变量中
       let data = "";
 
       request.on("data", function (chunk) {
         data += chunk;
       });
 
-      // 在end事件触发后，通过querystring.parse将post解析为真正的POST请求格式，然后向客户端返回。
       request.on("end", function () {
         data = JSON.parse(data || null);
         functionArgams.params = data;
@@ -105,6 +103,30 @@ function start() {
               mockData.body = mockData.body(functionArgams);
             }
 
+            if (
+              typeof mockData.body === "string" &&
+              mockData.body.endsWith(".js")
+            ) {
+              mockData.body = darkUtils.completePath(
+                request.url,
+                mockData.body
+              );
+              if (!fs.existsSync(mockData.body)) {
+                fs.writeFileSync(
+                  mockData.body,
+                  `(function () {
+                  return (data) => {
+                    return {};
+                  };
+                })();
+                `,
+                  "utf-8"
+                );
+              }
+              const mockFunc = eval(fs.readFileSync(mockData.body, "utf-8"));
+              mockData.body = mockFunc(functionArgams);
+            }
+
             if (mockData.body == null) {
               response.end(JSON.stringify(mockData.body));
             } else if (typeof mockData.body === "number") {
@@ -124,23 +146,6 @@ function start() {
                   const json = fs.readFileSync(mockData.body, "utf-8");
                   response.writeHead(200, headers);
                   response.end(json);
-                } else if (mockData.body.endsWith(".js")) {
-                  if (!fs.existsSync(mockData.body)) {
-                    fs.writeFileSync(
-                      mockData.body,
-                      `(function () {
-                      return ({ req,rsp,headers  }) => {
-                        return {};
-                      };
-                    })();
-                    `,
-                      "utf-8"
-                    );
-                  }
-                  const mockFunc = eval(
-                    fs.readFileSync(mockData.body, "utf-8")
-                  );
-                  mockFunc({ req: request, rsp: response, headers });
                 } else {
                   //返回简单的字符串
                   response.writeHead(200, headers);
