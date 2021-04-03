@@ -98,6 +98,7 @@ function start() {
             response.writeHead(mockData.response.statusCode, headers);
             response.end(mockData.response.statusCode + "");
           } else {
+            let rspBody = "";
             if (typeof mockData.body === "function") {
               //函数先执行  方便支持返回不同的数据格式
               mockData.body = mockData.body(functionArgams);
@@ -128,11 +129,11 @@ function start() {
             }
 
             if (mockData.body == null) {
-              response.end(JSON.stringify(mockData.body));
+              rspBody = mockData.body;
             } else if (typeof mockData.body === "number") {
-              response.end(mockData.body + "");
+              rspBody = mockData.body + "";
             } else if (Array.isArray(mockData.body)) {
-              response.end(JSON.stringify(mockData.body));
+              rspBody = mockData.body;
             } else {
               if (typeof mockData.body === "string") {
                 if (mockData.body.endsWith(".json")) {
@@ -143,22 +144,22 @@ function start() {
                   if (!fs.existsSync(mockData.body)) {
                     fs.writeFileSync(mockData.body, "{}", "utf-8");
                   }
-                  const json = fs.readFileSync(mockData.body, "utf-8");
-                  response.writeHead(200, headers);
-                  response.end(json);
+                  rspBody = eval(fs.readFileSync(mockData.body, "utf-8"));
                 } else {
                   //返回简单的字符串
-                  response.writeHead(200, headers);
-                  response.end(mockData.body);
+                  rspBody = mockData.body;
                 }
               } else if (typeof mockData.body === "function") {
-                response.writeHead(200, headers);
-                response.end(JSON.stringify(mockData({ req: request })));
+                rspBody = mockData({ req: request });
               } else if (typeof mockData.body === "object") {
-                response.writeHead(200, headers);
-                response.end(JSON.stringify(mockData.body));
+                rspBody = mockData.body;
               }
             }
+
+            response.writeHead(200, headers);
+            setTimeout(() => {
+              response.end(JSON.stringify(rspBody));
+            }, mockData.response.delaySeconds * 1000);
           }
         } else {
           response.writeHead(404, headers);

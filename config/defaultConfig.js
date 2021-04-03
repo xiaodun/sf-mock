@@ -1,7 +1,9 @@
 (function () {
   return {
     mockData: {
-      response: {},
+      response: {
+        delaySeconds: 0,
+      },
       options: {
         ingoreMethod: true,
       },

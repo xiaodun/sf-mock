@@ -49,10 +49,19 @@
     //设置HTPP 状态码
     "/api/statusCode": {
       response: {
-        statusCode: 404,
+        statusCode: 500,
       },
       body: {
         color: "red",
+      },
+    },
+    //延迟返回
+    "/api/delay": {
+      response: {
+        delaySeconds: 3,
+      },
+      body: {
+        message: "这个是一个延迟返回",
       },
     },
     // json文件
