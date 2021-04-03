@@ -47,26 +47,20 @@ const darkUtils = {
     for (let key in apis) {
       const mockData = _.merge({}, defaultConfig.mockData, apis[key]);
       newApis[key] = mockData;
-      if (mockData.options.ingoreMethod === false) {
-        for (let method in mockData.body) {
-          mockData.body[method] = completePath(mockData.body[method]);
-        }
-      } else {
-        mockData.body = completePath(mockData.body);
-      }
-    }
-
-    function completePath(value) {
-      if (typeof value === "string" && value.search(/\.json|\.js/) !== -1) {
-        return path.join(__dirname, "../data", programName, value);
-      }
-      return value;
     }
 
     return {
       apis: newApis,
       url: api,
     };
+  },
+  completePath(reqUrl, value) {
+    const { programName } = this.parseUrl(reqUrl);
+
+    if (typeof value === "string" && value.search(/\.json|\.js/) !== -1) {
+      return path.join(__dirname, "../data", programName, value);
+    }
+    return value;
   },
   getProgramConfig(reqUrl) {
     const { programName } = this.parseUrl(reqUrl);
