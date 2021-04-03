@@ -55,5 +55,17 @@
         color: "red",
       },
     },
+    // json文件
+    "/api/json": {
+      body: "hero.json",
+    },
+    "/api/method/json": {
+      body: {
+        get: "hero.json",
+      },
+      options: {
+        ingoreMethod: false,
+      },
+    },
   };
 })();

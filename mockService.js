@@ -5,13 +5,17 @@ const darkUtils = require("./utils/darkUtils");
 const ip = commonUtils.getIp();
 const _ = require("lodash");
 function start() {
-  let config = eval(
+  let serviceConfig = eval(
     commonUtils.replaceInterpolation(
       fs.readFileSync("./config/serviceConfig.js", "utf-8"),
       { remoteOrigin: ip }
     )
   );
-  let headers = config.rspHeaders;
+  let defaultConfig = eval(
+    fs.readFileSync("./config/defaultConfig.js", "utf-8"),
+    { remoteOrigin: ip }
+  );
+  let headers = serviceConfig.rspHeaders;
 
   var server = http.createServer(function (request, response) {
     if (["/favicon.ico"].includes(request.url)) {
@@ -19,14 +23,14 @@ function start() {
       return;
     }
     console.log(request.url);
-    config = eval(
+    serviceConfig = eval(
       commonUtils.replaceInterpolation(
         fs.readFileSync("./config/serviceConfig.js", "utf-8"),
         { remoteOrigin: request.headers.origin }
       )
     );
-    headers = config.rspHeaders;
-    if (request.url === config.debuggerPath) {
+    headers = serviceConfig.rspHeaders;
+    if (request.url === serviceConfig.debuggerPath) {
       //使用chrome调试
       response.writeHead(200, headers);
       return;
@@ -34,7 +38,7 @@ function start() {
 
     try {
       //获取mock文件
-      const mockFile = darkUtils.getMockData(request.url);
+      const mockFile = darkUtils.getMockFile(request.url);
       const apis = mockFile.apis;
       //url带有查询参数的将被忽略
       let url = mockFile.url.split("?")[0];
@@ -58,10 +62,7 @@ function start() {
 
       const method = request.method.toLowerCase();
       if (mockData != undefined) {
-        mockData = _.merge({
-          ...{ response: {}, options: { ingoreMethod: true } },
-          ...mockData,
-        });
+        mockData = _.merge({}, defaultConfig.mockData, mockData);
         if (mockData.options.ingoreMethod === false) {
           mockData.body = mockData.body[method];
           console.log(method + "请求");
@@ -81,7 +82,7 @@ function start() {
               if (!fs.existsSync(mockData.body)) {
                 fs.writeFileSync(mockData.body, "{}", "utf-8");
               }
-              const json = fs.readFileSync(mockData, body, "utf-8");
+              const json = fs.readFileSync(mockData.body, "utf-8");
               response.writeHead(200, headers);
               response.end(json);
             } else if (mockData.body.endsWith(".js")) {
@@ -126,14 +127,14 @@ function start() {
     response.end(error.stack);
   }
   server.setTimeout(0);
-  server.listen(config.startPort, function () {
-    console.log(`service is running ${ip}:${config.startPort}`);
+  server.listen(serviceConfig.startPort, function () {
+    console.log(`service is running ${ip}:${serviceConfig.startPort}`);
   });
   server.on("error", function (error) {
     console.log(error);
     if (error.toString().indexOf(`listen EADDRINUSE`) !== -1) {
       console.log(
-        `${config.startPort}端口被占用,可能是当前应用,也可能是其他应用`
+        `${serviceConfig.startPort}端口被占用,可能是当前应用,也可能是其他应用`
       );
     }
   });
