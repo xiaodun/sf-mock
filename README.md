@@ -8,11 +8,15 @@ clone 项目到本地，执行`npm install`,执行`node mockService.js`
 
 "service is running 192.168.10.135:9192"
 
-如果 9192 这个端口不幸被占用，打开 serviceconfig.js,修改 startPort 即可
+如果 9192 这个端口不幸被占用，打开 serviceConfig.js,修改 startPort 即可
 
 内置了一个 example 项目，可以直接在浏览器访问以了解使用方式
 
-例如:192.168.10.135:9192/example/api/simple/object, 建议安装谷歌插件 JSON Viewer ,以便更好的查看返回。
+例如:
+
+192.168.10.135:9192/example/api/simple/object
+
+建议安装谷歌插件 JSON Viewer ,以便更好的查看返回。
 
 打开 example-mock-api.js 这个文件，可以更改里面的数据格式，无需重启服务，再次请求便可立即生效。
 
