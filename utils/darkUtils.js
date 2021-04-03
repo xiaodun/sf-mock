@@ -96,7 +96,7 @@ const darkUtils = {
       newFileData
     );
   },
-  setCookie(response, cookies = {}) {
+  wrapCookie(cookies = {}) {
     //写入cookie
     let cookieList = [];
     for (const key in cookies) {
@@ -106,7 +106,7 @@ const darkUtils = {
         ).toGMTString()} `
       );
     }
-    response.setHeader("Set-Cookie", cookieList);
+    return cookieList;
   },
 };
 module.exports = darkUtils;

@@ -109,5 +109,18 @@
         ingoreMethod: false,
       },
     },
+    //设置cookie
+    "/api/cookies": {
+      response: {
+        getCookies(data = {}) {
+          return {
+            method: data.method,
+          };
+        },
+      },
+      body: {
+        message: "其余属性程序会自动设置",
+      },
+    },
   };
 })();

@@ -156,8 +156,14 @@ function start() {
               }
             }
 
-            response.writeHead(200, headers);
             setTimeout(() => {
+              if (mockData.response.getCookies) {
+                let cookieList = darkUtils.wrapCookie(
+                  mockData.response.getCookies({ method })
+                );
+                response.setHeader("Set-Cookie", cookieList);
+              }
+              response.writeHead(200, headers);
               response.end(JSON.stringify(rspBody));
             }, mockData.response.delaySeconds * 1000);
           }
