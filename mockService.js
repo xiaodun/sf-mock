@@ -36,6 +36,12 @@ function start() {
       return;
     }
 
+    let functionArgams = {
+      req: request,
+      rsp: response,
+      headers,
+    };
+
     try {
       //获取mock文件
       const mockFile = darkUtils.getMockFile(request.url);
@@ -64,53 +70,67 @@ function start() {
       if (mockData != undefined) {
         mockData = _.merge({}, defaultConfig.mockData, mockData);
         if (mockData.options.ingoreMethod === false) {
+          //区分了请求方法
           mockData.body = mockData.body[method];
+
           console.log(method + "请求");
         }
         if (mockData.response.statusCode != null) {
+          //设置指定的HTPP 状态码
           response.writeHead(mockData.response.statusCode, headers);
           response.end(mockData.response.statusCode + "");
-        } else if (mockData.body == null) {
-          response.end(JSON.stringify(mockData.body));
-        } else if (typeof mockData.body === "number") {
-          response.end(mockData.body + "");
-        } else if (Array.isArray(mockData.body)) {
-          response.end(JSON.stringify(mockData.body));
         } else {
-          if (typeof mockData.body === "string") {
-            if (mockData.body.endsWith(".json")) {
-              if (!fs.existsSync(mockData.body)) {
-                fs.writeFileSync(mockData.body, "{}", "utf-8");
-              }
-              const json = fs.readFileSync(mockData.body, "utf-8");
-              response.writeHead(200, headers);
-              response.end(json);
-            } else if (mockData.body.endsWith(".js")) {
-              if (!fs.existsSync(mockData.body)) {
-                fs.writeFileSync(
-                  mockData.body,
-                  `(function () {
-                    return ({ req,rsp,headers  }) => {
-                      return {};
-                    };
-                  })();
-                  `,
-                  "utf-8"
-                );
-              }
-              const mockFunc = eval(fs.readFileSync(mockData.body, "utf-8"));
-              mockFunc({ req: request, rsp: response, headers });
-            } else {
-              //返回简单的字符串
-              response.writeHead(200, headers);
-              response.end(mockData.body);
-            }
-          } else if (typeof mockData.body === "function") {
-            response.writeHead(200, headers);
-            response.end(JSON.stringify(mockData({ req: request })));
-          } else if (typeof mockData.body === "object") {
-            response.writeHead(200, headers);
+          if (typeof mockData.body === "function") {
+            //函数先执行  方便支持返回不同的数据格式
+            mockData.body = mockData.body(functionArgams);
+          }
+
+          if (mockData.body == null) {
             response.end(JSON.stringify(mockData.body));
+          } else if (typeof mockData.body === "number") {
+            response.end(mockData.body + "");
+          } else if (Array.isArray(mockData.body)) {
+            response.end(JSON.stringify(mockData.body));
+          } else {
+            if (typeof mockData.body === "string") {
+              if (mockData.body.endsWith(".json")) {
+                mockData.body = darkUtils.completePath(
+                  request.url,
+                  mockData.body
+                );
+                if (!fs.existsSync(mockData.body)) {
+                  fs.writeFileSync(mockData.body, "{}", "utf-8");
+                }
+                const json = fs.readFileSync(mockData.body, "utf-8");
+                response.writeHead(200, headers);
+                response.end(json);
+              } else if (mockData.body.endsWith(".js")) {
+                if (!fs.existsSync(mockData.body)) {
+                  fs.writeFileSync(
+                    mockData.body,
+                    `(function () {
+                      return ({ req,rsp,headers  }) => {
+                        return {};
+                      };
+                    })();
+                    `,
+                    "utf-8"
+                  );
+                }
+                const mockFunc = eval(fs.readFileSync(mockData.body, "utf-8"));
+                mockFunc({ req: request, rsp: response, headers });
+              } else {
+                //返回简单的字符串
+                response.writeHead(200, headers);
+                response.end(mockData.body);
+              }
+            } else if (typeof mockData.body === "function") {
+              response.writeHead(200, headers);
+              response.end(JSON.stringify(mockData({ req: request })));
+            } else if (typeof mockData.body === "object") {
+              response.writeHead(200, headers);
+              response.end(JSON.stringify(mockData.body));
+            }
           }
         }
       } else {

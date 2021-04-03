@@ -67,5 +67,18 @@
         ingoreMethod: false,
       },
     },
+    //函数运算
+    "/api/function": {
+      body: ({ req, rsp, params }) => {
+        return {
+          message: "可进行函数运算，除了不能再次返回函数外，其余格式都可以",
+        };
+      },
+    },
+    "/api/function/json": {
+      body: ({ req, rsp, params }) => {
+        return "hero.json";
+      },
+    },
   };
 })();
