@@ -21,3 +21,7 @@ clone 项目到本地，执行`npm install`,执行`node mockService.js`
 打开 example-mock-api.js 这个文件，可以更改里面的数据格式，无需重启服务，再次请求便可立即生效。
 
 同样，如果您想新增一个"sf-vue"项目，也只需新建一个 sf-vue 文件夹，在新建一个 sf-vue-mock-api.js 的文件即可
+
+# 关于跨域问题的解决
+
+在 serviceConfig.js,`remoteOrigin`和`reqHeaders`的值是程序给的，理论上已不会出现请求跨域的情况
