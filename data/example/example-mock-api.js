@@ -46,6 +46,18 @@
         supportRegexp: true,
       },
     },
+    //获取url上的参数
+    "/api/regexp/url/(\\w+)/(\\d+)$": {
+      // /api/regexp/url/name/200
+      body: (data) => ({
+        color: "red",
+        message: "会返回url上的参数",
+        execResults: data.execResults,
+      }),
+      options: {
+        supportRegexp: true,
+      },
+    },
     //设置HTPP 状态码
     "/api/statusCode": {
       response: {

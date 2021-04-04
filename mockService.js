@@ -14,18 +14,19 @@ function start() {
   );
 
   var server = http.createServer(function (request, response) {
-    let headers = serviceConfig.getHeaders({
-      remoteOrigin: request.headers.origin,
-      reqHeaders:
-        Object.keys(request.headers).join(",") +
-        "," +
-        request.headers["access-control-request-headers"],
-    });
-
     if (["/favicon.ico"].includes(request.url)) {
       response.end();
       return;
     }
+
+    let headers = serviceConfig.getHeaders({
+      remoteOrigin: request.headers.origin || "*",
+      reqHeaders:
+        Object.keys(request.headers).join(",") +
+        "," +
+        (request.headers["access-control-request-headers"] || ""),
+    });
+
     console.log(request.url);
 
     if (request.url === serviceConfig.debuggerPath) {
@@ -71,10 +72,12 @@ function start() {
           for (const [key, value] of Object.entries(apis)) {
             if (value.options && value.options.supportRegexp) {
               console.log("动态路径:" + key);
-              if (new RegExp(key).test(url)) {
+              let results = new RegExp(key).exec(url);
+              if (results) {
                 console.log("匹配成功");
                 url = key;
                 mockData = apis[url];
+                functionArgams.execResults = results;
                 break;
               }
             }
