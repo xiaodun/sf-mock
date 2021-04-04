@@ -1,165 +1,176 @@
 const http = require("http");
 const fs = require("fs");
+const url = require("url");
 const commonUtils = require("./utils/commonUtils");
 const darkUtils = require("./utils/darkUtils");
 const ip = commonUtils.getIp();
 const _ = require("lodash");
 function start() {
-  let config = eval(
-    commonUtils.replaceInterpolation(
-      fs.readFileSync("./config/mockConfig.js", "utf-8"),
-      { remoteOrigin: ip }
-    )
+  let serviceConfig = eval(
+    fs.readFileSync("./config/serviceConfig.js", "utf-8")
   );
-  let headers = config.rspHeaders;
+  let defaultConfig = eval(
+    fs.readFileSync("./config/defaultConfig.js", "utf-8")
+  );
 
   var server = http.createServer(function (request, response) {
-    if(["/favicon.ico"].includes(request.url)){
+    let headers = serviceConfig.getHeaders({
+      remoteOrigin: request.headers.origin,
+      reqHeaders:
+        Object.keys(request.headers).join(",") +
+        "," +
+        request.headers["access-control-request-headers"],
+    });
+
+    if (["/favicon.ico"].includes(request.url)) {
       response.end();
       return;
     }
     console.log(request.url);
-    config = eval(
-      commonUtils.replaceInterpolation(
-        fs.readFileSync("./config/mockConfig.js", "utf-8"),
-        { remoteOrigin: request.headers.origin }
-      )
-    );
-    headers = config.rspHeaders;
-    if (request.url === config.debuggerPath) {
+
+    if (request.url === serviceConfig.debuggerPath) {
       //使用chrome调试
       response.writeHead(200, headers);
       return;
     }
+    let functionArgams = {
+      req: request,
+      rsp: response,
+      headers,
+    };
+    const method = request.method.toLowerCase();
+    if (["post", "put"].includes(method)) {
+      let data = "";
 
-    try {
-      //获取mock文件
-      const mockFile = darkUtils.getMockData(request.url);
-      const apis = mockFile.apis;
-      //url带有查询参数的将被忽略
-      let url = mockFile.url.split("?")[0];
-      let mockData = apis[url];
+      request.on("data", function (chunk) {
+        data += chunk;
+      });
 
-      if (mockData == undefined) {
-        //是否存在动态路径
-        for (const [key, value] of Object.entries(apis)) {
-          if (value.supportRegexp) {
-            if (new RegExp(key).test(url)) {
-              url = key;
-              mockData = apis[url];
-              break;
+      request.on("end", function () {
+        data = JSON.parse(data || null);
+        functionArgams.params = data;
+        startParse();
+      });
+    } else {
+      let data = url.parse(request.url, true).query || {};
+      functionArgams.params = data;
+      startParse();
+    }
+
+    function startParse() {
+      try {
+        //获取mock文件
+        const mockFile = darkUtils.getMockFile(request.url);
+        const apis = mockFile.apis;
+        //url带有查询参数的将被忽略
+        let url = mockFile.url.split("?")[0];
+        let mockData = apis[url];
+
+        if (mockData == undefined) {
+          //是否存在动态路径
+          for (const [key, value] of Object.entries(apis)) {
+            if (value.options && value.options.supportRegexp) {
+              console.log("动态路径:" + key);
+              if (new RegExp(key).test(url)) {
+                console.log("匹配成功");
+                url = key;
+                mockData = apis[url];
+                break;
+              }
             }
           }
         }
-      }
-      console.log({ [url]: mockData });
+        console.log({ [url]: mockData });
 
-      const method = request.method.toLowerCase();
-      if (mockData != undefined) {
-        if (typeof mockData === "number") {
-          response.end(mockData + "");
-        } else if (Array.isArray(mockData)) {
-          response.end(JSON.stringify(mockData));
-        } else {
-          if (mockData.statusCode) {
-            //测试指定的http状态
-            response.writeHead(mockData.statusCode, headers);
-            response.end(mockData.statusCode + "");
+        if (mockData != undefined) {
+          mockData = _.merge({}, defaultConfig.mockData, mockData);
+          if (mockData.options.ingoreMethod === false) {
+            //区分了请求方法
+            mockData.body = mockData.body[method];
+
+            console.log(method + "请求");
+          }
+          if (mockData.response.statusCode != null) {
+            //设置指定的HTPP 状态码
+            response.writeHead(mockData.response.statusCode, headers);
+            response.end(mockData.response.statusCode + "");
           } else {
-            
-            if (typeof mockData === "string") {
-              if (mockData.endsWith(".json")) {
-                if (!fs.existsSync(mockData)) {s
-                  fs.writeFileSync(mockData, "{}", "utf-8");
-                }
-                const json = fs.readFileSync(mockData, "utf-8");
-                response.writeHead(200, headers);
-                response.end(json);
-              } else if (mockData.endsWith(".js")) {
-                if (!fs.existsSync(mockData)) {
-                  fs.writeFileSync(
-                    mockData,
-                    `(function () {
-                      return ({ req,rsp,headers  }) => {
-                        return {};
-                      };
-                    })();
-                    `,
-                    "utf-8"
+            let rspBody = "";
+            if (typeof mockData.body === "function") {
+              //函数先执行  方便支持返回不同的数据格式
+              mockData.body = mockData.body(functionArgams);
+            }
+
+            if (
+              typeof mockData.body === "string" &&
+              mockData.body.endsWith(".js")
+            ) {
+              mockData.body = darkUtils.completePath(
+                request.url,
+                mockData.body
+              );
+              if (!fs.existsSync(mockData.body)) {
+                fs.writeFileSync(
+                  mockData.body,
+                  `(function () {
+                  return (data) => {
+                    return {};
+                  };
+                })();
+                `,
+                  "utf-8"
+                );
+              }
+              const mockFunc = eval(fs.readFileSync(mockData.body, "utf-8"));
+              mockData.body = mockFunc(functionArgams);
+            }
+
+            if (mockData.body == null) {
+              rspBody = mockData.body;
+            } else if (typeof mockData.body === "number") {
+              rspBody = mockData.body + "";
+            } else if (Array.isArray(mockData.body)) {
+              rspBody = mockData.body;
+            } else {
+              if (typeof mockData.body === "string") {
+                if (mockData.body.endsWith(".json")) {
+                  mockData.body = darkUtils.completePath(
+                    request.url,
+                    mockData.body
                   );
-                }
-                const mockFunc = eval(fs.readFileSync(mockData, "utf-8"));
-                mockFunc({ req: request ,rsp:response,headers})
-               
-              } else {
-               //返回简单的字符串
-               response.writeHead(200, headers);
-                response.end(mockData);
-              }
-            } else if (typeof mockData === "function") {
-              response.writeHead(200, headers);
-              response.end(JSON.stringify(mockData({ req: request })));
-            } else {
-              //普通对象
-              let data = mockData[method];
-              if (!data) {
-                data = mockData;
-              }
-              else{
-
-                darkUtils.setCookie(response,data.cookies)
-              }
-              delete data.cookies
-              response.writeHead(200, headers);
-              response.end(JSON.stringify(data));
-            }
-          }
-        }
-      } else {
-        response.setHeader("Content-Type", "application/json,charset=utf-8");
-        const {
-          jointServiceUrl,
-          jointCopyConfig = {},
-        } = darkUtils.getProgramConfig(request.url);
-        if (jointCopyConfig.open) {
-          // copy远程数据
-          console.log(`从联调地址${jointServiceUrl}中克隆数据...`);
-          const serviceUrl = new URL(jointServiceUrl);
-          try {
-            var sreq = http.request(
-              {
-                ..._.merge(request, jointCopyConfig.request),
-                host: serviceUrl.hostname, // 目标主机
-                path: url, // 目标路径
-                port: serviceUrl.port,
-              },
-              function (sres) {
-                sres.on("data", function (rspData) {
-                  isTimeout = false;
-                  if (jointCopyConfig.mode === "create") {
-                    darkUtils.writeFile(request.url, rspData.toString());
+                  if (!fs.existsSync(mockData.body)) {
+                    fs.writeFileSync(mockData.body, "{}", "utf-8");
                   }
-                });
-                sres.pipe(response);
+                  rspBody = eval(fs.readFileSync(mockData.body, "utf-8"));
+                } else {
+                  //返回简单的字符串
+                  rspBody = mockData.body;
+                }
+              } else if (typeof mockData.body === "function") {
+                rspBody = mockData({ req: request });
+              } else if (typeof mockData.body === "object") {
+                rspBody = mockData.body;
               }
-            );
-
-            if (/POST|PUT/i.test(request.method)) {
-              request.pipe(sreq);
-            } else {
-              sreq.end();
             }
-          } catch (error) {
-            console.log(error);
-            console.log("克隆过程中发生了问题");
+
+            setTimeout(() => {
+              if (mockData.response.getCookies) {
+                let cookieList = darkUtils.wrapCookie(
+                  mockData.response.getCookies({ method })
+                );
+                response.setHeader("Set-Cookie", cookieList);
+              }
+              response.writeHead(200, headers);
+              response.end(JSON.stringify(rspBody));
+            }, mockData.response.delaySeconds * 1000);
           }
         } else {
           response.writeHead(404, headers);
-          response.end("404");
+          response.end(JSON.stringify(404));
         }
+      } catch (error) {
+        dealError(response, error);
       }
-    } catch (error) {
-      dealError(response, error);
     }
   });
   function dealError(response, error) {
@@ -168,14 +179,14 @@ function start() {
     response.end(error.stack);
   }
   server.setTimeout(0);
-  server.listen(config.startPort, function () {
-    console.log(`service is running ${ip}:${config.startPort}`);
+  server.listen(serviceConfig.startPort, function () {
+    console.log(`service is running ${ip}:${serviceConfig.startPort}`);
   });
   server.on("error", function (error) {
     console.log(error);
     if (error.toString().indexOf(`listen EADDRINUSE`) !== -1) {
       console.log(
-        `${config.startPort}端口被占用,可能是当前应用,也可能是其他应用`
+        `${serviceConfig.startPort}端口被占用,可能是当前应用,也可能是其他应用`
       );
     }
   });
