@@ -7,30 +7,27 @@ const ip = commonUtils.getIp();
 const _ = require("lodash");
 function start() {
   let serviceConfig = eval(
-    commonUtils.replaceInterpolation(
-      fs.readFileSync("./config/serviceConfig.js", "utf-8"),
-      { remoteOrigin: ip }
-    )
+    fs.readFileSync("./config/serviceConfig.js", "utf-8")
   );
   let defaultConfig = eval(
-    fs.readFileSync("./config/defaultConfig.js", "utf-8"),
-    { remoteOrigin: ip }
+    fs.readFileSync("./config/defaultConfig.js", "utf-8")
   );
-  let headers = serviceConfig.rspHeaders;
 
   var server = http.createServer(function (request, response) {
+    let headers = serviceConfig.getHeaders({
+      remoteOrigin: request.headers.origin,
+      reqHeaders:
+        Object.keys(request.headers).join(",") +
+        "," +
+        request.headers["access-control-request-headers"],
+    });
+
     if (["/favicon.ico"].includes(request.url)) {
       response.end();
       return;
     }
     console.log(request.url);
-    serviceConfig = eval(
-      commonUtils.replaceInterpolation(
-        fs.readFileSync("./config/serviceConfig.js", "utf-8"),
-        { remoteOrigin: request.headers.origin }
-      )
-    );
-    headers = serviceConfig.rspHeaders;
+
     if (request.url === serviceConfig.debuggerPath) {
       //使用chrome调试
       response.writeHead(200, headers);
