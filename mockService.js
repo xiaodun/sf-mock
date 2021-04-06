@@ -48,8 +48,12 @@ function start() {
       });
 
       request.on("end", function () {
-        data = JSON.parse(data || null);
-        functionArgams.params = data;
+        try {
+          data = JSON.parse(data || null);
+          functionArgams.params = data;
+        } catch (error) {
+          console.log("参数解析出错");
+        }
         startParse();
       });
     } else {
