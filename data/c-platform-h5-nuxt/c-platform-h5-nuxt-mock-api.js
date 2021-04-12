@@ -1,44 +1,46 @@
 (function getApis() {
   return {
     "/p/h5/consultcase/doctorinfo": {
-      status: 200,
-      data: {
-        // "avatarUrl": "",
-        avatarUrl:
-          "https://img.iplaysoft.com/wp-content/uploads/2019/free-images/free_stock_photo.jpg!0x0.webp",
-        blockCurrentUser: true,
-        departId: "",
-        departments: "",
-        drServiceCard: {
-          consult: {
-            isFree: true,
-            isOpen: true,
-            price: 0,
+      body: {
+        status: 200,
+        data: {
+          // "avatarUrl": "",
+          avatarUrl:
+            "https://img.iplaysoft.com/wp-content/uploads/2019/free-images/free_stock_photo.jpg!0x0.webp",
+          blockCurrentUser: true,
+          departId: "",
+          departments: "",
+          drServiceCard: {
+            consult: {
+              isFree: true,
+              isOpen: true,
+              price: 0,
+            },
+            outpatient: {
+              isFree: true,
+              isOpen: true,
+              price: 0,
+            },
+            telephone: {
+              isFree: true,
+              isOpen: true,
+              price: 0,
+            },
           },
-          outpatient: {
-            isFree: true,
-            isOpen: true,
-            price: 0,
-          },
-          telephone: {
-            isFree: true,
-            isOpen: true,
-            price: 0,
-          },
+          hospitalLevel: "",
+          id: "",
+          medicalInstitutions: "北京协和医院",
+          realName: "扁鹊",
+          titles: "主治医师",
         },
-        hospitalLevel: "",
-        id: "",
-        medicalInstitutions: "北京协和医院",
-        realName: "扁鹊",
-        titles: "主治医师",
+        message: "",
       },
-      message: "",
     },
     //
     "/p/h5/consultcase/consultShareInfo": {
-      get: {
-        // status: 200,
-        status: 5908005,
+      body: {
+        status: 200,
+        // status: 5908005,
         data: {
           dialogs: [
             {
@@ -143,74 +145,78 @@
       },
     },
     "/p/h5/consultcase/consultShareHot": {
-      status: 200,
-      // "status": 404,
+      body: {
+        status: 200,
+        // "status": 404,
 
-      data: [
-        {
-          questionTitle:
-            "杨医生，在您的指导下，孩子服用美能片和擦他克莫司和氢化可的松。已经有四个月了，眼皮上的白斑有了改善。在伦敦皮肤科医生那里做了两次wood灯扫描。对比之后发现白斑的面积和亮度都减少了。脖子上也有一块白斑，但wood灯扫描没有亮白反应，但也使用了同样的药膏。这几天发现嘴角也有一点点白斑，也开始用药膏。我想问问美能片要需要吃嘛？药膏是否仍然接着使用？不知道这个美能片对孩子身体副作用大吗？",
-          questionId: "23edwafsad",
-          realName: "杨西川",
-          titles: "主任医师",
-        },
-        {
-          questionTitle:
-            "杨医生，在您的指导下，孩子服用美能片和擦他克莫司和氢化可的松。已经有四个月了，眼皮上的白斑有了改善。在伦敦皮肤科医生那里做了两次wood灯扫描。对比之后发现白斑的面积和亮度都减少了。脖子上也有一块白斑，但wood灯扫描没有亮白反应，但也使用了同样的药膏。这几天发现嘴角也有一点点白斑，也开始用药膏。我想问问美能片要需要吃嘛？药膏是否仍然接着使用？不知道这个美能片对孩子身体副作用大吗？",
-          questionId: "23edwafsad1",
-          realName: "杨西川",
-          titles: "主任医师",
-        },
-        {
-          questionTitle:
-            "杨医生，在您的指导下，孩子服用美能片和擦他克莫司和氢化可的松。已经有四个月了，眼皮上的白斑有了改善。在伦敦皮肤科医生那里做了两次wood灯扫描。对比之后发现白斑的面积和亮度都减少了。脖子上也有一块白斑，但wood灯扫描没有亮白反应，但也使用了同样的药膏。这几天发现嘴角也有一点点白斑，也开始用药膏。我想问问美能片要需要吃嘛？药膏是否仍然接着使用？不知道这个美能片对孩子身体副作用大吗？",
-          questionId: "23edwafsad7",
-          realName: "杨西川",
-          titles: "主任医师",
-        },
-        {
-          drTitle:
-            "杨医生，在您的指导下，孩子服用美能片和擦他克莫司和氢化可的松。已经有四个月了，眼皮上的白斑有了改善。在伦敦皮肤科医生那里做了两次wood灯扫描。对比之后发现白斑的面积和亮度都减少了。脖子上也有一块白斑，但wood灯扫描没有亮白反应，但也使用了同样的药膏。这几天发现嘴角也有一点点白斑，也开始用药膏。我想问问美能片要需要吃嘛？药膏是否仍然接着使用？不知道这个美能片对孩子身体副作用大吗？",
-          questionId: "23edwafsssad7",
-          realName: "杨西川",
-          titles: "主任医师",
-        },
-      ],
-      message: "",
+        data: [
+          {
+            questionTitle:
+              "杨医生，在您的指导下，孩子服用美能片和擦他克莫司和氢化可的松。已经有四个月了，眼皮上的白斑有了改善。在伦敦皮肤科医生那里做了两次wood灯扫描。对比之后发现白斑的面积和亮度都减少了。脖子上也有一块白斑，但wood灯扫描没有亮白反应，但也使用了同样的药膏。这几天发现嘴角也有一点点白斑，也开始用药膏。我想问问美能片要需要吃嘛？药膏是否仍然接着使用？不知道这个美能片对孩子身体副作用大吗？",
+            questionId: "23edwafsad",
+            realName: "杨西川",
+            titles: "主任医师",
+          },
+          {
+            questionTitle:
+              "杨医生，在您的指导下，孩子服用美能片和擦他克莫司和氢化可的松。已经有四个月了，眼皮上的白斑有了改善。在伦敦皮肤科医生那里做了两次wood灯扫描。对比之后发现白斑的面积和亮度都减少了。脖子上也有一块白斑，但wood灯扫描没有亮白反应，但也使用了同样的药膏。这几天发现嘴角也有一点点白斑，也开始用药膏。我想问问美能片要需要吃嘛？药膏是否仍然接着使用？不知道这个美能片对孩子身体副作用大吗？",
+            questionId: "23edwafsad1",
+            realName: "杨西川",
+            titles: "主任医师",
+          },
+          {
+            questionTitle:
+              "杨医生，在您的指导下，孩子服用美能片和擦他克莫司和氢化可的松。已经有四个月了，眼皮上的白斑有了改善。在伦敦皮肤科医生那里做了两次wood灯扫描。对比之后发现白斑的面积和亮度都减少了。脖子上也有一块白斑，但wood灯扫描没有亮白反应，但也使用了同样的药膏。这几天发现嘴角也有一点点白斑，也开始用药膏。我想问问美能片要需要吃嘛？药膏是否仍然接着使用？不知道这个美能片对孩子身体副作用大吗？",
+            questionId: "23edwafsad7",
+            realName: "杨西川",
+            titles: "主任医师",
+          },
+          {
+            drTitle:
+              "杨医生，在您的指导下，孩子服用美能片和擦他克莫司和氢化可的松。已经有四个月了，眼皮上的白斑有了改善。在伦敦皮肤科医生那里做了两次wood灯扫描。对比之后发现白斑的面积和亮度都减少了。脖子上也有一块白斑，但wood灯扫描没有亮白反应，但也使用了同样的药膏。这几天发现嘴角也有一点点白斑，也开始用药膏。我想问问美能片要需要吃嘛？药膏是否仍然接着使用？不知道这个美能片对孩子身体副作用大吗？",
+            questionId: "23edwafsssad7",
+            realName: "杨西川",
+            titles: "主任医师",
+          },
+        ],
+        message: "",
+      },
     },
     "/p/h5/consultcase/consultShareSimple": {
-      data: [
-        {
-          questionTitle:
-            "优质案例杨医生，在您的指导下，孩子服用美能片和擦他克莫司和氢化可",
-          questionId: "23edwafsad",
-          drRealName: "杨西川",
-          drTitle: "主任医师",
-        },
-        {
-          questionTitle:
-            "杨医生，在您的指导下，孩子服用美能片和擦他克莫司和氢化可的松。已经有四个月了，眼皮上的白斑有了改善。在伦敦皮肤科医生那里做了两次wood灯扫描。对比之后发现白斑的面积和亮度都减少了。脖子上也有一块白斑，但wood灯扫描没有亮白反应，但也使用了同样的药膏。这几天发现嘴角也有一点点白斑，也开始用药膏。我想问问美能片要需要吃嘛？药膏是否仍然接着使用？不知道这个美能片对孩子身体副作用大吗？",
-          questionId: "23edwafsad1",
-          drRealName: "杨西川",
-          drTitle: "主任医师",
-        },
-        {
-          questionTitle:
-            "杨医生，在您的指导下，孩子服用美能片和擦他克莫司和氢化可的松。已经有四个月了，眼皮上的白斑有了改善。在伦敦皮肤科医生那里做了两次wood灯扫描。对比之后发现白斑的面积和亮度都减少了。脖子上也有一块白斑，但wood灯扫描没有亮白反应，但也使用了同样的药膏。这几天发现嘴角也有一点点白斑，也开始用药膏。我想问问美能片要需要吃嘛？药膏是否仍然接着使用？不知道这个美能片对孩子身体副作用大吗？",
-          questionId: "23edwafsad2",
-          drRealName: "杨西川",
-          drTitle: "主任医师",
-        },
-        {
-          questionTitle:
-            "杨医生，在您的指导下，孩子服用美能片和擦他克莫司和氢化可的松。已经有四个月了，眼皮上的白斑有了改善。在伦敦皮肤科医生那里做了两次wood灯扫描。对比之后发现白斑的面积和亮度都减少了。脖子上也有一块白斑，但wood灯扫描没有亮白反应，但也使用了同样的药膏。这几天发现嘴角也有一点点白斑，也开始用药膏。我想问问美能片要需要吃嘛？药膏是否仍然接着使用？不知道这个美能片对孩子身体副作用大吗？",
-          questionId: "23edwafsad5",
-          drRealName: "杨西川",
-          drTitle: "主任医师",
-        },
-      ],
-      message: "",
-      status: 200,
+      body: {
+        data: [
+          {
+            questionTitle:
+              "优质案例杨医生，在您的指导下，孩子服用美能片和擦他克莫司和氢化可",
+            questionId: "23edwafsad",
+            drRealName: "杨西川",
+            drTitle: "主任医师",
+          },
+          {
+            questionTitle:
+              "杨医生，在您的指导下，孩子服用美能片和擦他克莫司和氢化可的松。已经有四个月了，眼皮上的白斑有了改善。在伦敦皮肤科医生那里做了两次wood灯扫描。对比之后发现白斑的面积和亮度都减少了。脖子上也有一块白斑，但wood灯扫描没有亮白反应，但也使用了同样的药膏。这几天发现嘴角也有一点点白斑，也开始用药膏。我想问问美能片要需要吃嘛？药膏是否仍然接着使用？不知道这个美能片对孩子身体副作用大吗？",
+            questionId: "23edwafsad1",
+            drRealName: "杨西川",
+            drTitle: "主任医师",
+          },
+          {
+            questionTitle:
+              "杨医生，在您的指导下，孩子服用美能片和擦他克莫司和氢化可的松。已经有四个月了，眼皮上的白斑有了改善。在伦敦皮肤科医生那里做了两次wood灯扫描。对比之后发现白斑的面积和亮度都减少了。脖子上也有一块白斑，但wood灯扫描没有亮白反应，但也使用了同样的药膏。这几天发现嘴角也有一点点白斑，也开始用药膏。我想问问美能片要需要吃嘛？药膏是否仍然接着使用？不知道这个美能片对孩子身体副作用大吗？",
+            questionId: "23edwafsad2",
+            drRealName: "杨西川",
+            drTitle: "主任医师",
+          },
+          {
+            questionTitle:
+              "杨医生，在您的指导下，孩子服用美能片和擦他克莫司和氢化可的松。已经有四个月了，眼皮上的白斑有了改善。在伦敦皮肤科医生那里做了两次wood灯扫描。对比之后发现白斑的面积和亮度都减少了。脖子上也有一块白斑，但wood灯扫描没有亮白反应，但也使用了同样的药膏。这几天发现嘴角也有一点点白斑，也开始用药膏。我想问问美能片要需要吃嘛？药膏是否仍然接着使用？不知道这个美能片对孩子身体副作用大吗？",
+            questionId: "23edwafsad5",
+            drRealName: "杨西川",
+            drTitle: "主任医师",
+          },
+        ],
+        message: "",
+        status: 200,
+      },
     },
   };
 })();
