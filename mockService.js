@@ -3,6 +3,7 @@ const fs = require("fs");
 const url = require("url");
 const commonUtils = require("./utils/commonUtils");
 const darkUtils = require("./utils/darkUtils");
+const pageUtils = require("./utils/pageUtils");
 const ip = commonUtils.getIp();
 const _ = require("lodash");
 function start() {
@@ -38,6 +39,7 @@ function start() {
       req: request,
       rsp: response,
       headers,
+      pageInfos: {},
     };
     const method = request.method.toLowerCase();
     if (["post", "put"].includes(method)) {
@@ -160,6 +162,14 @@ function start() {
               }
             }
 
+            if (mockData.pageable) {
+              //处理分页的逻辑
+              functionArgams.pageInfos.params = pageUtils.getTransformParams(
+                functionArgams.params,
+                defaultConfig
+              );
+            }
+
             setTimeout(() => {
               if (mockData.response.getCookies) {
                 let cookieList = darkUtils.wrapCookie(
@@ -182,7 +192,7 @@ function start() {
   });
   function dealError(response, error) {
     console.log(error);
-    response.writeHead(500, headers);
+    response.writeHead(500, {});
     response.end(error.stack);
   }
   server.setTimeout(0);
