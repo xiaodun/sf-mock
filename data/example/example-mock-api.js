@@ -146,7 +146,23 @@
         }));
       },
       body(data) {
-        return data.pageInfos;
+        return {
+          status: 200,
+          pageInfos: {
+            params: {
+              ...data.pageInfos.params,
+              message:
+                "这里的参数转换是根据defaultConfig.js=>pageSettings=>getParamMap",
+            },
+            wrapData: {
+              ...data.pageInfos.wrapData,
+              message:
+                "这里包裹好的数据是根据defaultConfig.js=>pageSettings=>getWrapContext",
+            },
+          },
+          message:
+            "如果pageable为true,程序会自动获取getData里面的数据，并对其分页，然后通过参数的形式提供给body",
+        };
       },
     },
   };

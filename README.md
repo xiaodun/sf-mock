@@ -12,7 +12,7 @@
 
 # 快速上手
 
-方便前端依据数据格式进行开发,这是一个独立的项目，而不是一个 npm 包
+方便前端依照数据格式进行开发,这是一个独立的项目，而不是一个 npm 包
 
 clone 项目到本地，执行`npm install`,执行`node mockService.js`,即可启动一个 mock 服务器
 
@@ -33,6 +33,12 @@ clone 项目到本地，执行`npm install`,执行`node mockService.js`,即可�
 打开 example-mock-api.js 这个文件，可以更改里面的数据格式，无需重启服务，再次请求便可立即生效。
 
 同样，如果您想新增一个"sf-vue"项目，也只需新建一个 sf-vue 文件夹，在新建一个 sf-vue-mock-api.js 的文件即可
+
+# 关于分页
+
+方便测试表格分页和上拉加载,能够实现真正的分页。
+example 中同样提供了例子 `/api/page`
+需要关注 `defaultConfig.js`的`pageSettings`
 
 # 关于跨域问题的解决
 
