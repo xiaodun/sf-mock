@@ -137,6 +137,7 @@
 
     //分页
     "/api/page": {
+      // /example/api/page?pageNum=6&pageSize=30
       pageable: true,
       getData() {
         return new Array(100).fill(1).map((item, index) => ({

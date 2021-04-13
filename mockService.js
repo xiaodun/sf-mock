@@ -93,6 +93,22 @@ function start() {
 
         if (mockData != undefined) {
           mockData = _.merge({}, defaultConfig.mockData, mockData);
+
+          if (mockData.pageable) {
+            //处理分页的逻辑
+            const pageParams = pageUtils.getTransformParams(
+              functionArgams.params,
+              defaultConfig
+            );
+            const pageList = mockData.getData();
+            functionArgams.pageInfos.params = pageParams;
+            functionArgams.pageInfos.wrapData = pageUtils.getWrapOne(
+              functionArgams.pageInfos.params,
+              pageList,
+              defaultConfig
+            );
+          }
+
           if (mockData.options.ingoreMethod === false) {
             //区分了请求方法
             mockData.body = mockData.body[method];
@@ -160,14 +176,6 @@ function start() {
               } else if (typeof mockData.body === "object") {
                 rspBody = mockData.body;
               }
-            }
-
-            if (mockData.pageable) {
-              //处理分页的逻辑
-              functionArgams.pageInfos.params = pageUtils.getTransformParams(
-                functionArgams.params,
-                defaultConfig
-              );
             }
 
             setTimeout(() => {

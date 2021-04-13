@@ -22,6 +22,7 @@
             "page",
             {
               reqKey: "pageNum",
+              // 仅限于1或者0
               defaultValue: 1,
             },
           ],
@@ -29,10 +30,10 @@
       },
       getWrapContext(data) {
         return {
-          nextPageNum: data.nextPageNum,
+          nextPageNum: data.nextPage || null,
           pageNum: data.page,
           pageSize: data.size,
-          rows: data.rows,
+          rows: data.rows || [],
           total: data.total,
           totalPage: data.totalPage,
         };
