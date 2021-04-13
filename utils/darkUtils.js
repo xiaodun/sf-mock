@@ -49,7 +49,9 @@ const darkUtils = {
       const mockData = _.merge({}, defaultConfig.mockData, apis[key]);
       //如果提供了name属性   则覆盖为具体的周
       if (mockData.name) {
-        mockData.name = mockData.name(nameMaps);
+        if (nameMaps !== false) {
+          mockData.name = mockData.name(nameMaps);
+        }
       }
       newApis[key] = mockData;
     }
@@ -62,17 +64,17 @@ const darkUtils = {
     const { programName } = this.parseUrl(reqUrl);
 
     //获取mock数据
-    const nameMaps = eval(
-      fs.readFileSync(
-        path.resolve(
-          __dirname,
-          `../data/${programName}/${programName}-name-map.js`
-        ),
-        "utf-8"
-      )
+    const filePath = path.resolve(
+      __dirname,
+      `../data/${programName}/${programName}-name-map.js`
     );
+    if (fs.existsSync(filePath)) {
+      const nameMaps = eval(fs.readFileSync(filePath, "utf-8"));
 
-    return nameMaps;
+      return nameMaps;
+    } else {
+      return false;
+    }
   },
   completePath(reqUrl, value) {
     const { programName } = this.parseUrl(reqUrl);
