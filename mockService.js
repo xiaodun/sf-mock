@@ -3,6 +3,7 @@ const fs = require("fs");
 const url = require("url");
 const commonUtils = require("./utils/commonUtils");
 const darkUtils = require("./utils/darkUtils");
+const pageUtils = require("./utils/pageUtils");
 const ip = commonUtils.getIp();
 const _ = require("lodash");
 function start() {
@@ -38,6 +39,7 @@ function start() {
       req: request,
       rsp: response,
       headers,
+      pageInfos: {},
     };
     const method = request.method.toLowerCase();
     if (["post", "put"].includes(method)) {
@@ -91,6 +93,22 @@ function start() {
 
         if (mockData != undefined) {
           mockData = _.merge({}, defaultConfig.mockData, mockData);
+
+          if (mockData.pageable) {
+            //处理分页的逻辑
+            const pageParams = pageUtils.getTransformParams(
+              functionArgams.params,
+              defaultConfig
+            );
+            const pageList = mockData.getData();
+            functionArgams.pageInfos.params = pageParams;
+            functionArgams.pageInfos.wrapData = pageUtils.getWrapOne(
+              functionArgams.pageInfos.params,
+              pageList,
+              defaultConfig
+            );
+          }
+
           if (mockData.options.ingoreMethod === false) {
             //区分了请求方法
             mockData.body = mockData.body[method];
@@ -182,7 +200,7 @@ function start() {
   });
   function dealError(response, error) {
     console.log(error);
-    response.writeHead(500, headers);
+    response.writeHead(500, {});
     response.end(error.stack);
   }
   server.setTimeout(0);

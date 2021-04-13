@@ -23,13 +23,15 @@ const darkUtils = {
     };
   },
   getMockFile(reqUrl) {
-    let defaultConfig = eval(
+    const defaultConfig = eval(
       fs.readFileSync(
         path.resolve(__dirname, "../config/defaultConfig.js"),
         "utf-8"
       )
     );
+    const nameMaps = this.getNameMaps(reqUrl);
     const { programName, api } = this.parseUrl(reqUrl);
+
     console.log("项目名:", programName);
 
     //获取mock数据
@@ -42,17 +44,35 @@ const darkUtils = {
         "utf-8"
       )
     );
-    //补足文件的路径
     let newApis = {};
     for (let key in apis) {
       const mockData = _.merge({}, defaultConfig.mockData, apis[key]);
+      //如果提供了name属性   则覆盖为具体的周
+      if (mockData.name) {
+        mockData.name = mockData.name(nameMaps);
+      }
       newApis[key] = mockData;
     }
-
     return {
       apis: newApis,
       url: api,
     };
+  },
+  getNameMaps(reqUrl) {
+    const { programName } = this.parseUrl(reqUrl);
+
+    //获取mock数据
+    const nameMaps = eval(
+      fs.readFileSync(
+        path.resolve(
+          __dirname,
+          `../data/${programName}/${programName}-name-map.js`
+        ),
+        "utf-8"
+      )
+    );
+
+    return nameMaps;
   },
   completePath(reqUrl, value) {
     const { programName } = this.parseUrl(reqUrl);

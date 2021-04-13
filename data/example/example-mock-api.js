@@ -134,5 +134,20 @@
         message: "其余属性程序会自动设置",
       },
     },
+
+    //分页
+    "/api/page": {
+      // /example/api/page?pageNum=6&pageSize=30
+      pageable: true,
+      getData() {
+        return new Array(100).fill(1).map((item, index) => ({
+          id: index,
+          name: "寒冰射手" + index,
+        }));
+      },
+      body(data) {
+        return data.pageInfos;
+      },
+    },
   };
 })();
