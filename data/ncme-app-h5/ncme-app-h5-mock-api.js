@@ -515,32 +515,29 @@ const { random } = require("lodash");
       },
     },
     "/medic-h5/v1/api/medic/h5/courses/moreCoursesListPage": {
-      body: {
-        data: {
-          nextPageNum: 0,
-          pageNum: 0,
-          pageSize,
-          rows: [
-            ...Array(pageSize)
-              .fill(1)
-              .map((item, index) => ({
-                classHour: 10,
-                coursesType: 1,
-                coverUrl:
-                  "https://img.iplaysoft.com/wp-content/uploads/2019/free-images/free_stock_photo.jpg!0x0.webp",
-                id: Math.random(),
-                introduce: `课程介绍课程介绍课程介绍课程介绍课程介绍`,
-                liveSpeakerIntroduce: `${index}直播列表讲者介绍`,
-                status: 1,
-                studyNumber: 1200001,
-                title: "课程标题课程标题课程标题课程标题课程标题",
-              })),
-          ],
-          total,
-          totalPage: 0,
-        },
-        message: "",
-        status: 200,
+      pageable: true,
+      getData() {
+        return Array(51)
+          .fill(1)
+          .map((item, index) => ({
+            classHour: 10,
+            coursesType: 1,
+            coverUrl:
+              "https://img.iplaysoft.com/wp-content/uploads/2019/free-images/free_stock_photo.jpg!0x0.webp",
+            id: index,
+            introduce: `课程介绍课程介绍课程介绍课程介绍课程介绍`,
+            liveSpeakerIntroduce: `${index}直播列表讲者介绍`,
+            status: 1,
+            studyNumber: 1200001,
+            title: "课程标题课程标题课程标题课程标题课程标题",
+          }));
+      },
+      body(data) {
+        return {
+          data: data.pageInfos.wrapData,
+          message: "",
+          status: 200,
+        };
       },
     },
     "/medic-h5/v1/api/medic/h5/weixin/getWeiXinJsApiConfig": {
