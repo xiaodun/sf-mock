@@ -99,6 +99,28 @@
               voiceUrl: "",
             },
             {
+              content: "存在隐藏的图片",
+              picIds: [
+                "https://img.iplaysoft.com/wp-content/uploads/2019/free-images/free_stock_photo.jpg!0x0.webp",
+              ],
+              postTime: 1612495440531,
+              isQuest: false,
+              replyMsgType: "3",
+              picShieldEd: true,
+              voiceLength: 0,
+              voiceUrl: "",
+            },
+            {
+              content: "图片都被隐藏了",
+              postTime: 1612495440531,
+              isQuest: false,
+              replyMsgType: "3",
+              picShieldEd: true,
+
+              voiceLength: 0,
+              voiceUrl: "",
+            },
+            {
               content: "医生发了二张张图片",
               picIds: [
                 "https://img.iplaysoft.com/wp-content/uploads/2019/free-images/free_stock_photo.jpg!0x0.webp",
@@ -121,7 +143,9 @@
             },
             {
               content: "患者发了图片",
-              picIds: [],
+              picIds: [
+                "https://img.iplaysoft.com/wp-content/uploads/2019/free-images/free_stock_photo.jpg!0x0.webp",
+              ],
               postTime: 1612495440531,
               isQuest: true,
               replyMsgType: "3",

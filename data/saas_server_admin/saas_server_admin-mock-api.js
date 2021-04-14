@@ -721,49 +721,17 @@
       },
     },
     "/medic-admin/v1/api/medic/live/manager/detail": {
-      body: {
-        data: [
-          {
-            thirdRoomId: "12",
-            roomName: "漩涡鸣人的直播间",
-            liveStartTime: "2020-02:12 8:12:00",
-            roomDesc: `<!DOCTYPE html><html><head></head><body><p>12121212</p> <img  src="https://img.iplaysoft.com/wp-content/uploads/2019/free-images/free_stock_photo.jpg!0x0.webp"/>   </body></html>`,
-            background:
-              "https://img.iplaysoft.com/wp-content/uploads/2019/free-images/free_stock_photo.jpg!0x0.webp",
-            subjectLabel: "语文,数学",
-            operateLabel: "运营标签0,运营标签1",
-            properPerson: 1,
-            liveType: 4,
-            commerceFlag: 1,
-            viewUrl: "https://www.baidu.com/",
-            secondIntroduce: "12",
-            speakerList: [
-              {
-                createTime: "2020-02-13",
-                hospitalName: "北京人和",
-                id: 0,
-                heardImg:
-                  "https://img.iplaysoft.com/wp-content/uploads/2019/free-images/free_stock_photo.jpg!0x0.webp",
-                speakerName: "小吴",
-                speakerTitles: "大师",
-              },
-              {
-                createTime: "2020-02-13",
-                hospitalName: "北京人和",
-                id: 1,
-                heardImg:
-                  "https://img.iplaysoft.com/wp-content/uploads/2019/free-images/free_stock_photo.jpg!0x0.webp",
-                speakerName: "小码",
-                speakerTitles: "大师",
-              },
-            ],
-            speakerIntroduce: "12",
-            token:
-              "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MTM5NzU3ODI3NzcsInBheWxvYWQiOiJcImhhbmJhb2p1YW5cIiJ9.C3Kqsnbc-FT4dLg5_VL9DEzRK_qjH4DrkX8w6rsXg6A",
-          },
-        ],
-        message: "",
-        status: 200,
+      inject: (nameMaps) => [nameMaps.liveManageList],
+      body(data) {
+        const id = data.params.liveRoomList[0].id;
+        const details = data.inject.liveManageList.find(
+          (item) => item.id == id
+        );
+        return {
+          data: [details],
+          message: "",
+          status: 200,
+        };
       },
     },
     "/medic-admin/v1/api/medic/live/manager/delete": {
@@ -832,381 +800,399 @@
       },
     },
     "/medic-admin/v1/api/medic/live/manager/list": {
-      body: {
-        data: {
-          nextPageNum: 0,
-          pageNum: 0,
-          pageSize: 0,
-          rows: [
-            {
-              id: 1,
-              thirdRoomId: "801A792A6D2EEB939C33DC59013074611",
-              roomName: "大话医疗姊妹篇",
-              liveStartTime: "2021-03-22 21:30:00",
-              liveEndTime: null,
-              onShelfTime: null,
-              subjectLabel: "男科",
-              operateLabel: "精彩指南",
-              liveStatus: 0,
-              speakerList: [
-                {
-                  id: 1,
-                  speakerName: "阿斯顿",
-                  speakerTitles: "主任医师1",
-                  hospitalName: "南山医院1",
-                  heardImg:
-                    "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
-                  speakerIntroduce: "1从业40年，技术精湛，妙手回春",
-                },
-              ],
-              speakerIntroduce:
-                "7列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述",
-              secondIntroduce:
-                "7列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述",
-              onShelfStatus: 1,
-              background:
-                "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
-              viewUrl:
-                "https://view.csslcloud.net/api/view/index?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
-              lectureUrl:
-                "https://view.csslcloud.net/api/view/lecturer?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
-              assistantUrl:
-                "https://view.csslcloud.net/api/view/assistant?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
-              lecturePass: "12345",
-              assistantPass: "12345",
-              viewerPass: "",
-              viewerCount: null,
-              learnCount: null,
-            },
-            {
-              id: 2,
-              thirdRoomId: "801A792A6D2EEB939C33DC59013074612",
-              roomName: "大话医疗姊妹篇",
-              liveStartTime: "2021-03-22 21:30:00",
-              liveEndTime: null,
-              onShelfTime: null,
-              subjectLabel: "男科",
-              operateLabel: "精彩指南",
-              liveStatus: 1,
-              speakerList: [
-                {
-                  id: 1,
-                  speakerName: "阿斯顿",
-                  speakerTitles: "主任医师1",
-                  hospitalName: "南山医院1",
-                  heardImg:
-                    "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
-                  speakerIntroduce: "1从业40年，技术精湛，妙手回春",
-                },
-              ],
-              speakerIntroduce:
-                "7列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述",
-              secondIntroduce:
-                "7列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述",
-              onShelfStatus: 1,
-              background:
-                "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
-              viewUrl:
-                "https://view.csslcloud.net/api/view/index?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
-              lectureUrl:
-                "https://view.csslcloud.net/api/view/lecturer?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
-              assistantUrl:
-                "https://view.csslcloud.net/api/view/assistant?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
-              lecturePass: "12345",
-              assistantPass: "12345",
-              viewerPass: "",
-              viewerCount: null,
-              learnCount: null,
-            },
-            {
-              id: 3,
-              thirdRoomId: "801A792A6D2EEB939C33DC59013074613",
-              roomName: "大话医疗姊妹篇",
-              liveStartTime: "2021-03-22 21:30:00",
-              liveEndTime: null,
-              onShelfTime: null,
-              subjectLabel: "男科",
-              operateLabel: "精彩指南",
-              liveStatus: 2,
-              speakerList: [
-                {
-                  id: 1,
-                  speakerName: "阿斯顿",
-                  speakerTitles: "主任医师1",
-                  hospitalName: "南山医院1",
-                  heardImg:
-                    "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
-                  speakerIntroduce: "1从业40年，技术精湛，妙手回春",
-                },
-              ],
-              speakerIntroduce:
-                "7列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述",
-              secondIntroduce:
-                "7列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述",
-              onShelfStatus: 1,
-              background:
-                "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
-              viewUrl:
-                "https://view.csslcloud.net/api/view/index?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
-              lectureUrl:
-                "https://view.csslcloud.net/api/view/lecturer?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
-              assistantUrl:
-                "https://view.csslcloud.net/api/view/assistant?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
-              lecturePass: "12345",
-              assistantPass: "12345",
-              viewerPass: "",
-              viewerCount: null,
-              learnCount: null,
-            },
-            {
-              id: 21,
-              thirdRoomId: "801A792A6D2EEB939C33DC5901307461121",
-              roomName: "大话医疗姊妹篇",
-              liveStartTime: "2021-03-22 21:30:00",
-              liveEndTime: null,
-              onShelfTime: null,
-              subjectLabel: "男科",
-              operateLabel: "精彩指南",
-              liveStatus: 0,
-              speakerList: [
-                {
-                  id: 1,
-                  speakerName: "阿斯顿",
-                  speakerTitles: "主任医师1",
-                  hospitalName: "南山医院1",
-                  heardImg:
-                    "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
-                  speakerIntroduce: "1从业40年，技术精湛，妙手回春",
-                },
-              ],
-              speakerIntroduce:
-                "7列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述",
-              secondIntroduce:
-                "7列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述",
-              onShelfStatus: 0,
-              background:
-                "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
-              viewUrl:
-                "https://view.csslcloud.net/api/view/index?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
-              lectureUrl:
-                "https://view.csslcloud.net/api/view/lecturer?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
-              assistantUrl:
-                "https://view.csslcloud.net/api/view/assistant?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
-              lecturePass: "12345",
-              assistantPass: "12345",
-              viewerPass: "",
-              viewerCount: null,
-              learnCount: null,
-            },
-            {
-              id: 22,
-              thirdRoomId: "801A792A6D2EEB939C33DC5901307461122",
-              roomName: "大话医疗姊妹篇",
-              liveStartTime: "2021-03-22 21:30:00",
-              liveEndTime: null,
-              onShelfTime: null,
-              subjectLabel: "男科",
-              operateLabel: "精彩指南",
-              liveStatus: 1,
-              speakerList: [
-                {
-                  id: 1,
-                  speakerName: "阿斯顿",
-                  speakerTitles: "主任医师1",
-                  hospitalName: "南山医院1",
-                  heardImg:
-                    "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
-                  speakerIntroduce: "1从业40年，技术精湛，妙手回春",
-                },
-              ],
-              speakerIntroduce:
-                "7列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述",
-              secondIntroduce:
-                "7列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述",
-              onShelfStatus: 0,
-              background:
-                "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
-              viewUrl:
-                "https://view.csslcloud.net/api/view/index?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
-              lectureUrl:
-                "https://view.csslcloud.net/api/view/lecturer?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
-              assistantUrl:
-                "https://view.csslcloud.net/api/view/assistant?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
-              lecturePass: "12345",
-              assistantPass: "12345",
-              viewerPass: "",
-              viewerCount: null,
-              learnCount: null,
-            },
-            {
-              id: 23,
-              thirdRoomId: "801A792A6D2EEB939C33DC5901307461123",
-              roomName: "大话医疗姊妹篇",
-              liveStartTime: "2021-03-22 21:30:00",
-              liveEndTime: null,
-              onShelfTime: null,
-              subjectLabel: "男科",
-              operateLabel: "精彩指南",
-              liveStatus: 2,
-              speakerList: [
-                {
-                  id: 1,
-                  speakerName: "阿斯顿",
-                  speakerTitles: "主任医师1",
-                  hospitalName: "南山医院1",
-                  heardImg:
-                    "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
-                  speakerIntroduce: "1从业40年，技术精湛，妙手回春",
-                },
-              ],
-              speakerIntroduce:
-                "7列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述",
-              secondIntroduce:
-                "7列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述",
-              onShelfStatus: 0,
-              background:
-                "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
-              viewUrl:
-                "https://view.csslcloud.net/api/view/index?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
-              lectureUrl:
-                "https://view.csslcloud.net/api/view/lecturer?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
-              assistantUrl:
-                "https://view.csslcloud.net/api/view/assistant?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
-              lecturePass: "12345",
-              assistantPass: "12345",
-              viewerPass: "",
-              viewerCount: null,
-              learnCount: null,
-            },
-            {
-              id: 24,
-              thirdRoomId: "801A792A6D2EEB939C33DC5901307461124",
-              roomName: "大话医疗姊妹篇",
-              liveStartTime: "2021-03-22 21:30:00",
-              liveEndTime: null,
-              onShelfTime: null,
-              subjectLabel: "男科",
-              operateLabel: "精彩指南",
-              liveStatus: 3,
-              speakerList: [
-                {
-                  id: 1,
-                  speakerName: "阿斯顿",
-                  speakerTitles: "主任医师1",
-                  hospitalName: "南山医院1",
-                  heardImg:
-                    "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
-                  speakerIntroduce: "1从业40年，技术精湛，妙手回春",
-                },
-              ],
-              speakerIntroduce:
-                "7列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述",
-              secondIntroduce:
-                "7列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述",
-              onShelfStatus: 0,
-              background:
-                "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
-              viewUrl:
-                "https://view.csslcloud.net/api/view/index?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
-              lectureUrl:
-                "https://view.csslcloud.net/api/view/lecturer?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
-              assistantUrl:
-                "https://view.csslcloud.net/api/view/assistant?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
-              lecturePass: "12345",
-              assistantPass: "12345",
-              viewerPass: "",
-              viewerCount: null,
-              learnCount: null,
-            },
-            {
-              id: 212,
-              thirdRoomId: "801A792A6D2EEB939C33DC59013074611241221s",
-              roomName: "学科标签，运营标签超出10个",
-              liveStartTime: "2021-03-22 21:30:00",
-              liveEndTime: null,
-              onShelfTime: null,
-              subjectLabel:
-                "男科,男科,男科,男科,男科,男科,男科,男科,男科,男科,11男科",
-              operateLabel:
-                "精彩指南,精彩指南,精彩指南,精彩指南,精彩指南,精彩指南,精彩指南,精彩指南,精彩指南,精彩指南,11精彩指南",
-              liveStatus: 3,
-              speakerList: Array(11)
-                .fill(1)
-                .map((item, index) => ({
-                  id: index,
-                  speakerName: index + 1 + "阿斯顿",
-                  speakerTitles: "主任医师1",
-                  hospitalName: "南山医院1",
-                  heardImg:
-                    "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
-                  speakerIntroduce: "1从业40年，技术精湛，妙手回春",
-                })),
-              speakerIntroduce:
-                "7列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述",
-              secondIntroduce:
-                "7列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述",
-              onShelfStatus: 0,
-              background:
-                "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
-              viewUrl:
-                "https://view.csslcloud.net/api/view/index?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
-              lectureUrl:
-                "https://view.csslcloud.net/api/view/lecturer?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
-              assistantUrl:
-                "https://view.csslcloud.net/api/view/assistant?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
-              lecturePass: "12345",
-              assistantPass: "12345",
-              viewerPass: "",
-              viewerCount: null,
-              learnCount: null,
-            },
-            {
-              id: "asasdasd",
-              coursesId: 12,
-              thirdRoomId: "801A792A是SSASA",
-              roomName: "已转换为系列课",
-              liveStartTime: "2021-03-22 21:30:00",
-              liveEndTime: null,
-              onShelfTime: null,
-              subjectLabel: "男科",
-              operateLabel: "精彩指南",
-              liveStatus: 0,
-              speakerList: [
-                {
-                  id: 1,
-                  speakerName: "阿斯顿",
-                  speakerTitles: "主任医师1",
-                  hospitalName: "南山医院1",
-                  heardImg:
-                    "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
-                  speakerIntroduce: "1从业40年，技术精湛，妙手回春",
-                },
-              ],
-              speakerIntroduce:
-                "7列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述列表页讲者描述",
-              secondIntroduce:
-                "7列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述列表页二级描述",
-              onShelfStatus: 1,
-              background:
-                "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
-              viewUrl:
-                "https://view.csslcloud.net/api/view/index?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
-              lectureUrl:
-                "https://view.csslcloud.net/api/view/lecturer?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
-              assistantUrl:
-                "https://view.csslcloud.net/api/view/assistant?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
-              lecturePass: "12345",
-              assistantPass: "12345",
-              viewerPass: "",
-              viewerCount: null,
-              learnCount: null,
-            },
-          ],
-          total: 100,
-          totalPage: 0,
-        },
-        message: "",
-        status: 200,
+      name: (nameMaps) => nameMaps.liveManageList,
+      pageable: true,
+      getData() {
+        return [
+          {
+            roomDesc: "描述",
+            liveType: 1,
+            properPerson: 1,
+            commerceFlag: 1,
+            id: 1,
+            thirdRoomId: "801A792A6D2EEB939C33DC59013074611",
+            roomName: "大话医疗姊妹篇",
+            liveStartTime: "2021-03-22 21:30:00",
+            liveEndTime: null,
+            onShelfTime: "2021-03-22 21:30:00",
+            subjectLabel: "男科",
+            operateLabel: "精彩指南",
+            liveStatus: 0,
+            speakerList: [
+              {
+                id: 1,
+                speakerName: "阿斯顿",
+                speakerTitles: "主任医师1",
+                hospitalName: "南山医院1",
+                heardImg:
+                  "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
+                speakerIntroduce: "1从业40年，技术精湛，妙手回春",
+              },
+            ],
+            speakerIntroduce: "7列表页讲者描述列表页讲者描述",
+            secondIntroduce: "7列表页二级描述列表页二",
+            onShelfStatus: 1,
+            background:
+              "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
+            viewUrl:
+              "https://view.csslcloud.net/api/view/index?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
+            lectureUrl:
+              "https://view.csslcloud.net/api/view/lecturer?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
+            assistantUrl:
+              "https://view.csslcloud.net/api/view/assistant?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
+            lecturePass: "12345",
+            assistantPass: "12345",
+            viewerPass: "",
+            viewerCount: null,
+            learnCount: null,
+          },
+          {
+            roomDesc: "描述",
+            liveType: 1,
+            properPerson: 1,
+            commerceFlag: 1,
+            id: 2,
+            thirdRoomId: "801A792A6D2EEB939C33DC59013074612",
+            roomName: "大话医疗姊妹篇",
+            liveStartTime: "2021-03-22 21:30:00",
+            liveEndTime: null,
+            onShelfTime: null,
+            subjectLabel: "男科",
+            operateLabel: "精彩指南",
+            liveStatus: 1,
+            speakerList: [
+              {
+                id: 1,
+                speakerName: "阿斯顿",
+                speakerTitles: "主任医师1",
+                hospitalName: "南山医院1",
+                heardImg:
+                  "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
+                speakerIntroduce: "1从业40年，技术精湛，妙手回春",
+              },
+            ],
+            speakerIntroduce: "7列表页讲者描述列表页讲者描述",
+            secondIntroduce: "7列表页二级描述列表页二",
+            onShelfStatus: 1,
+            background:
+              "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
+            viewUrl:
+              "https://view.csslcloud.net/api/view/index?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
+            lectureUrl:
+              "https://view.csslcloud.net/api/view/lecturer?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
+            assistantUrl:
+              "https://view.csslcloud.net/api/view/assistant?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
+            lecturePass: "12345",
+            assistantPass: "12345",
+            viewerPass: "",
+            viewerCount: null,
+            learnCount: null,
+          },
+          {
+            roomDesc: "描述",
+            liveType: 1,
+            properPerson: 1,
+            commerceFlag: 1,
+            id: 3,
+            thirdRoomId: "801A792A6D2EEB939C33DC59013074613",
+            roomName: "大话医疗姊妹篇",
+            liveStartTime: "2021-03-22 21:30:00",
+            liveEndTime: null,
+            onShelfTime: null,
+            subjectLabel: "男科",
+            operateLabel: "精彩指南",
+            liveStatus: 2,
+            speakerList: [
+              {
+                id: 1,
+                speakerName: "阿斯顿",
+                speakerTitles: "主任医师1",
+                hospitalName: "南山医院1",
+                heardImg:
+                  "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
+                speakerIntroduce: "1从业40年，技术精湛，妙手回春",
+              },
+            ],
+            speakerIntroduce: "7列表页讲者描述列表页讲者描述",
+            secondIntroduce: "7列表页二级描述列表页二",
+            onShelfStatus: 1,
+            background:
+              "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
+            viewUrl:
+              "https://view.csslcloud.net/api/view/index?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
+            lectureUrl:
+              "https://view.csslcloud.net/api/view/lecturer?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
+            assistantUrl:
+              "https://view.csslcloud.net/api/view/assistant?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
+            lecturePass: "12345",
+            assistantPass: "12345",
+            viewerPass: "",
+            viewerCount: null,
+            learnCount: null,
+          },
+          {
+            roomDesc: "描述",
+            liveType: 1,
+            properPerson: 1,
+            commerceFlag: 1,
+            id: 21,
+            thirdRoomId: "801A792A6D2EEB939C33DC5901307461121",
+            roomName: "大话医疗姊妹篇",
+            liveStartTime: "2021-03-22 21:30:00",
+            liveEndTime: null,
+            onShelfTime: null,
+            subjectLabel: "男科",
+            operateLabel: "精彩指南",
+            liveStatus: 0,
+            speakerList: [
+              {
+                id: 1,
+                speakerName: "阿斯顿",
+                speakerTitles: "主任医师1",
+                hospitalName: "南山医院1",
+                heardImg:
+                  "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
+                speakerIntroduce: "1从业40年，技术精湛，妙手回春",
+              },
+            ],
+            speakerIntroduce: "7列表页讲者描述列表页讲者描述",
+            secondIntroduce: "7列表页二级描述列表页二",
+            onShelfStatus: 0,
+            background:
+              "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
+            viewUrl:
+              "https://view.csslcloud.net/api/view/index?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
+            lectureUrl:
+              "https://view.csslcloud.net/api/view/lecturer?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
+            assistantUrl:
+              "https://view.csslcloud.net/api/view/assistant?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
+            lecturePass: "12345",
+            assistantPass: "12345",
+            viewerPass: "",
+            viewerCount: null,
+            learnCount: null,
+          },
+          {
+            roomDesc: "描述",
+            liveType: 1,
+            properPerson: 1,
+            commerceFlag: 1,
+            id: 22,
+            thirdRoomId: "801A792A6D2EEB939C33DC5901307461122",
+            roomName: "大话医疗姊妹篇",
+            liveStartTime: "2021-03-22 21:30:00",
+            liveEndTime: null,
+            onShelfTime: null,
+            subjectLabel: "男科",
+            operateLabel: "精彩指南",
+            liveStatus: 1,
+            speakerList: [
+              {
+                id: 1,
+                speakerName: "阿斯顿",
+                speakerTitles: "主任医师1",
+                hospitalName: "南山医院1",
+                heardImg:
+                  "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
+                speakerIntroduce: "1从业40年，技术精湛，妙手回春",
+              },
+            ],
+            speakerIntroduce: "7列表页讲者描述列表页讲者描述",
+            secondIntroduce: "7列表页二级描述列表页二",
+            onShelfStatus: 0,
+            background:
+              "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
+            viewUrl:
+              "https://view.csslcloud.net/api/view/index?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
+            lectureUrl:
+              "https://view.csslcloud.net/api/view/lecturer?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
+            assistantUrl:
+              "https://view.csslcloud.net/api/view/assistant?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
+            lecturePass: "12345",
+            assistantPass: "12345",
+            viewerPass: "",
+            viewerCount: null,
+            learnCount: null,
+          },
+          {
+            roomDesc: "描述",
+            liveType: 1,
+            properPerson: 1,
+            commerceFlag: 1,
+            id: 23,
+            thirdRoomId: "801A792A6D2EEB939C33DC5901307461123",
+            roomName: "大话医疗姊妹篇",
+            liveStartTime: "2021-03-22 21:30:00",
+            liveEndTime: null,
+            onShelfTime: null,
+            subjectLabel: "男科",
+            operateLabel: "精彩指南",
+            liveStatus: 2,
+            speakerList: [
+              {
+                id: 1,
+                speakerName: "阿斯顿",
+                speakerTitles: "主任医师1",
+                hospitalName: "南山医院1",
+                heardImg:
+                  "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
+                speakerIntroduce: "1从业40年，技术精湛，妙手回春",
+              },
+            ],
+            speakerIntroduce: "7列表页讲者描述列表页讲者描述",
+            secondIntroduce: "7列表页二级描述列表页二",
+            onShelfStatus: 0,
+            background:
+              "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
+            viewUrl:
+              "https://view.csslcloud.net/api/view/index?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
+            lectureUrl:
+              "https://view.csslcloud.net/api/view/lecturer?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
+            assistantUrl:
+              "https://view.csslcloud.net/api/view/assistant?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
+            lecturePass: "12345",
+            assistantPass: "12345",
+            viewerPass: "",
+            viewerCount: null,
+            learnCount: null,
+          },
+          {
+            roomDesc: "描述",
+            liveType: 1,
+            properPerson: 1,
+            commerceFlag: 1,
+            id: 24,
+            thirdRoomId: "801A792A6D2EEB939C33DC5901307461124",
+            roomName: "大话医疗姊妹篇",
+            liveStartTime: "2021-03-22 21:30:00",
+            liveEndTime: null,
+            onShelfTime: null,
+            subjectLabel: "男科",
+            operateLabel: "精彩指南",
+            liveStatus: 3,
+            speakerList: [
+              {
+                id: 1,
+                speakerName: "阿斯顿",
+                speakerTitles: "主任医师1",
+                hospitalName: "南山医院1",
+                heardImg:
+                  "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
+                speakerIntroduce: "1从业40年，技术精湛，妙手回春",
+              },
+            ],
+            speakerIntroduce: "7列表页讲者描述列表页讲者描述",
+            secondIntroduce: "7列表页二级描述列表页二",
+            onShelfStatus: 0,
+            background:
+              "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
+            viewUrl:
+              "https://view.csslcloud.net/api/view/index?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
+            lectureUrl:
+              "https://view.csslcloud.net/api/view/lecturer?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
+            assistantUrl:
+              "https://view.csslcloud.net/api/view/assistant?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
+            lecturePass: "12345",
+            assistantPass: "12345",
+            viewerPass: "",
+            viewerCount: null,
+            learnCount: null,
+          },
+          {
+            roomDesc: "描述",
+            liveType: 1,
+            properPerson: 1,
+            commerceFlag: 1,
+            id: 212,
+            thirdRoomId: "801A792A6D2EEB939C33DC59013074611241221s",
+            roomName: "学科标签，运营标签超出10个",
+            liveStartTime: "2021-03-22 21:30:00",
+            liveEndTime: null,
+            onShelfTime: null,
+            subjectLabel:
+              "男科,男科,男科,男科,男科,男科,男科,男科,男科,男科,11男科",
+            operateLabel:
+              "精彩指南,精彩指南,精彩指南,精彩指南,精彩指南,精彩指南,精彩指南,精彩指南,精彩指南,精彩指南,11精彩指南",
+            liveStatus: 3,
+            speakerList: Array(11)
+              .fill(1)
+              .map((item, index) => ({
+                id: index,
+                speakerName: index + 1 + "阿斯顿",
+                speakerTitles: "主任医师1",
+                hospitalName: "南山医院1",
+                heardImg:
+                  "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
+                speakerIntroduce: "1从业40年，技术精湛，妙手回春",
+              })),
+            speakerIntroduce: "7列表页讲者描述列表页讲者描述",
+            secondIntroduce: "7列表页二级描述列表页二",
+            onShelfStatus: 0,
+            background:
+              "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
+            viewUrl:
+              "https://view.csslcloud.net/api/view/index?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
+            lectureUrl:
+              "https://view.csslcloud.net/api/view/lecturer?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
+            assistantUrl:
+              "https://view.csslcloud.net/api/view/assistant?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
+            lecturePass: "12345",
+            assistantPass: "12345",
+            viewerPass: "",
+            viewerCount: null,
+            learnCount: null,
+          },
+          {
+            roomDesc: "描述",
+            liveType: 1,
+            properPerson: 1,
+            commerceFlag: 1,
+            id: 213321,
+            coursesId: 12,
+            thirdRoomId: "801A792A是SSASA",
+            roomName: "已转换为系列课",
+            liveStartTime: "2021-03-22 21:30:00",
+            liveEndTime: null,
+            onShelfTime: null,
+            subjectLabel: "男科",
+            operateLabel: "精彩指南",
+            liveStatus: 0,
+            speakerList: [
+              {
+                id: 1,
+                speakerName: "阿斯顿",
+                speakerTitles: "主任医师1",
+                hospitalName: "南山医院1",
+                heardImg:
+                  "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
+                speakerIntroduce: "1从业40年，技术精湛，妙手回春",
+              },
+            ],
+            speakerIntroduce: "7列表页讲者描述列表页讲者描述",
+            secondIntroduce: "7列表页二级描述列表页二",
+            onShelfStatus: 1,
+            background:
+              "https://wenwo-img-bucket-dev.oss-cn-beijing.aliyuncs.com/0067ae18a6f33489ee40e6bcc427277f",
+            viewUrl:
+              "https://view.csslcloud.net/api/view/index?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
+            lectureUrl:
+              "https://view.csslcloud.net/api/view/lecturer?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
+            assistantUrl:
+              "https://view.csslcloud.net/api/view/assistant?userid=C2DF142473187DD0&roomid=801A792A6D2EEB939C33DC5901307461",
+            lecturePass: "12345",
+            assistantPass: "12345",
+            viewerPass: "",
+            viewerCount: null,
+            learnCount: null,
+          },
+        ];
+      },
+      body(data) {
+        return {
+          data: data.pageInfos.wrapData,
+          message: "",
+          status: 200,
+        };
       },
     },
     "/medic-admin/v1/api/medic/speaker/manager/getSubjectLabels": {
