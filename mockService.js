@@ -6,6 +6,7 @@ const darkUtils = require("./utils/darkUtils");
 const pageUtils = require("./utils/pageUtils");
 const ip = commonUtils.getIp();
 const _ = require("lodash");
+const querystring = require("querystring");
 function start() {
   let serviceConfig = eval(
     fs.readFileSync("./config/serviceConfig.js", "utf-8")
@@ -52,10 +53,30 @@ function start() {
 
       request.on("end", function () {
         try {
-          data = JSON.parse(data || null);
+          if (
+            request.headers["content-type"] ===
+            "application/x-www-form-urlencoded"
+          ) {
+            data = querystring.parse(data);
+            Object.keys(data).forEach((key) => {
+              let value = data[key];
+              //是否需要解析
+              try {
+                const parseData = JSON.parse(data[key]);
+                if (typeof parseData == "object") {
+                  value = parseData;
+                }
+              } catch (e) {}
+
+              data[key] = value;
+            });
+          } else {
+            data = JSON.parse(data || null);
+          }
           functionArgams.params = data;
         } catch (error) {
           console.log("参数解析出错");
+          console.log(error);
         }
         startParse();
       });
