@@ -167,9 +167,13 @@
       },
     },
     "/api/page/detail": {
+      // /api/page/detail?id=0
       inject: (nameMaps) => [nameMaps.heroPage],
       body(data) {
-        return data.inject.heroPage.find((item) => item.id == data.params.id);
+        return {
+          data: data.inject.heroPage.find((item) => item.id == data.params.id),
+          message: "程序会根据inject查找",
+        };
       },
     },
   };
