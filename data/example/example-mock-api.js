@@ -138,6 +138,7 @@
     //分页
     "/api/page": {
       // /example/api/page?pageNum=6&pageSize=30
+      name: (nameMaps) => nameMaps.heroPage,
       pageable: true,
       getData() {
         return new Array(100).fill(1).map((item, index) => ({
@@ -163,6 +164,12 @@
           message:
             "如果pageable为true,程序会自动获取getData里面的数据，并对其分页，然后通过参数的形式提供给body",
         };
+      },
+    },
+    "/api/page/detail": {
+      inject: (nameMaps) => [nameMaps.heroPage],
+      body(data) {
+        return data.inject.heroPage.find((item) => item.id == data.params.id);
       },
     },
   };

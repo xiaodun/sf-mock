@@ -48,9 +48,12 @@ const darkUtils = {
     for (let key in apis) {
       const mockData = _.merge({}, defaultConfig.mockData, apis[key]);
       //如果提供了name属性   则覆盖为具体的周
-      if (mockData.name) {
-        if (nameMaps !== false) {
+      if (nameMaps !== false) {
+        if (mockData.name) {
           mockData.name = mockData.name(nameMaps);
+        }
+        if (mockData.inject) {
+          mockData.inject = mockData.inject(nameMaps);
         }
       }
       newApis[key] = mockData;

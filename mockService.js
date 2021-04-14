@@ -40,6 +40,7 @@ function start() {
       rsp: response,
       headers,
       pageInfos: {},
+      inject: {},
     };
     const method = request.method.toLowerCase();
     if (["post", "put"].includes(method)) {
@@ -93,7 +94,20 @@ function start() {
 
         if (mockData != undefined) {
           mockData = _.merge({}, defaultConfig.mockData, mockData);
-
+          if (mockData.inject) {
+            //注入数据
+            mockData.inject.forEach((injectName) => {
+              const data =
+                apis[
+                  Object.keys(apis).find((key) => apis[key].name === injectName)
+                ];
+              if (data) {
+                functionArgams.inject[injectName] = data.getData();
+              } else {
+                console.log(`${injectName} 不存在`);
+              }
+            });
+          }
           if (mockData.pageable) {
             //处理分页的逻辑
             const pageParams = pageUtils.getTransformParams(
