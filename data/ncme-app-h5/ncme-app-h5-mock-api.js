@@ -4,6 +4,35 @@ const { random } = require("lodash");
   const total = 100;
   const pageSize = 10;
   return {
+    "/medic-h5/v1/api/medic/h5/article/getArticleDetail": {
+      body: {
+        status: 200,
+        message: "请求成功",
+        data: {
+          id: "606fb1066bff7b4415ff2889",
+          title: "速来！乳腺癌防治月特别专区，你想知道的这里都有！",
+          cover:
+            "https://wenwo-img-bucket-test.oss-cn-beijing.aliyuncs.com/9679a939ba5de04bc9d0f3aefdb2f226",
+          state: 127,
+          publishTime: "2021-04-09 09:43:10",
+          publishDate: "2021-04-09",
+          commentNum: 0,
+          likeNum: 0,
+          articleSource: "医学界肿瘤频道",
+          articleUrl: null,
+          isLike: null,
+          isFavorites: null,
+          realReadNum: 54,
+          readNum: 171,
+          content: "\n<p>大蛇兜噶十多个的</p>\n",
+          subjectNameList: ["肿瘤"],
+          showContent: "大蛇兜噶十多个的",
+          logoUrl: "http:bai",
+          originalLink:
+            "http://mp.weixin.qq.com/s?__biz=MzU4MjQzNjAzMA==&mid=2247525478&idx=5&sn=b5657de3ad9331f69dfc884671a66075&chksm=fdba71b7cacdf8a191d7a91e469eb54fae37409574d2a37318aaa4cd1ccdf6fa3e33f6e67290&scene=27#wechat_redirect",
+        },
+      },
+    },
     "/medic-h5/v1/api/medic/h5/prefecture/prefectureShareConfig": {
       body: {
         data: [

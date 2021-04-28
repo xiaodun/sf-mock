@@ -1,0 +1,968 @@
+{
+  "status": 200,
+  "message": "请求成功",
+  "data": {
+    "hospitalDepartments": [
+      {
+        "id": "10000",
+        "name": "中医科",
+        "parentId": "10001",
+        "parentName": "中医科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10001",
+        "name": "中医科",
+        "parentId": null,
+        "parentName": null,
+        "order": 0,
+        "hasSub": true
+      },
+      {
+        "id": "10002",
+        "name": "中医儿科",
+        "parentId": "10001",
+        "parentName": "中医科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10003",
+        "name": "中医骨科",
+        "parentId": "10001",
+        "parentName": "中医科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10004",
+        "name": "中医皮肤科",
+        "parentId": "10001",
+        "parentName": "中医科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10100",
+        "name": "耳鼻咽喉头颈科",
+        "parentId": null,
+        "parentName": null,
+        "order": 0,
+        "hasSub": true
+      },
+      {
+        "id": "10101",
+        "name": "眼科综合门诊",
+        "parentId": "10700",
+        "parentName": "眼科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10102",
+        "name": "耳鼻咽喉科",
+        "parentId": "10100",
+        "parentName": "耳鼻咽喉头颈科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10103",
+        "name": "喉科",
+        "parentId": "10100",
+        "parentName": "耳鼻咽喉头颈科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10104",
+        "name": "头颈外科",
+        "parentId": "10100",
+        "parentName": "耳鼻咽喉头颈科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10105",
+        "name": "甲状腺门诊",
+        "parentId": "10100",
+        "parentName": "耳鼻咽喉头颈科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10106",
+        "name": "鼻科",
+        "parentId": "10100",
+        "parentName": "耳鼻咽喉头颈科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10107",
+        "name": "耳科",
+        "parentId": "10100",
+        "parentName": "耳鼻咽喉头颈科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10200",
+        "name": "骨外科",
+        "parentId": null,
+        "parentName": null,
+        "order": 0,
+        "hasSub": true
+      },
+      {
+        "id": "10201",
+        "name": "足踝外科",
+        "parentId": "10200",
+        "parentName": "骨外科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10202",
+        "name": "创伤骨科",
+        "parentId": "10200",
+        "parentName": "骨外科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10203",
+        "name": "骨关节科",
+        "parentId": "10200",
+        "parentName": "骨外科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10204",
+        "name": "矫形骨科",
+        "parentId": "10200",
+        "parentName": "骨外科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10300",
+        "name": "传染病科",
+        "parentId": null,
+        "parentName": null,
+        "order": 0,
+        "hasSub": true
+      },
+      {
+        "id": "10301",
+        "name": "结核病科",
+        "parentId": null,
+        "parentName": null,
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10302",
+        "name": "传染科",
+        "parentId": "10300",
+        "parentName": "传染病科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10303",
+        "name": "肝病科",
+        "parentId": "10300",
+        "parentName": "传染病科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10400",
+        "name": "儿科",
+        "parentId": null,
+        "parentName": null,
+        "order": 0,
+        "hasSub": true
+      },
+      {
+        "id": "10401",
+        "name": "小儿内科",
+        "parentId": "10400",
+        "parentName": "儿科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10402",
+        "name": "小儿外科",
+        "parentId": "10400",
+        "parentName": "儿科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10403",
+        "name": "新生儿科",
+        "parentId": "10400",
+        "parentName": "儿科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10404",
+        "name": "小儿呼吸科",
+        "parentId": "10400",
+        "parentName": "儿科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10405",
+        "name": "小儿营养保健科",
+        "parentId": "10400",
+        "parentName": "儿科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10406",
+        "name": "小儿康复科",
+        "parentId": "10400",
+        "parentName": "儿科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10500",
+        "name": "内科",
+        "parentId": null,
+        "parentName": null,
+        "order": 0,
+        "hasSub": true
+      },
+      {
+        "id": "10501",
+        "name": "内分泌科",
+        "parentId": "10500",
+        "parentName": "内科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10502",
+        "name": "呼吸科",
+        "parentId": "10500",
+        "parentName": "内科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10503",
+        "name": "心血管内科",
+        "parentId": "10500",
+        "parentName": "内科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10504",
+        "name": "消化内科",
+        "parentId": "10500",
+        "parentName": "内科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10505",
+        "name": "神经内科",
+        "parentId": "10500",
+        "parentName": "内科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10506",
+        "name": "肾病内科",
+        "parentId": "10500",
+        "parentName": "内科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10507",
+        "name": "血液科",
+        "parentId": "10500",
+        "parentName": "内科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10508",
+        "name": "免疫科",
+        "parentId": "10500",
+        "parentName": "内科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10509",
+        "name": "普通内科",
+        "parentId": "10500",
+        "parentName": "内科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10510",
+        "name": "感染内科",
+        "parentId": "10500",
+        "parentName": "内科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10511",
+        "name": "过敏反应科",
+        "parentId": "10500",
+        "parentName": "内科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10512",
+        "name": "老年病科",
+        "parentId": "10500",
+        "parentName": "内科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10513",
+        "name": "内分泌代谢科",
+        "parentId": null,
+        "parentName": null,
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10600",
+        "name": "外科",
+        "parentId": null,
+        "parentName": null,
+        "order": 0,
+        "hasSub": true
+      },
+      {
+        "id": "10601",
+        "name": "整形科",
+        "parentId": "12100",
+        "parentName": "整形美容科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10602",
+        "name": "胸外科",
+        "parentId": "10600",
+        "parentName": "外科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10603",
+        "name": "泌尿外科",
+        "parentId": "10600",
+        "parentName": "外科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10604",
+        "name": "肛肠科",
+        "parentId": "10600",
+        "parentName": "外科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10605",
+        "name": "肝胆外科",
+        "parentId": "10600",
+        "parentName": "外科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10606",
+        "name": "神经外科",
+        "parentId": "10600",
+        "parentName": "外科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10607",
+        "name": "心血管外科",
+        "parentId": "10600",
+        "parentName": "外科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10608",
+        "name": "乳腺外科",
+        "parentId": "10600",
+        "parentName": "外科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10700",
+        "name": "眼科",
+        "parentId": null,
+        "parentName": null,
+        "order": 0,
+        "hasSub": true
+      },
+      {
+        "id": "10701",
+        "name": "儿童视光门诊",
+        "parentId": "10700",
+        "parentName": "眼科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10702",
+        "name": "儿童眼综合门诊",
+        "parentId": "10700",
+        "parentName": "眼科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10703",
+        "name": "眼底",
+        "parentId": "10700",
+        "parentName": "眼科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10704",
+        "name": "角膜疾病",
+        "parentId": "10700",
+        "parentName": "眼科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10705",
+        "name": "眼肌",
+        "parentId": "10700",
+        "parentName": "眼科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10706",
+        "name": "青光眼 ",
+        "parentId": "10700",
+        "parentName": "眼科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10707",
+        "name": "白内障",
+        "parentId": "10700",
+        "parentName": "眼科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10708",
+        "name": "眼外伤",
+        "parentId": "10700",
+        "parentName": "眼科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10709",
+        "name": "眼肿瘤",
+        "parentId": "10700",
+        "parentName": "眼科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10710",
+        "name": "屈光门诊",
+        "parentId": "10700",
+        "parentName": "眼科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10711",
+        "name": "眼整形",
+        "parentId": "10700",
+        "parentName": "眼科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10712",
+        "name": "眼中医",
+        "parentId": "10700",
+        "parentName": "眼科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10800",
+        "name": "妇产科",
+        "parentId": null,
+        "parentName": null,
+        "order": 0,
+        "hasSub": true
+      },
+      {
+        "id": "10801",
+        "name": "产科",
+        "parentId": "10800",
+        "parentName": "妇产科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10802",
+        "name": "妇科",
+        "parentId": "10800",
+        "parentName": "妇产科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10900",
+        "name": "口腔科",
+        "parentId": null,
+        "parentName": null,
+        "order": 0,
+        "hasSub": true
+      },
+      {
+        "id": "10901",
+        "name": " 颌面外科",
+        "parentId": "10900",
+        "parentName": "口腔科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10902",
+        "name": "牙体牙髓科",
+        "parentId": "10900",
+        "parentName": "口腔科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10903",
+        "name": "牙周科",
+        "parentId": "10900",
+        "parentName": "口腔科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10904",
+        "name": "口腔黏膜科",
+        "parentId": "10900",
+        "parentName": "口腔科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10905",
+        "name": "儿童口腔科",
+        "parentId": "10900",
+        "parentName": "口腔科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "10906",
+        "name": "正畸科",
+        "parentId": "10900",
+        "parentName": "口腔科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "11000",
+        "name": "皮肤性病科",
+        "parentId": null,
+        "parentName": null,
+        "order": 0,
+        "hasSub": true
+      },
+      {
+        "id": "11001",
+        "name": "传染性皮肤病",
+        "parentId": "11000",
+        "parentName": "皮肤性病科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "11002",
+        "name": "皮肤科门诊",
+        "parentId": "11000",
+        "parentName": "皮肤性病科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "11003",
+        "name": "免疫性皮肤科",
+        "parentId": "11000",
+        "parentName": "皮肤性病科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "11004",
+        "name": "过敏性/变态反应科",
+        "parentId": "11000",
+        "parentName": "皮肤性病科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "11100",
+        "name": "精神心理科",
+        "parentId": null,
+        "parentName": null,
+        "order": 0,
+        "hasSub": true
+      },
+      {
+        "id": "11101",
+        "name": "精神科",
+        "parentId": "11100",
+        "parentName": "精神心理科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "11102",
+        "name": "心理咨询科",
+        "parentId": "11100",
+        "parentName": "精神心理科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "11103",
+        "name": "司法鉴定科",
+        "parentId": "11100",
+        "parentName": "精神心理科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "11104",
+        "name": "中医精神科",
+        "parentId": "11100",
+        "parentName": "精神心理科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "11200",
+        "name": "肿瘤综合科",
+        "parentId": "13000",
+        "parentName": "肿瘤科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "11300",
+        "name": "麻醉医学科",
+        "parentId": null,
+        "parentName": null,
+        "order": 0,
+        "hasSub": true
+      },
+      {
+        "id": "11301",
+        "name": "疼痛科",
+        "parentId": "11300",
+        "parentName": "麻醉医学科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "11302",
+        "name": "麻醉科",
+        "parentId": "11300",
+        "parentName": "麻醉医学科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "11400",
+        "name": "急诊科",
+        "parentId": null,
+        "parentName": null,
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "11500",
+        "name": "药剂科",
+        "parentId": null,
+        "parentName": null,
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "11600",
+        "name": "口腔门诊",
+        "parentId": "10900",
+        "parentName": "口腔科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "11700",
+        "name": "营养科",
+        "parentId": null,
+        "parentName": null,
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "11800",
+        "name": "男科",
+        "parentId": null,
+        "parentName": null,
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "11900",
+        "name": "生殖中心科",
+        "parentId": null,
+        "parentName": null,
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "12000",
+        "name": "康复科",
+        "parentId": "12001",
+        "parentName": "康复医学科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "12001",
+        "name": "康复医学科",
+        "parentId": null,
+        "parentName": null,
+        "order": 0,
+        "hasSub": true
+      },
+      {
+        "id": "12002",
+        "name": "理疗科",
+        "parentId": "12001",
+        "parentName": "康复医学科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "12100",
+        "name": "整形美容科",
+        "parentId": null,
+        "parentName": null,
+        "order": 0,
+        "hasSub": true
+      },
+      {
+        "id": "12102",
+        "name": "美容科",
+        "parentId": "12100",
+        "parentName": "整形美容科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "12200",
+        "name": "介入医学科",
+        "parentId": null,
+        "parentName": null,
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "12300",
+        "name": "职业病科",
+        "parentId": null,
+        "parentName": null,
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "12400",
+        "name": "医学影像科",
+        "parentId": "20000",
+        "parentName": "医学影像科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "12500",
+        "name": "病理科",
+        "parentId": null,
+        "parentName": null,
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "12600",
+        "name": "其他",
+        "parentId": null,
+        "parentName": null,
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "12700",
+        "name": "全科",
+        "parentId": null,
+        "parentName": null,
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "12800",
+        "name": "烧伤科",
+        "parentId": null,
+        "parentName": null,
+        "order": 0,
+        "hasSub": true
+      },
+      {
+        "id": "12801",
+        "name": "重烧科",
+        "parentId": "12800",
+        "parentName": "烧伤科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "12900",
+        "name": "中西医结合科",
+        "parentId": null,
+        "parentName": null,
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "13000",
+        "name": "肿瘤科",
+        "parentId": null,
+        "parentName": null,
+        "order": 0,
+        "hasSub": true
+      },
+      {
+        "id": "13001",
+        "name": "肿瘤内科",
+        "parentId": "13000",
+        "parentName": "肿瘤科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "13002",
+        "name": "肿瘤外科",
+        "parentId": "13000",
+        "parentName": "肿瘤科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "13003",
+        "name": "肿瘤妇科",
+        "parentId": "13000",
+        "parentName": "肿瘤科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "13004",
+        "name": "肿瘤放疗科",
+        "parentId": "13000",
+        "parentName": "肿瘤科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "13005",
+        "name": "骨肿瘤科",
+        "parentId": "13000",
+        "parentName": "肿瘤科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "14000",
+        "name": "运动医学科",
+        "parentId": null,
+        "parentName": null,
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "20000",
+        "name": "医学影像科",
+        "parentId": null,
+        "parentName": null,
+        "order": 0,
+        "hasSub": true
+      },
+      {
+        "id": "20001",
+        "name": "核医学科",
+        "parentId": "20000",
+        "parentName": "医学影像科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "20002",
+        "name": "放射科",
+        "parentId": "20000",
+        "parentName": "医学影像科",
+        "order": 0,
+        "hasSub": false
+      },
+      {
+        "id": "20003",
+        "name": "超声科",
+        "parentId": "20000",
+        "parentName": "医学影像科",
+        "order": 0,
+        "hasSub": false
+      }
+    ]
+  }
+}

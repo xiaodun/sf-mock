@@ -44,23 +44,21 @@
         data: {
           dialogs: [
             {
-              content: "",
+              content:
+                "https://wenwo-audio-bucket-test.oss-cn-beijing.aliyuncs.com/94dddbc53a8079134551098c493844b9",
               picIds: [],
               postTime: 1612495440531,
               isQuest: false,
-              replyMsgType: "",
+              replyMsgType: "2",
               voiceLength: 400,
-              voiceUrl:
-                "https://wenwo-audio-bucket-test.oss-cn-beijing.aliyuncs.com/94dddbc53a8079134551098c493844b9",
             },
             {
               content:
-                "<a href='http://www.baidu.com'>如何打鸡血</a>医生说的话医生说的话医生说的话医生说的话医生说的话医生说的话医生说的话医生说的话医生说的话医生说的话医生说的话医生说的话医生说的话医生说的话医生说的话医生说的话医生说的话医生说的话",
+                "<a href='http://www.baidu.com'>如何打鸡血</a>医生说的\"话医生说的话医生说的话医生说的话医生说的话医生说的话医生说的话医生说的话医生说的话医生说的话医生说的话医生说的话医生说的话医生说的话医生说的话医生说的话医生说的话医生说的话",
               picIds: [],
               postTime: 1612495440531,
               isQuest: false,
               voiceLength: 0,
-              voiceUrl: "",
             },
             {
               content:
@@ -70,7 +68,6 @@
               isQuest: false,
               replyMsgType: "1",
               voiceLength: 0,
-              voiceUrl: "",
             },
             {
               content: "医生说的话加上图片",
@@ -85,7 +82,6 @@
               isQuest: false,
               replyMsgType: "3",
               voiceLength: 0,
-              voiceUrl: "",
             },
             {
               content: "医生发了一张图片",
@@ -96,7 +92,6 @@
               isQuest: false,
               replyMsgType: "3",
               voiceLength: 0,
-              voiceUrl: "",
             },
             {
               content: "存在隐藏的图片",
@@ -108,7 +103,6 @@
               replyMsgType: "3",
               picShieldEd: true,
               voiceLength: 0,
-              voiceUrl: "",
             },
             {
               content: "图片都被隐藏了",
@@ -118,7 +112,6 @@
               picShieldEd: true,
 
               voiceLength: 0,
-              voiceUrl: "",
             },
             {
               content: "医生发了二张张图片",
@@ -130,7 +123,6 @@
               isQuest: false,
               replyMsgType: "3",
               voiceLength: 0,
-              voiceUrl: "",
             },
             {
               content: "患者的话",
@@ -139,7 +131,6 @@
               isQuest: true,
               replyMsgType: "",
               voiceLength: 0,
-              voiceUrl: "",
             },
             {
               content: "患者发了图片",
@@ -150,7 +141,6 @@
               isQuest: true,
               replyMsgType: "3",
               voiceLength: 0,
-              voiceUrl: "",
             },
           ],
           drId: "WQWQEWASSADAS",
@@ -158,12 +148,14 @@
           needHelp: "",
           postTime: "1612495440531",
           questionId: "",
-          seoTitle: "您好！感谢您的信任及付费咨询！您目前肛周这个问",
+          seoTitle:
+            "您好！“”感谢您的信任及付费咨询！您目前肛周这个问,asd,jhdsajkhkasdhlsakjh",
           needHelp: "您好！感谢您的信任及付费咨询！您目前肛周这个问",
-          description: "您好！感谢您的信任及付费咨询！您目前肛周这个问",
+          description:
+            "您好！感谢您的信任及付费咨询！您目前肛周这个问,asdjldhjlkashasjkahsdkj",
           questionTitleMosaic: false,
           seoDescription:
-            "您好！感谢您的信任及付费咨询！<br><br>您目前肛周这个问题，要考虑是痔疮，这个并不考虑是尖锐湿疣的。<br><br>虽然说尖锐湿疣也是会长在肛周",
+            "您好！感谢\"您的信<任及'付费咨询'！<br><br>您目\"前肛周这个问题，要考虑是痔疮，这个并不考虑是尖锐湿疣的。<br><br>虽然说尖锐湿疣也是会长在肛周",
         },
         message: "",
       },
