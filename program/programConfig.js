@@ -67,7 +67,7 @@
     "c-platform-h5-nuxt": {
       withNginxConf: true,
       withFileStructure: true,
-      apiPrefix: "/p/h5",
+      apiPrefix: ["/iw/p/h5", "/api"],
       programPrefix: "/",
       mockListenPort: 9030,
       jointListenPort: 9031,

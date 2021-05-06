@@ -1,6 +1,6 @@
 (function getApis() {
   return {
-    "/p/h5/consultcase/doctorinfo": {
+    "/iw/p/h5/consultcase/doctorinfo": {
       body: {
         status: 200,
         data: {
@@ -37,7 +37,7 @@
       },
     },
     //
-    "/p/h5/consultcase/consultShareInfo": {
+    "/iw/p/h5/consultcase/consultShareInfo": {
       body: {
         status: 200,
         // status: 5908005,
@@ -160,7 +160,7 @@
         message: "",
       },
     },
-    "/p/h5/consultcase/consultShareHot": {
+    "/iw/p/h5/consultcase/consultShareHot": {
       body: {
         status: 200,
         // "status": 404,
@@ -198,7 +198,7 @@
         message: "",
       },
     },
-    "/p/h5/consultcase/consultShareSimple": {
+    "/iw/p/h5/consultcase/consultShareSimple": {
       body: {
         data: [
           {
