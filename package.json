@@ -19,5 +19,10 @@
   "homepage": "https://github.com/xiaodun/sf-mock#readme",
   "dependencies": {
     "lodash": "^4.17.20"
+  },
+  "devDependencies": {
+    "@babel/parser": "^7.14.0",
+    "@babel/traverse": "^7.14.0",
+    "@babel/types": "^7.14.0"
   }
 }

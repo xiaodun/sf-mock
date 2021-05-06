@@ -1,10 +1,25 @@
 (function () {
   return {
+    autoCreateSettings: {
+      //当api不存在的时候自动创建
+      404: true,
+      getDefaultValues() {
+        //自动创建url对应的值
+        return {
+          body: {
+            status: 200,
+            data: {},
+          },
+        };
+      },
+    },
     mockData: {
       response: {
+        //延迟返回
         delaySeconds: 0,
       },
       options: {
+        //匹配时忽略请求的方法
         ingoreMethod: true,
       },
     },
