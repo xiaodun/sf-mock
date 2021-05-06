@@ -61,6 +61,7 @@ const darkUtils = {
     return {
       apis: newApis,
       url: api,
+      programName,
     };
   },
   getNameMaps(reqUrl) {

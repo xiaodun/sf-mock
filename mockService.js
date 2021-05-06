@@ -4,6 +4,7 @@ const url = require("url");
 const commonUtils = require("./utils/commonUtils");
 const darkUtils = require("./utils/darkUtils");
 const pageUtils = require("./utils/pageUtils");
+const editJsUtils = require("./utils/editJsUtils");
 const ip = commonUtils.getIp();
 const _ = require("lodash");
 const querystring = require("querystring");
@@ -36,6 +37,8 @@ function start() {
       response.writeHead(200, headers);
       return;
     }
+    //存储一些和项目相关的数据
+    let programDatas = {};
     let functionArgams = {
       req: request,
       rsp: response,
@@ -90,8 +93,15 @@ function start() {
       try {
         //获取mock文件
         const mockFile = darkUtils.getMockFile(request.url);
+        if (programDatas[mockFile.programName] == null) {
+          programDatas[mockFile.programName] = {
+            createdAPi: {
+              //已经创建的api，避免死循环
+            },
+          };
+        }
         const apis = mockFile.apis;
-        //url带有查询参数的将被忽略
+        //url带有查询参数在匹配的时候将被忽略
         let url = mockFile.url.split("?")[0];
         let mockData = apis[url];
 
@@ -225,6 +235,22 @@ function start() {
             }, mockData.response.delaySeconds * 1000);
           }
         } else {
+          //开启在404的时候自动创建
+          if (defaultConfig.autoCreateSettings["404"]) {
+            //还没被自动创建过,可能因为程序的原因自动创建失败，所以要标记一下
+            if (!programDatas[mockFile.programName].createdAPi[url]) {
+              editJsUtils.addApi({
+                programName: mockFile.programName,
+                url,
+                defaultConfig,
+              });
+              programDatas[mockFile.programName].createdAPi[url] = true;
+              startParse();
+              return;
+            } else {
+              console.log(`${url}已经创建过了,请留意控制台的报错信息`);
+            }
+          }
           response.writeHead(404, headers);
           response.end(JSON.stringify(404));
         }
