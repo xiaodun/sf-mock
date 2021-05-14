@@ -37,7 +37,7 @@
         },
       },
       //nginx.conf => server配置 => 前端项目的根目录
-      programUrl: "http://192.168.10.131:8000",
+      programUrl: " http://localhost:8080",
       // 前端项目的热更新地址
       webpackHotUrl,
     },

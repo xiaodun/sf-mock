@@ -1,5 +1,33 @@
 (function getApis() {
   return {
+    "/api/redis/getValue": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
+    "/api/welfare/uCustomer/pageCustomer": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
+    "/api/index/findIndexData": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
+    "/api/iask/advertiser/getAdvertiserCount": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
     "/api/gateway/doctor/d/admin/consult/getConsultAssembledStatus": {
       body: {
         status: 200,
