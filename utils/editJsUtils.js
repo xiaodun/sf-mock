@@ -5,7 +5,7 @@ const { default: babelTraverse } = require("@babel/traverse");
 const prettier = require("prettier");
 const editJsUtils = {
   addApi(params = {}) {
-    const moclFilepath = `../data/example/${params.programName}-mock-api.js`;
+    const moclFilepath = `../data/${params.programName}/${params.programName}-mock-api.js`;
     const mockFileStr = fs
       .readFileSync(path.resolve(__dirname, moclFilepath), "utf-8")
       .toString();
