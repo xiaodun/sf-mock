@@ -1,5 +1,12 @@
 (function getApis() {
   return {
+    "/medic-admin/v1/api/medic/manager/articles/dataGather/list": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
     "/api/redis/getValue": {
       body: {
         status: 200,
