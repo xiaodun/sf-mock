@@ -23,6 +23,7 @@
   "devDependencies": {
     "@babel/parser": "^7.14.0",
     "@babel/traverse": "^7.14.0",
-    "prettier": "2.2.1"
+    "axios": "^0.21.1",
+    "iconv-lite": "^0.6.2"
   }
 }
