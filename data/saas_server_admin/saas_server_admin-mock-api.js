@@ -1,5 +1,402 @@
 (function getApis() {
   return {
+    "/api/d/admin/doc/label/getProjectLabelList": {
+      body: {
+        status: 200,
+        data: [
+          {
+            createTime: "",
+            id: 0,
+            name: "乐高",
+            remarks: "",
+          },
+          {
+            createTime: "",
+            id: 1,
+            name: "金赛",
+            remarks: "",
+          },
+        ],
+      },
+    },
+
+    "/api/d/admin/doc/label/deleteBlackListByDoctorIds": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
+    "/api/d/admin/doc/label/getBlackList": {
+      name: (nameMaps) => nameMaps.messageBlockBlackList,
+      pageable: true,
+      getData() {
+        return new Array(100).fill(1).map((item, index) => ({
+          id: index,
+          doctorId: index,
+          projectName: "刺杀时刻",
+          departmentName: "主任科",
+          realName: "岳飞",
+          status: Math.random() > 0.5 ? 0 : 1,
+          updateTime: "2019-2:20 10:30:21",
+        }));
+      },
+      body(data) {
+        return {
+          info: data.pageInfos.params,
+          status: 200,
+          data: data.pageInfos.wrapData,
+        };
+      },
+    },
+
+    "/api/gateway/doctor/d/admin/consult/getAppraiseList": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
+    "/api/gateway/doctor/d/admin/consult/getModuleListNum": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
+    "/api/doctors/identifyList": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
+    "/api/doctors/queryList": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
+    "/api/prescription/doctor/findRxDocByPage": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
+    "/api/department/queryList": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
+    "/api/weiboReconsitution/apiManage/pageQuery": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
+    "/api/iask/company/pageOrExportCompany": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
+    "/api/iask/dict/getCompanyType": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
+    "/api/iask/dict/getAdminUser": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
+    "/api/iask/dict/getCustomerManagers": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
+    "/api/iask/dict/getIaskProductType": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
+    "/api/userService/channel/channelList": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
+    "/api/saas_doctor/configuration/column/list": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
+    "/api/saas_doctor/contentService/article/list": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
+    "/api/saas_doctor/configuration/department/tree": {
+      body: {
+        data: [
+          {
+            deptName: "中医科",
+            children: [
+              { deptName: "中医科", deptId: "10000" },
+              { deptName: "中医儿科", deptId: "10002" },
+              { deptName: "中医骨科", deptId: "10003" },
+              { deptName: "中医皮肤科", deptId: "10004" },
+            ],
+            deptId: "10001",
+          },
+          {
+            deptName: "耳鼻咽喉头颈科",
+            children: [
+              { deptName: "耳鼻咽喉科", deptId: "10102" },
+              { deptName: "喉科", deptId: "10103" },
+              { deptName: "头颈外科", deptId: "10104" },
+              { deptName: "甲状腺门诊", deptId: "10105" },
+              { deptName: "鼻科", deptId: "10106" },
+              { deptName: "耳科", deptId: "10107" },
+            ],
+            deptId: "10100",
+          },
+          {
+            deptName: "骨外科",
+            children: [
+              { deptName: "足踝外科", deptId: "10201" },
+              { deptName: "创伤骨科", deptId: "10202" },
+              { deptName: "骨关节科", deptId: "10203" },
+              { deptName: "矫形骨科", deptId: "10204" },
+            ],
+            deptId: "10200",
+          },
+          {
+            deptName: "传染病科",
+            children: [
+              { deptName: "传染科", deptId: "10302" },
+              { deptName: "肝病科", deptId: "10303" },
+            ],
+            deptId: "10300",
+          },
+          { deptName: "结核病科", children: [], deptId: "10301" },
+          {
+            deptName: "儿科",
+            children: [
+              { deptName: "小儿内科", deptId: "10401" },
+              { deptName: "小儿外科", deptId: "10402" },
+              { deptName: "新生儿科", deptId: "10403" },
+              { deptName: "小儿呼吸科", deptId: "10404" },
+              { deptName: "小儿营养保健科", deptId: "10405" },
+              { deptName: "小儿康复科", deptId: "10406" },
+            ],
+            deptId: "10400",
+          },
+          {
+            deptName: "内科",
+            children: [
+              { deptName: "内分泌科", deptId: "10501" },
+              { deptName: "呼吸科", deptId: "10502" },
+              { deptName: "心血管内科", deptId: "10503" },
+              { deptName: "消化内科", deptId: "10504" },
+              { deptName: "神经内科", deptId: "10505" },
+              { deptName: "肾病内科", deptId: "10506" },
+              { deptName: "血液科", deptId: "10507" },
+              { deptName: "免疫科", deptId: "10508" },
+              { deptName: "普通内科", deptId: "10509" },
+              { deptName: "感染内科", deptId: "10510" },
+              { deptName: "过敏反应科", deptId: "10511" },
+              { deptName: "老年病科", deptId: "10512" },
+            ],
+            deptId: "10500",
+          },
+          { deptName: "内分泌代谢科", children: [], deptId: "10513" },
+          {
+            deptName: "外科",
+            children: [
+              { deptName: "胸外科", deptId: "10602" },
+              { deptName: "泌尿外科", deptId: "10603" },
+              { deptName: "肛肠科", deptId: "10604" },
+              { deptName: "肝胆外科", deptId: "10605" },
+              { deptName: "神经外科", deptId: "10606" },
+              { deptName: "心血管外科", deptId: "10607" },
+              { deptName: "乳腺外科", deptId: "10608" },
+            ],
+            deptId: "10600",
+          },
+          {
+            deptName: "眼科",
+            children: [
+              { deptName: "眼科综合门诊", deptId: "10101" },
+              { deptName: "儿童视光门诊", deptId: "10701" },
+              { deptName: "儿童眼综合门诊", deptId: "10702" },
+              { deptName: "眼底", deptId: "10703" },
+              { deptName: "角膜疾病", deptId: "10704" },
+              { deptName: "眼肌", deptId: "10705" },
+              { deptName: "青光眼 ", deptId: "10706" },
+              { deptName: "白内障", deptId: "10707" },
+              { deptName: "眼外伤", deptId: "10708" },
+              { deptName: "眼肿瘤", deptId: "10709" },
+              { deptName: "屈光门诊", deptId: "10710" },
+              { deptName: "眼整形", deptId: "10711" },
+              { deptName: "眼中医", deptId: "10712" },
+            ],
+            deptId: "10700",
+          },
+          {
+            deptName: "妇产科",
+            children: [
+              { deptName: "产科", deptId: "10801" },
+              { deptName: "妇科", deptId: "10802" },
+            ],
+            deptId: "10800",
+          },
+          {
+            deptName: "口腔科",
+            children: [
+              { deptName: " 颌面外科", deptId: "10901" },
+              { deptName: "牙体牙髓科", deptId: "10902" },
+              { deptName: "牙周科", deptId: "10903" },
+              { deptName: "口腔黏膜科", deptId: "10904" },
+              { deptName: "儿童口腔科", deptId: "10905" },
+              { deptName: "正畸科", deptId: "10906" },
+              { deptName: "口腔门诊", deptId: "11600" },
+            ],
+            deptId: "10900",
+          },
+          {
+            deptName: "怎么没有",
+            children: [
+              { deptName: "传染性皮肤病", deptId: "11001" },
+              { deptName: "皮肤科门诊", deptId: "11002" },
+              { deptName: "免疫性皮肤科", deptId: "11003" },
+              { deptName: "过敏性/变态反应科", deptId: "11004" },
+            ],
+            deptId: "11000",
+          },
+          {
+            deptName: "一百二十二",
+            children: [
+              { deptName: "精神科", deptId: "11101" },
+              { deptName: "心理咨询科", deptId: "11102" },
+              { deptName: "司法鉴定科", deptId: "11103" },
+              { deptName: "中医精神科", deptId: "11104" },
+            ],
+            deptId: "11100",
+          },
+          { deptName: "报错了把", children: [], deptId: "11200" },
+          {
+            deptName: "萨拉覅金额法律司法到",
+            children: [
+              { deptName: "疼痛科", deptId: "11301" },
+              { deptName: "麻醉科", deptId: "11302" },
+            ],
+            deptId: "11300",
+          },
+          { deptName: "新增科室", children: [], deptId: "11400" },
+          { deptName: "咳咳咳是", children: [], deptId: "11500" },
+          { deptName: "营养科", children: [], deptId: "11700" },
+          { deptName: "男科", children: [], deptId: "11800" },
+          { deptName: "生殖中心科", children: [], deptId: "11900" },
+          {
+            deptName: "康复医学科",
+            children: [
+              { deptName: "康复科", deptId: "12000" },
+              { deptName: "理疗科", deptId: "12002" },
+            ],
+            deptId: "12001",
+          },
+          {
+            deptName: "整形美容科",
+            children: [
+              { deptName: "整形科", deptId: "10601" },
+              { deptName: "美容科", deptId: "12102" },
+            ],
+            deptId: "12100",
+          },
+          { deptName: "介入医学科", children: [], deptId: "12200" },
+          { deptName: "职业病科", children: [], deptId: "12300" },
+          { deptName: "病理科", children: [], deptId: "12500" },
+          { deptName: "其他", children: [], deptId: "12600" },
+          { deptName: "全科", children: [], deptId: "12700" },
+          {
+            deptName: "烧伤科",
+            children: [{ deptName: "重烧科", deptId: "12801" }],
+            deptId: "12800",
+          },
+          { deptName: "中西医结合科", children: [], deptId: "12900" },
+          {
+            deptName: "肿瘤科",
+            children: [
+              { deptName: "肿瘤内科", deptId: "13001" },
+              { deptName: "肿瘤外科", deptId: "13002" },
+              { deptName: "肿瘤妇科", deptId: "13003" },
+              { deptName: "肿瘤放疗科", deptId: "13004" },
+              { deptName: "骨肿瘤科", deptId: "13005" },
+            ],
+            deptId: "13000",
+          },
+          { deptName: "运动医学科", children: [], deptId: "14000" },
+          {
+            deptName: "医学影像科",
+            children: [
+              { deptName: "医学影像科", deptId: "12400" },
+              { deptName: "核医学科", deptId: "20001" },
+              { deptName: "放射科", deptId: "20002" },
+              { deptName: "超声科", deptId: "20003" },
+            ],
+            deptId: "20000",
+          },
+        ],
+        message: "操作成功!",
+        page: 0,
+        size: 0,
+        status: 200,
+        time: 0,
+        total: 0,
+      },
+    },
+
+    "/api/department/pageAllDepartment": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
+    "/api/department/getAllOneLevelDepartment": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
+    "/api/doubleEleven/goods/pageFind": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
     "/medic-admin/v1/api/medic/manager/articles/dataGather/list": {
       body: {
         status: 200,

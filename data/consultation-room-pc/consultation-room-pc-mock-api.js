@@ -1,5 +1,64 @@
 (function getApis() {
   return {
+    "/api/gateway/doctor/d/web/consult/getConsultSetting": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
+    "/api/gateway/doctor/d/web/consult/getConsultPrices": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
+    "/api/d/web/message/service/saveServiceMessage": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
+    "/api/d/web/message/service/getServiceMessageDetails": {
+      body: {
+        data: {
+          businessChannel: {
+            smsChannel: true,
+            weiBoChannel: true,
+            weiXinServiceChannel: true,
+          },
+          business: new Array(10).fill(1).map((item, index) => {
+            return {
+              name: "品牌推广" + index,
+              type: index,
+              checked: Math.random() > 0.5 ? false : 1true,
+            };
+          }),
+          doctorId: "",
+          pushChannel: true,
+          restStartTimeInterval: "23:00",
+          restEndTimeInterval: "01:00",
+          restSwitch: true,
+          serviceChannel: {
+            smsChannel: true,
+            weiBoChannel: true,
+            weiXinServiceChannel: true,
+          },
+        },
+        message: "",
+        status: 200,
+      },
+    },
+
+    "/api/activity/getDoctorCommunityActivityList": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
     "/api/v1/article/showWBshare": {
       body: {
         data: null,
@@ -368,7 +427,7 @@
           systemClose: false,
           todayRemainingCapacity: 5,
           showShareTip: true,
-          consultingCount:1,
+          consultingCount: 1,
           answeredCount: 7,
           historyConsultCount: 10,
           bindingWeiBo: true,
