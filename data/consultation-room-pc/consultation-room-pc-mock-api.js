@@ -1,16 +1,38 @@
 (function getApis() {
   return {
-    "/api/gateway/doctor/d/web/consult/getConsultSetting": {
+    "/api/gateway/doctor/d/web/consult/saveConsultSetting": {
       body: {
         status: 200,
         data: {},
       },
     },
 
+    "/api/gateway/doctor/d/web/consult/getConsultSetting": {
+      body: {
+        status: 200,
+        message: "请求成功",
+        data: {
+          id: 189,
+          doctorId: "5fcefa876b69060006ef5d19",
+          capacity: 95,
+          price: 122,
+          shownPrice: 147,
+          suspendStartTimestamp: "2021-05-11 16:10:59",
+          suspendEndTimestamp: "2021-05-12 23:59:59",
+          operationSource: "USER",
+          createTime: "2021-01-08 17:02:19",
+          updateTime: "2021-05-24 14:47:46",
+          enabled: true,
+          suspend: false,
+        },
+      },
+    },
+
     "/api/gateway/doctor/d/web/consult/getConsultPrices": {
       body: {
         status: 200,
-        data: {},
+        message: "请求成功",
+        data: [0, 9, 29, 59, 99, 159, 199, 259, 299, 359, 499, 799],
       },
     },
 
@@ -33,7 +55,7 @@
             return {
               name: "品牌推广" + index,
               type: index,
-              checked: Math.random() > 0.5 ? false : 1true,
+              checked: Math.random() > 0.5 ? false : true,
             };
           }),
           doctorId: "",

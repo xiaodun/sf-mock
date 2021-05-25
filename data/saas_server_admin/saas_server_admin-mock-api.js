@@ -1,20 +1,154 @@
 (function getApis() {
   return {
+    "/api/d/admin/doc/label/saveBlackConfigure": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
+    "/api/d/admin/doc/label/getBlackListDetails": {
+      body: {
+        status: 200,
+        data: {
+          business: [
+            {
+              name: "品牌推广",
+              type: "1",
+              checked: true,
+            },
+            {
+              name: "工艺咨询",
+              type: "2",
+              checked: false,
+            },
+            {
+              name: "群发消息",
+              type: "3",
+              checked: true,
+            },
+          ],
+          doctorId: "321212",
+          messageChannels: [
+            {
+              channelName: "短信",
+              channelType: "1",
+              checked: true,
+            },
+            {
+              channelName: "微博私信",
+              channelType: "2",
+              checked: true,
+            },
+            {
+              channelName: "站内信",
+              channelType: "3",
+              checked: false,
+            },
+          ],
+          operatorRecord: [
+            {
+              createTime: "2018-09-28 15:36",
+              operatorName: "李燕顺",
+              remarks: "阿斯达克三大石窟，。你",
+            },
+            {
+              createTime: "2018-09-28 15:36",
+              operatorName: "李燕顺",
+              remarks:
+                "撒旦撒加拉三大势力可见度撒开绿灯几十块ask来解释卢卡斯大量的沙克拉萨大家阿迪斯卡拉傻傻的看来就是打开拉萨几大势力开始啊打开了巨大石块拉萨大家阿拉山口",
+            },
+            {
+              createTime: "2018-09-28 15:36",
+              operatorName: "李燕顺",
+              remarks: "1",
+            },
+            {
+              createTime: "2018-09-28 15:36",
+              operatorName: "李燕顺",
+              remarks: "2",
+            },
+            {
+              createTime: "2018-09-28 15:36",
+              operatorName: "李燕顺",
+              remarks: "3",
+            },
+          ],
+        },
+      },
+    },
+
+    "/api/d/admin/label/deleteProjectLabel": {
+      body: {
+        // status: 29001,
+        status: 200,
+        data: {},
+        message: "该标签已绑定医生信息，请将医生移出黑名单后再删除标签~",
+      },
+    },
+
+    "/api/v2/appConfig/getFirstDepartmentList": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
+    "/api/userService/banner/getBannerList": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
+    "/api/userService/department/getHotDepartmentList": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
+    "/api/d/admin/label/saveProjectLabel": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
+    "/api/d/admin/doc/label/uploadExcelInfo": {
+      body: {
+        status: 200,
+        data: {
+          causeList: [
+            {
+              cause: "不知到",
+              doctorId: "23123321",
+              realName: "洒洒水",
+            },
+          ],
+          failNum: 12,
+          successNum: 10,
+          total: 100,
+        },
+      },
+    },
+
     "/api/d/admin/doc/label/getProjectLabelList": {
       body: {
         status: 200,
         data: [
           {
-            createTime: "",
+            createTime: "2019-25-08 12:09:30",
             id: 0,
             name: "乐高",
-            remarks: "",
+            remarks: "1221",
           },
           {
-            createTime: "",
+            createTime: "2019-25-08 12:09:30",
             id: 1,
             name: "金赛",
-            remarks: "",
+            remarks:
+              "1213asdasd阿萨，sadness，马上到你们都是，。难道是。，吗122121121212121221211223123",
           },
         ],
       },
