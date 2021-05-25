@@ -9,27 +9,31 @@ const copySwaggerConfig = eval(
 );
 const copySwaggerUtils = {
   getResourceList: async function () {
+    //获得swagger文档上有哪些组
     const rsp = await axios.get(
       copySwaggerConfig.getDocLink() + "/swagger-resources"
     );
     return rsp.data;
   },
   getGroupRspCollection: async function (groupUrl) {
+    //获得swagger对单个组的描述
     const rsp = await axios.get(copySwaggerConfig.getDocLink() + groupUrl);
     return rsp.data;
   },
   getMethod(matchPathInfos) {
+    //默认一个url只对应一种方法
     const method = ["get", "post", "delete", "put"].find(
       (item) => matchPathInfos[item]
     );
     return method;
   },
   getStructureName(schemaStr) {
+    //获取具体的结构体键值
     const name = schemaStr.split("#/definitions/")[1];
     return name;
   },
   fillDefinitions(topStructureName, groupRsp) {
-    //结构的定义都是独立出来的  存在嵌套使用的情况
+    //结构体的定义都是独立出来的  存在嵌套使用的情况 所以需要递归解析
 
     function able(structureName) {
       const rspData = {};
@@ -71,18 +75,21 @@ const copySwaggerUtils = {
   },
 
   getRspDescribe: async function (copySwaggerParams) {
+    //得到url对应的响应体结构描述
     const resourceList = await copySwaggerUtils.getResourceList();
     const matchUrl = copySwaggerConfig.getMatchUrl(copySwaggerParams);
     let rspDes;
+    //一个服务一个服务的去匹配
     for (let i = 0; i < resourceList.length; i++) {
       const groupInfos = resourceList[i];
       console.log("groupName : " + groupInfos.name);
       const groupRsp = await this.getGroupRspCollection(groupInfos.url);
       const matchPathInfos = groupRsp.paths[matchUrl];
       if (matchPathInfos) {
-        //默认一个url只对应一个方法
+        //如果在当前组内找到了
         const method = copySwaggerUtils.getMethod(matchPathInfos);
         const matchMethodInfos = matchPathInfos[method];
+        //获得http状态为200的结构体
         const rsp200SchemaStr = matchMethodInfos.responses["200"].schema.$ref;
         console.log("topDefinition : " + rsp200SchemaStr);
         const structureName = copySwaggerUtils.getStructureName(
@@ -97,6 +104,7 @@ const copySwaggerUtils = {
     return rspDes;
   },
   getDefaultValue(propertyDescs) {
+    //根据属性描述生成默认值
     if (propertyDescs.type === "integer") {
       return 0;
     } else if (propertyDescs.type === "string") {
@@ -109,6 +117,7 @@ const copySwaggerUtils = {
     }
   },
   getRspData: async function (copySwaggerParams) {
+    //得到url对应响应数据
     const rspDesc = await copySwaggerUtils.getRspDescribe(copySwaggerParams);
     let resultsObj;
     if (rspDesc) {

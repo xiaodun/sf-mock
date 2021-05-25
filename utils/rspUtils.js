@@ -238,6 +238,7 @@
           }
         } else {
           if (copySwaggerConfig.isOpen) {
+            //开启了自动copy swagger文档响应体的功能
             const copySwaggerParams = {
               programName: mockFile.programName,
               url: mockFile.url,
@@ -246,6 +247,7 @@
               copySwaggerParams
             );
             if (copySwaggerParams.generateRspData) {
+              //成功找到了
               copySwaggerConfig.transformRspData(copySwaggerParams);
 
               editJsUtils.addApi({
@@ -258,7 +260,7 @@
               return;
             }
           }
-          //swagger 文档没有接着走自动生成
+          //swagger 文档没有接着尝试自动生成
 
           //开启在404的时候自动创建
           if (defaultConfig.autoCreateSettings["404"]) {
