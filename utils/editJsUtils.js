@@ -15,7 +15,9 @@ const editJsUtils = {
       FunctionExpression(path) {
         if (path.node.id.name === "getApis") {
           //得到最外层函数的返回语句{后面的位置
-          pos = path.node.body.body[0].argument.start + 1;
+          pos =
+            path.node.body.body.find((item) => item.type === "ReturnStatement")
+              .argument.start + 1;
           path.skip();
         }
       },

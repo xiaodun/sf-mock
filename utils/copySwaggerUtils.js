@@ -1,6 +1,8 @@
 const axios = require("axios");
 const fs = require("fs");
 const path = require("path");
+const Mock = require("mockjs");
+const Random = Mock.Random;
 const copySwaggerConfig = eval(
   fs.readFileSync(
     path.resolve(__dirname, "../config/copySwaggerConfig.js"),
@@ -109,11 +111,11 @@ const copySwaggerUtils = {
       return 0;
     } else if (propertyDescs.type === "string") {
       if (propertyDescs.format === "date-time") {
-        return "2020-10-27 01:33";
+        return Random.date("yyyy-MM-dd HH:mm:ss");
       }
       return "";
     } else if (propertyDescs.type === "boolean") {
-      return false;
+      return Random.boolean();
     }
   },
   getRspData: async function (copySwaggerParams) {
@@ -128,7 +130,7 @@ const copySwaggerUtils = {
       console.log("没有获得响应的结构体");
     }
     function able(desc) {
-      const resultsObj = {};
+      const ableResults = {};
       for (let propertyKey in desc) {
         if (propertyKey === "definition$ref") {
           continue;
@@ -137,19 +139,19 @@ const copySwaggerUtils = {
         const definition$ref = propertyDescs.definition$ref;
         if (definition$ref) {
           if (definition$ref.type === "object") {
-            resultsObj[propertyKey] = {};
-            resultsObj[propertyKey] = able(propertyDescs);
+            ableResults[propertyKey] = {};
+            ableResults[propertyKey] = able(propertyDescs);
           } else if (definition$ref.type === "array") {
-            resultsObj[propertyKey] = [];
-            resultsObj[propertyKey].push(able(propertyDescs.items));
+            ableResults[propertyKey] = [];
+            ableResults[propertyKey].push(able(propertyDescs.items));
           }
         } else {
-          resultsObj[propertyKey] = copySwaggerUtils.getDefaultValue(
+          ableResults[propertyKey] = copySwaggerUtils.getDefaultValue(
             propertyDescs
           );
         }
       }
-      return resultsObj;
+      return ableResults;
     }
 
     return resultsObj;
