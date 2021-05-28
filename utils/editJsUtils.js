@@ -24,9 +24,7 @@ const editJsUtils = {
       //在头部自动写入
       let urlValues;
       if (params.generateRspData) {
-        urlValues = {
-          body: params.copySwaggerConfig.getMockStructure(params),
-        };
+        urlValues = params.copySwaggerConfig.getMockStructure(params);
       } else {
         urlValues = params.defaultConfig.autoCreateSettings.getDefaultValues();
       }
