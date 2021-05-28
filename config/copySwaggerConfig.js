@@ -7,7 +7,7 @@
     },
     getMatchUrl(copySwaggerParams) {
       //mock服务器获得的url可能与swagger文档上的有出入，比如swagger文档上的没有前缀
-      const prefixList = ["/api/gateway/doctor", "/api"];
+      const prefixList = ["/api"];
       const prefix = prefixList.find((item) =>
         copySwaggerParams.url.startsWith(item)
       );
