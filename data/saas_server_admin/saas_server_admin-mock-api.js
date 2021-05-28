@@ -1,84 +1,39 @@
 (function getApis() {
+  const Mock = require("mockjs");
+  const Random = Mock.Random;
   return {
-    "/api/d/admin/doc/label/saveBlackConfigure": {
+    "/api/gateway/doctor/d/admin/configure/getBlackListDetails": {
+      body: {
+        data: {
+          business: [
+            {
+              checked: false,
+              name: "",
+              type: "",
+            },
+          ],
+          doctorId: "",
+          operatorRecord: [
+            {
+              content: "",
+              createTime: "2020-10-27 01:33",
+              operatorName: "",
+            },
+          ],
+        },
+        message: "",
+        status: 200,
+      },
+    },
+
+    "/api/gateway/doctor/d/admin/doc/label/saveBlackConfigure": {
       body: {
         status: 200,
         data: {},
       },
     },
 
-    "/api/d/admin/doc/label/getBlackListDetails": {
-      body: {
-        status: 200,
-        data: {
-          business: [
-            {
-              name: "品牌推广",
-              type: "1",
-              checked: true,
-            },
-            {
-              name: "工艺咨询",
-              type: "2",
-              checked: false,
-            },
-            {
-              name: "群发消息",
-              type: "3",
-              checked: true,
-            },
-          ],
-          doctorId: "321212",
-          messageChannels: [
-            {
-              channelName: "短信",
-              channelType: "1",
-              checked: true,
-            },
-            {
-              channelName: "微博私信",
-              channelType: "2",
-              checked: true,
-            },
-            {
-              channelName: "站内信",
-              channelType: "3",
-              checked: false,
-            },
-          ],
-          operatorRecord: [
-            {
-              createTime: "2018-09-28 15:36",
-              operatorName: "李燕顺",
-              remarks: "阿斯达克三大石窟，。你",
-            },
-            {
-              createTime: "2018-09-28 15:36",
-              operatorName: "李燕顺",
-              remarks:
-                "撒旦撒加拉三大势力可见度撒开绿灯几十块ask来解释卢卡斯大量的沙克拉萨大家阿迪斯卡拉傻傻的看来就是打开拉萨几大势力开始啊打开了巨大石块拉萨大家阿拉山口",
-            },
-            {
-              createTime: "2018-09-28 15:36",
-              operatorName: "李燕顺",
-              remarks: "1",
-            },
-            {
-              createTime: "2018-09-28 15:36",
-              operatorName: "李燕顺",
-              remarks: "2",
-            },
-            {
-              createTime: "2018-09-28 15:36",
-              operatorName: "李燕顺",
-              remarks: "3",
-            },
-          ],
-        },
-      },
-    },
-
-    "/api/d/admin/label/deleteProjectLabel": {
+    "/api/gateway/doctor/d/admin/label/deleteProjectLabel": {
       body: {
         // status: 29001,
         status: 200,
@@ -115,7 +70,7 @@
       },
     },
 
-    "/api/d/admin/doc/label/uploadExcelInfo": {
+    "/api/gateway/doctor/d/admin/doc/label/uploadExcelInfo": {
       body: {
         status: 200,
         data: {
@@ -133,7 +88,7 @@
       },
     },
 
-    "/api/d/admin/doc/label/getProjectLabelList": {
+    "/api/gateway/doctor/d/admin/label/getProjectLabelList": {
       body: {
         status: 200,
         data: [
@@ -154,30 +109,29 @@
       },
     },
 
-    "/api/d/admin/doc/label/deleteBlackListByDoctorIds": {
+    "/api/gateway/doctor/d/admin/doc/label/deleteBlackListByDoctorIds": {
       body: {
         status: 200,
         data: {},
       },
     },
 
-    "/api/d/admin/doc/label/getBlackList": {
+    "/api/gateway/doctor/d/admin/doc/label/getBlackList": {
       name: (nameMaps) => nameMaps.messageBlockBlackList,
       pageable: true,
       getData() {
         return new Array(100).fill(1).map((item, index) => ({
           id: index,
           doctorId: index,
-          projectName: "刺杀时刻",
+          labelName: Random.word(4),
           departmentName: "主任科",
           realName: "岳飞",
           status: Math.random() > 0.5 ? 0 : 1,
-          updateTime: "2019-2:20 10:30:21",
+          updateTime: Random.date("yyyy-mm-dd HH:mm:ss"),
         }));
       },
       body(data) {
         return {
-          info: data.pageInfos.params,
           status: 200,
           data: data.pageInfos.wrapData,
         };
