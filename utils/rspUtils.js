@@ -241,7 +241,7 @@
             //开启了自动copy swagger文档响应体的功能
             const copySwaggerParams = {
               programName: mockFile.programName,
-              url: mockFile.url,
+              url,
             };
             copySwaggerParams.generateRspData = await copySwaggerUtils.getRspData(
               copySwaggerParams
