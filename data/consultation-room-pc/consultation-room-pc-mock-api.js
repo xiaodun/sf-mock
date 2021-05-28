@@ -1,5 +1,46 @@
 (function getApis() {
   return {
+    "/api/gateway/doctor/d/web/message/service/saveServiceMessage": {
+      body: {
+        message: "",
+        status: 200,
+      },
+    },
+
+    "/api/gateway/doctor/d/web/message/service/getServiceMessageDetails": {
+      body: {
+        data: {
+          business: [
+            {
+              checked: false,
+              name: "",
+              type: "",
+            },
+          ],
+          businessChannel: [
+            {
+              channelName: "",
+              channelType: "",
+              checked: false,
+            },
+          ],
+          doctorId: "",
+          restEndTimeInterval: "",
+          restStartTimeInterval: "",
+          restSwitch: false,
+          serviceChannel: [
+            {
+              channelName: "",
+              channelType: "",
+              checked: false,
+            },
+          ],
+        },
+        message: "",
+        status: 200,
+      },
+    },
+
     "/api/gateway/doctor/d/web/consult/saveConsultSetting": {
       body: {
         status: 200,
