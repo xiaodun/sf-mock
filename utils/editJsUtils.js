@@ -22,14 +22,18 @@ const editJsUtils = {
     });
     if (pos !== null) {
       //在头部自动写入
+      let urlValues;
+      if (params.generateRspData) {
+        urlValues = {
+          body: params.copySwaggerConfig.getMockStructure(params),
+        };
+      } else {
+        urlValues = params.defaultConfig.autoCreateSettings.getDefaultValues();
+      }
       let content =
         mockFileStr.slice(0, pos) +
         `
-        "${params.url}":${JSON.stringify(
-          params.defaultConfig.autoCreateSettings.getDefaultValues(),
-          null,
-          2
-        )},
+        "${params.url}":${JSON.stringify(urlValues, null, 2)},
         ` +
         mockFileStr.slice(pos);
       fs.writeFileSync(

@@ -1,8 +1,10 @@
 (function () {
   const url = require("url");
+  const path = require("path");
   const darkUtils = require("./utils/darkUtils");
   const pageUtils = require("./utils/pageUtils");
   const editJsUtils = require("./utils/editJsUtils");
+  const copySwaggerUtils = require("./utils/copySwaggerUtils");
   const _ = require("lodash");
   const querystring = require("querystring");
   const defaultConfig = eval(
@@ -10,6 +12,9 @@
   );
   const serviceConfig = eval(
     fs.readFileSync("./config/serviceConfig.js", "utf-8")
+  );
+  const copySwaggerConfig = eval(
+    fs.readFileSync("./config/copySwaggerConfig.js", "utf-8")
   );
 
   return function (params = {}) {
@@ -86,7 +91,7 @@
       startParse();
     }
 
-    function startParse() {
+    async function startParse() {
       try {
         //获取mock文件
         const mockFile = darkUtils.getMockFile(request.url);
@@ -232,6 +237,31 @@
             }, mockData.response.delaySeconds * 1000);
           }
         } else {
+          if (copySwaggerConfig.isOpen) {
+            //开启了自动copy swagger文档响应体的功能
+            const copySwaggerParams = {
+              programName: mockFile.programName,
+              url: mockFile.url,
+            };
+            copySwaggerParams.generateRspData = await copySwaggerUtils.getRspData(
+              copySwaggerParams
+            );
+            if (copySwaggerParams.generateRspData) {
+              //成功找到了
+              copySwaggerConfig.transformRspData(copySwaggerParams);
+
+              editJsUtils.addApi({
+                ...copySwaggerParams,
+                copySwaggerConfig,
+                defaultConfig,
+              });
+              programDatas[mockFile.programName].createdAPi[url] = true;
+              startParse();
+              return;
+            }
+          }
+          //swagger 文档没有接着尝试自动生成
+
           //开启在404的时候自动创建
           if (defaultConfig.autoCreateSettings["404"]) {
             //还没被自动创建过,可能因为程序的原因自动创建失败，所以要标记一下
