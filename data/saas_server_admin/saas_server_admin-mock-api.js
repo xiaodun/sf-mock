@@ -116,11 +116,13 @@
             id: 0,
             name: "乐高",
             remarks: "1221",
+            deletable: 0,
           },
           {
             createTime: "2019-25-08 12:09:30",
             id: 1,
             name: "金赛",
+            deletable: 1,
             remarks:
               "1213asdasd阿萨，sadness，马上到你们都是，。难道是。，吗122121121212121221211223123",
           },

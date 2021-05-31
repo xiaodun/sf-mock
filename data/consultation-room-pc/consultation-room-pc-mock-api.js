@@ -1,5 +1,8 @@
 (function getApis() {
   return {
+    "/message/weiboAttent": {
+      body: -1,
+    },
     "/api/gateway/doctor/d/web/message/service/saveServiceMessage": {
       body: {
         message: "",
@@ -9,35 +12,68 @@
 
     "/api/gateway/doctor/d/web/message/service/getServiceMessageDetails": {
       body: {
+        status: 200,
+        message: "请求成功",
         data: {
-          business: [
+          doctorId: "5fcefa876b69060006ef5d19",
+          restSwitch: false,
+          restStartTimeInterval: "23:00",
+          restEndTimeInterval: "00:00",
+          serviceChannel: [
             {
+              channelName: "短信通知",
+              channelType: "sms_channel",
               checked: false,
-              name: "",
-              type: "",
+              describe: "通过短信通知",
+            },
+            {
+              channelName: "私信通知",
+              channelType: "wei_bo_channel",
+              describe: "通过【新浪爱问医生助理】微博向您发送私信通知",
+              checked: false,
+            },
+            {
+              channelName: "微信服务号通知",
+              channelType: "wei_xin_service_channel",
+              describe: "通过【爱问医联】微信服务号发送通知",
+              checked: false,
             },
           ],
           businessChannel: [
             {
-              channelName: "",
-              channelType: "",
+              channelName: "短信通知",
+              channelType: "sms_channel",
+              describe: "通过短信通知",
               checked: false,
             },
-          ],
-          doctorId: "",
-          restEndTimeInterval: "",
-          restStartTimeInterval: "",
-          restSwitch: false,
-          serviceChannel: [
             {
-              channelName: "",
-              channelType: "",
+              channelName: "私信通知",
+              channelType: "wei_bo_channel",
+              describe: "通过【新浪爱问医生助理】微博向您发送私信通知",
+              checked: false,
+            },
+            {
+              channelName: "微信服务号通知",
+              channelType: "wei_xin_service_channel",
+              checked: false,
+              describe: "通过【爱问医联】微信服务号发送通知",
+            },
+          ],
+          business: [
+            {
+              name: "张三",
+              checked: false,
+            },
+            {
+              name: "李四",
+              checked: false,
+            },
+            {
+              name: "王五",
               checked: false,
             },
           ],
         },
-        message: "",
-        status: 200,
       },
     },
 

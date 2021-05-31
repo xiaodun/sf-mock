@@ -45,7 +45,7 @@
     "consultation-room-pc": {
       withNginxConf: true,
       withFileStructure: true,
-      apiPrefix: "/api",
+      apiPrefix: ["/api", "/message/"],
       programPrefix: "/",
       mockListenPort: 9010,
       jointListenPort: 9011,
