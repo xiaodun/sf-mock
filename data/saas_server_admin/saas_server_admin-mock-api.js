@@ -2,14 +2,33 @@
   const Mock = require("mockjs");
   const Random = Mock.Random;
   return {
+    "/api/operate/subject/findSubjectByPage": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
+    "/api/gateway/doctor/d/admin/configure/saveBlackConfigure": {
+      body: {
+        message: "",
+        status: 200,
+      },
+    },
+
     "/api/gateway/doctor/d/admin/configure/getBlackListDetails": {
       body: {
         data: {
           business: [
             {
               checked: false,
-              name: "",
-              type: "",
+              name: Random.word(4),
+              type: "1",
+            },
+            {
+              checked: false,
+              name: Random.word(4),
+              type: "2",
             },
           ],
           doctorId: "",
