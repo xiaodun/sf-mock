@@ -15,15 +15,15 @@
         return copySwaggerParams.url.split(prefix)[1];
       }
     },
+    transformRspData(copySwaggerParams) {
+      //对解析好的swagger文档结构做一些简单的处理
+      copySwaggerParams.generateRspData.status = 200;
+    },
     getMockStructure(copySwaggerParams) {
       //对解析好的swagger结构进行包裹  使其符合mock服务器的响应结构
       return {
         body: copySwaggerParams.generateRspData,
       };
-    },
-    transformRspData(copySwaggerParams) {
-      //对解析好的swagger文档结构做一些简单的处理
-      copySwaggerParams.generateRspData.status = 200;
     },
   };
 })();

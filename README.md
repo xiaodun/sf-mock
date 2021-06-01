@@ -1,16 +1,12 @@
 # 待解决的问题
 
-- （已完成）不存在的路径自动生成基本数据结构，写入到文件里，减少黏贴复制
+- 完善自动生成功能，包括项目基础文件结构、nginx 配置内容
 
 - 支持运行期间的增加、删除等操作,服务器重启则失效
 
 - 可以使用 chrome 浏览器调试
 
-- 完善自动生成功能，包括项目基础文件结构、nginx 配置内容
-
 - nginx 代理时，上传较大文件容易报 502
-
-- 可以 copy 其他环境上的数据
 
 # 优势何在
 
@@ -69,6 +65,23 @@ example 中提供了例子 `/api/page` 和 `/api/page/detail`
 自动创建需要项目结构已存在的前提下，即存在完善的'项目名-mock-api.js' 文件
 程序会定位到最外层函数 return 语句{后面的位置,getApis 这个名字是重要的。
 相关配置见 defaultConfig.js 下的 autoCreateSettings
+
+# 解析 Swagger 接口生成默认数据
+
+参照的是 2.0 版本，如果解析失败且开启了 404 自动创建，还是会生成基本结构
+
+## copySwaggerConfig.js
+
+该功能默认关闭，需要手动开启
+
+```
+isOpen:true,
+```
+
+- getDocLink swagger 文档地址，程序会先获取有哪些组，然后依次遍历这些组去寻找匹配的 url,相当于全等
+- getMatchUrl mock 服务器获得的 url 可能与 swagger 地址存在差异，比如后者缺少一些共有头部，这时就需要手动处理下
+- transformRspData 已经解析完成的数据结构，在这里可以做一些特性化处理
+- getMockStructure 这时已经准备写入到文件里，可以组合成 mock 服务器支持的任意数据结构
 
 # 关于跨域问题的解决
 
