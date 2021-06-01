@@ -1,6 +1,5 @@
 (function () {
   const url = require("url");
-  const path = require("path");
   const darkUtils = require("./utils/darkUtils");
   const pageUtils = require("./utils/pageUtils");
   const editJsUtils = require("./utils/editJsUtils");
@@ -71,7 +70,9 @@
                 if (typeof parseData == "object") {
                   value = parseData;
                 }
-              } catch (e) {}
+              } catch (e) {
+                console.log(e);
+              }
 
               data[key] = value;
             });
@@ -200,7 +201,7 @@
             if (mockData.body == null) {
               rspBody = mockData.body;
             } else if (typeof mockData.body === "number") {
-              rspBody = mockData.body + "";
+              rspBody = mockData.body;
             } else if (Array.isArray(mockData.body)) {
               rspBody = mockData.body;
             } else {
