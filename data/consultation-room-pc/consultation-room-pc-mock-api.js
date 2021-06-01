@@ -1,5 +1,14 @@
 (function getApis() {
   return {
+    "/message/createCode": {
+      body:
+        "gQFB8TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAycjNobWNZYkM4Yl8xRmdLUWh3Y0cAAgSYorRgAwS4CwAA",
+    },
+
+    "/message/weixinFocus": {
+      body: -1,
+    },
+
     "/message/weiboAttent": {
       body: -1,
     },
@@ -30,7 +39,7 @@
               channelName: "私信通知",
               channelType: "wei_bo_channel",
               describe: "通过【新浪爱问医生助理】微博向您发送私信通知",
-              checked: false,
+              checked: true,
             },
             {
               channelName: "微信服务号通知",
@@ -44,18 +53,18 @@
               channelName: "短信通知",
               channelType: "sms_channel",
               describe: "通过短信通知",
-              checked: false,
+              checked: true,
             },
             {
               channelName: "私信通知",
               channelType: "wei_bo_channel",
               describe: "通过【新浪爱问医生助理】微博向您发送私信通知",
-              checked: false,
+              checked: true,
             },
             {
               channelName: "微信服务号通知",
               channelType: "wei_xin_service_channel",
-              checked: false,
+              checked: true,
               describe: "通过【爱问医联】微信服务号发送通知",
             },
           ],
