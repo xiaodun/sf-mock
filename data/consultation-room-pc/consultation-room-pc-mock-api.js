@@ -25,7 +25,7 @@
         message: "请求成功",
         data: {
           doctorId: "5fcefa876b69060006ef5d19",
-          restSwitch: false,
+          restSwitch: true,
           restStartTimeInterval: "23:00",
           restEndTimeInterval: "00:00",
           serviceChannel: [

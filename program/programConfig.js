@@ -1,6 +1,17 @@
 (function () {
   const webpackHotUrl = "http://127.0.0.1:8080";
   return {
+    "aiwen-user-h5": {
+      withNginxConf: true,
+      withFileStructure: true,
+      apiPrefix: ["/api"],
+      programPrefix: "/",
+      mockListenPort: 9060,
+      jointListenPort: 9061,
+      jointServiceUrl: "http://ncme.test.wenwo.com",
+      programUrl: "http://localhost:8088/zt",
+      webpackHotUrl,
+    },
     "ncme-app-h5": {
       withNginxConf: true,
       withFileStructure: true,
