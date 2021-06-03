@@ -9,7 +9,7 @@
       mockListenPort: 9060,
       jointListenPort: 9061,
       jointServiceUrl: "http://ncme.test.wenwo.com",
-      programUrl: "http://localhost:8088/zt",
+      programUrl: "http://localhost:8088",
       webpackHotUrl,
     },
     "ncme-app-h5": {
@@ -72,7 +72,7 @@
       mockListenPort: 9020,
       jointListenPort: 9021,
       jointServiceUrl: "http://10.200.0.1:52125",
-      programUrl: "http://localhost:8081",
+      programUrl: "http://localhost:8080",
       webpackHotUrl,
     },
     "c-platform-h5-nuxt": {
