@@ -2,7 +2,7 @@
  * 解析swagger文档接口，自动渲染出数据
  */
 const axios = require("axios");
-const copyUtils = require("../../utils/copyUtils.js");
+const copyToClipboard = require("sf-copy-to-clipboard");
 const docDataUrl = "http://10.200.0.3:59080/v2/api-docs";
 const groupName = "background-admin";
 const moduleName = "医生处方权配置管理接口";
@@ -31,5 +31,5 @@ const reqUrl = `${docDataUrl}?group=${groupName}`;
     configList.reduce((pre, cur) => {
       return pre + JSON.stringify(cur) + ",";
     }, "");
-  copyUtils.exec(result);
+  copyToClipboard(result);
 })();
