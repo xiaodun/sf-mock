@@ -65,6 +65,7 @@
       webpackHotUrl,
     },
     aiwen_doctor_app_h5: {
+      //医端
       withNginxConf: true,
       withFileStructure: true,
       apiPrefix: "/api",

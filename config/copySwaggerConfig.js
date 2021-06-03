@@ -3,7 +3,7 @@
     isOpen: true,
     getDocLink(copySwaggerParams) {
       //swagger 文档地址
-      return "http://10.200.0.4:59080";
+      return "http://10.200.0.3:55092";
     },
     getMatchUrl(copySwaggerParams) {
       //mock服务器获得的url可能与swagger文档上的有出入，比如swagger文档上的没有前缀
