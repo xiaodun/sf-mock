@@ -1,15 +1,15 @@
 (function getApis() {
   return {
-    "/message/createCode": {
+    "/api/message/createCode": {
       body:
         "gQFB8TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAycjNobWNZYkM4Yl8xRmdLUWh3Y0cAAgSYorRgAwS4CwAA",
     },
 
-    "/message/weixinFocus": {
+    "/api/message/weixinFocus": {
       body: -1,
     },
 
-    "/message/weiboAttent": {
+    "/api/message/weiboAttent": {
       body: -1,
     },
     "/api/gateway/doctor/d/web/message/service/saveServiceMessage": {

@@ -1,5 +1,64 @@
 (function getApis() {
   return {
+    "/api/gateway/telephone/consultation/setting/saveDoctorSetting": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
+    "/api/gateway/d/h5/phone/setting/findShowPrice": {
+      body: (data) => {
+        return {
+          status: 200,
+          data: {
+            taxCharge: +data.params.charge + 100,
+          },
+        };
+      },
+    },
+
+    "/api/gateway/d/h5/phone/setting/savePhoneSetting": {
+      inject: (nameMaps) => [nameMaps.getPhoneSetting],
+      body: (data) => {
+        return {
+          status: 200,
+          message: "无法开通",
+          data: {
+            ...data.inject.getPhoneSetting,
+            ...(data.params || {}),
+          },
+        };
+      },
+    },
+
+    "/api/gateway/d/h5/phone/setting/getPhoneSetting": {
+      name: (nameMaps) => nameMaps.getPhoneSetting,
+      inject: (nameMaps) => [nameMaps.getPhoneSetting],
+      getData() {
+        return {
+          inquiryNumber: 30,
+          charge: 10,
+          serviceTime: 30,
+          status: true,
+          taxCharge: 110,
+          createTime: "2013-10-03 05:48:07",
+          doctorId: "",
+          id: "",
+          modifyTime: "2000-04-18 14:22:04",
+          orderConfirm: true,
+          phoneNumber: "",
+        };
+      },
+      body(data) {
+        return {
+          status: 200,
+          data: data.inject.getPhoneSetting,
+          message: "请求成功",
+        };
+      },
+    },
+
     "/api/gateway/telephone/consultation/order/doctorCall": {
       body: {
         status: 200,
