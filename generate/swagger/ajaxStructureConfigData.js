@@ -3,11 +3,10 @@
  */
 const axios = require("axios");
 const copyToClipboard = require("sf-copy-to-clipboard");
-const docDataUrl = "http://10.200.0.3:59080/v2/api-docs";
-const groupName = "background-admin";
-const moduleName = "医生处方权配置管理接口";
-const reqUrl = `${docDataUrl}?group=${groupName}`;
+const moduleName = "电话咨询设置相关接口";
+const reqUrl = "http://10.200.0.3:59080/v2/api-docs?group=doctor-H5";
 (async () => {
+  console.log(reqUrl);
   const { data: structureRsp } = await axios.get(reqUrl);
   let configList = [];
   Object.keys(structureRsp.paths).forEach((url) => {

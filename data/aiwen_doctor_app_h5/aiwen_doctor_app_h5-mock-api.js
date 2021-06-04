@@ -1,13 +1,6 @@
 (function getApis() {
   return {
-    "/api/api/doctor/application/h5/telephone/consultation/setting/saveDoctorSetting": {
-      body: {
-        status: 200,
-        data: {},
-      },
-    },
-
-    "/api/api/doctor/application/h5/telephone/consultation/setting/closeDoctorSetting": {
+    "/api/gateway/telephone/consultation/order/doctorCall": {
       body: {
         status: 200,
         message: "请求成功",
@@ -18,18 +11,7 @@
       },
     },
 
-    "/api/api/doctor/application/h5/telephone/consultation/order/doctorCall": {
-      body: {
-        status: 200,
-        message: "请求成功",
-        data: null,
-        total: 0,
-        page: 1,
-        size: 10,
-      },
-    },
-
-    "/api/api/doctor/application/h5/telephone/consultation/dialogue/deleteDialoguePage": {
+    "/api/gateway/telephone/consultation/dialogue/deleteDialoguePage": {
       body: {
         status: 200,
         message: "请求成功",
@@ -54,7 +36,7 @@
       },
     },
 
-    "/api/api/doctor/application/h5/telephone/consultation/dialogue/saveAnswer": {
+    "/api/gateway/telephone/consultation/dialogue/saveAnswer": {
       body: {
         status: 200,
         message: "请求成功",
@@ -98,7 +80,7 @@
       },
     },
 
-    "/api/api/doctor/application/h5/telephone/consultation/order/cancelOrderByPayId": {
+    "/api/gateway/telephone/consultation/order/cancelOrderByPayId": {
       body: {
         status: 200,
         message: "请求成功",
@@ -143,7 +125,7 @@
       },
     },
 
-    "/api/api/doctor/application/h5/telephone/consultation/order/doctorOrderPage": {
+    "/api/gateway/telephone/consultation/order/doctorOrderPage": {
       body: {
         status: 200,
         message: "请求成功",
@@ -540,7 +522,7 @@
       },
     },
 
-    "/api/api/doctor/application/h5/telephone/consultation/information/getInformation": {
+    "/api/gateway/telephone/consultation/information/getInformation": {
       body: {
         status: 200,
         message: "请求成功",
@@ -573,7 +555,7 @@
       },
     },
 
-    "/api/api/doctor/application/h5/telephone/consultation/setting/getDoctorSetting": {
+    "/api/gateway/telephone/consultation/setting/getDoctorSetting": {
       body: {
         status: 200,
         message: "请求成功",
@@ -598,7 +580,7 @@
       },
     },
 
-    "/api/api/doctor/application/h5/telephone/consultation/dialogue/patientDialoguePage": {
+    "/api/gateway/telephone/consultation/dialogue/patientDialoguePage": {
       body: {
         status: 200,
         message: "请求成功",
@@ -1013,7 +995,7 @@
       },
     },
 
-    "/api/api/doctor/application/h5/telephone/consultation/dialogue/data": {
+    "/api/gateway/telephone/consultation/dialogue/data": {
       body: {
         status: 200,
         message: "请求成功",
@@ -1024,7 +1006,7 @@
       },
     },
 
-    "/api/api/doctor/application/h5/telephone/consultation/order/doctorConfirm": {
+    "/api/gateway/telephone/consultation/order/doctorConfirm": {
       body: {
         status: 200,
         message: "请求成功",
@@ -1069,7 +1051,7 @@
       },
     },
 
-    "/api/api/doctor/application/h5/telephone/consultation/dialogue/doctorPatientDialoguePage": {
+    "/api/gateway/telephone/consultation/dialogue/doctorPatientDialoguePage": {
       body: {
         status: 200,
         message: "请求成功",
@@ -1271,14 +1253,14 @@
       },
     },
 
-    "/api/api/doctor/application/h5/telephone/consultation/dialogue/doctorIsRead": {
+    "/api/gateway/telephone/consultation/dialogue/doctorIsRead": {
       body: {
         status: 200,
         data: {},
       },
     },
 
-    "/api/api/doctor/application/h5/telephone/consultation/order/findOrder": {
+    "/api/gateway/telephone/consultation/order/findOrder": {
       body: {
         status: 200,
         message: "请求成功",
@@ -1323,7 +1305,7 @@
       },
     },
 
-    "/api/doctor/application/h5/area/getAllArea": {
+    "/api/gateway/area/getAllArea": {
       status: 200,
       data: [
         {
@@ -1474,10 +1456,10 @@
         },
       ],
     },
-    "/api/doctor/application/h5/code/checkIdCardFormat": {
+    "/api/gateway/code/checkIdCardFormat": {
       status: 200,
     },
-    "/api/doctor/application/h5/file/uploadImg": {
+    "/api/gateway/file/uploadImg": {
       status: 200,
       data: {
         id: Math.random() + "",
