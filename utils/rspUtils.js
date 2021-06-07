@@ -62,20 +62,22 @@
             "application/x-www-form-urlencoded"
           ) {
             data = querystring.parse(data);
-            Object.keys(data).forEach((key) => {
-              let value = data[key];
-              //是否需要解析
-              try {
-                const parseData = JSON.parse(data[key]);
-                if (typeof parseData == "object") {
-                  value = parseData;
+            if (typeof data != "object") {
+              Object.keys(data).forEach((key) => {
+                let value = data[key];
+                //是否需要解析
+                try {
+                  const parseData = JSON.parse(data[key]);
+                  if (typeof parseData == "object") {
+                    value = parseData;
+                  }
+                } catch (e) {
+                  console.log("参数解析错误", e);
                 }
-              } catch (e) {
-                console.log(e);
-              }
 
-              data[key] = value;
-            });
+                data[key] = value;
+              });
+            }
           } else {
             data = JSON.parse(data || null);
           }
