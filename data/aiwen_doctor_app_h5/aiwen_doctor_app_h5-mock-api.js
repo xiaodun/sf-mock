@@ -1,5 +1,13 @@
 (function getApis() {
   return {
+    "/api/gateway/d/h5/phone/dialogue/doctorAnswer": {
+      body: {
+        data: {},
+        status: 200,
+        message: "",
+      },
+    },
+
     "/api/gateway/d/h5/phone/dialogue/dashboard": {
       body: {
         data: {
@@ -58,7 +66,6 @@
 
     "/api/gateway/d/h5/phone/setting/getPhoneSetting": {
       name: (nameMaps) => nameMaps.getPhoneSetting,
-      inject: (nameMaps) => [nameMaps.getPhoneSetting],
       getData() {
         return {
           inquiryNumber: 30,
