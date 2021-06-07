@@ -92,12 +92,17 @@ const copySwaggerUtils = {
         const method = copySwaggerUtils.getMethod(matchPathInfos);
         const matchMethodInfos = matchPathInfos[method];
         //获得http状态为200的结构体
-        const rsp200SchemaStr = matchMethodInfos.responses["200"].schema.$ref;
-        console.log("topDefinition : " + rsp200SchemaStr);
-        const structureName = copySwaggerUtils.getStructureName(
-          rsp200SchemaStr
-        );
-        rspDes = copySwaggerUtils.fillDefinitions(structureName, groupRsp);
+        const rsp200 = matchMethodInfos.responses["200"];
+        if (rsp200.schema && rsp200.schema.$ref) {
+          const rsp200SchemaStr = rsp200.schema.$ref;
+          console.log("topDefinition : " + rsp200SchemaStr);
+          const structureName = copySwaggerUtils.getStructureName(
+            rsp200SchemaStr
+          );
+          rspDes = copySwaggerUtils.fillDefinitions(structureName, groupRsp);
+        } else {
+          rspDes = {};
+        }
         break;
       } else {
         console.log("匹配失败");
