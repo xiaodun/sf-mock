@@ -1,6 +1,30 @@
 (function getApis() {
   return {
+    "/api/gateway/d/h5/phone/dialogue/dashboard": {
+      body: {
+        data: {
+          orderCount: 10,
+          patientCount: 20,
+          residueCount: 40,
+        },
+        status: 200,
+        message: "",
+      },
+    },
+
+    "/api/gateway/d/h5/phone/dialogue/deleteDialogue": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
     "/api/gateway/telephone/consultation/setting/saveDoctorSetting": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+    "/api/gateway/d/h5/phone/dialogue/doctorCall": {
       body: {
         status: 200,
         data: {},
@@ -56,42 +80,6 @@
           data: data.inject.getPhoneSetting,
           message: "请求成功",
         };
-      },
-    },
-
-    "/api/gateway/telephone/consultation/order/doctorCall": {
-      body: {
-        status: 200,
-        message: "请求成功",
-        data: null,
-        total: 0,
-        page: 1,
-        size: 10,
-      },
-    },
-
-    "/api/gateway/telephone/consultation/dialogue/deleteDialoguePage": {
-      body: {
-        status: 200,
-        message: "请求成功",
-        data: {
-          id: "5d9c522f6ef2b453e0b3ab14",
-          status: 10001,
-          createTime: "2019-10-08T09:09:03.059+0000",
-          updateTime: "2020-07-30T07:28:45.860+0000",
-          doctorId: "5cd943b5efe6c60008412a99",
-          inquiryNumber: 20,
-          charge: 0,
-          taxCharge: 0,
-          serviceTime: 30,
-          isOrderConfirm: "0",
-          isAvailable: "10001",
-          isSwitch: "10001",
-          phoneNumber: "15112308250",
-        },
-        total: 0,
-        page: 1,
-        size: 10,
       },
     },
 
@@ -1049,17 +1037,6 @@
           dialogueStatus: null,
         },
         total: 9,
-        page: 1,
-        size: 10,
-      },
-    },
-
-    "/api/gateway/telephone/consultation/dialogue/data": {
-      body: {
-        status: 200,
-        message: "请求成功",
-        data: { residueCount: 19, orderCount: "1", patientCount: "1" },
-        total: 0,
         page: 1,
         size: 10,
       },

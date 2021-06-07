@@ -17,7 +17,16 @@
     },
     transformRspData(copySwaggerParams) {
       //对解析好的swagger文档结构做一些简单的处理
-      copySwaggerParams.generateRspData.status = 200;
+      if (copySwaggerParams.generateRspData.status != undefined) {
+        copySwaggerParams.generateRspData.status = 200;
+      } else {
+        //有些接口没有最外面的层次
+        copySwaggerParams.generateRspData = {
+          data: copySwaggerParams.generateRspData,
+          status: 200,
+          message: "",
+        };
+      }
     },
     getMockStructure(copySwaggerParams) {
       //对解析好的swagger结构进行包裹  使其符合mock服务器的响应结构
