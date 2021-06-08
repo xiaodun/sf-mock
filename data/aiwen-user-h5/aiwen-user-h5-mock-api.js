@@ -1,5 +1,20 @@
 (function getApis() {
   return {
+    "/api/gateway/doctor/d/h5/phone/patientDialogue/createDialogue": {
+      body: {
+        data: {},
+        status: 200,
+        message: "",
+      },
+    },
+
+    "/api/patient/h5/phoneConsult/createDialogue": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
     "/api/patient/v3/doctor/getDoctorCommonweal": {
       body: {
         data: {
@@ -1205,52 +1220,9 @@
       },
     },
 
-    "/api/patient/h5/phoneConsult/cancelOrder": {
+    "/api/gateway/doctor/p/h5/phone/consult/cancelPhoneConsult": {
       body: {
-        data: {
-          dialogue: [
-            {
-              doctorIsRead: "20001",
-              doctorIsVisible: "10001",
-              createTime: 1622613471000,
-              doctorId: "5fb72e9b97a1c000066c9ebb",
-              patientId: "609c9fa5c8bfb64fc52378fe",
-              patientIsRead: "20001",
-              remainTime: 0,
-              updateTime: 1622613471000,
-              id: "60b71ddf81856300071a46f3",
-              type: 70001,
-              content: "本次咨询已取消",
-              status: 10001,
-            },
-          ],
-          order: {
-            payOrderId: "20210602114533195002000001",
-            callEndTime: 1622610000000,
-            illnessDescription: "12222222222222222222222222",
-            patientId: "609c9fa5c8bfb64fc52378fe",
-            inquiryPatientPhone: "13584963122",
-            orderStatus: "40001",
-            refundStatus: "20001",
-            callBeginTime: 1622606400000,
-            remainTime: 0,
-            updateTime: 1622613471000,
-            doctorPrice: 0,
-            serviceTime: 30,
-            illnessImages: ["https://pic.wenwo.com/fimg/30512163.jpg"],
-            callNumber: 0,
-            createTime: 1622605532000,
-            doctorId: "5fb72e9b97a1c000066c9ebb",
-            servicePrice: 0,
-            inquiryPatientAge: 0,
-            cancelSource: "user",
-            id: "1622605532798667",
-            sickTime: "一周",
-            cancelReason: "我不想咨询了",
-            inquiryPatientId: "609c9fe4c8bfb64fc52378ff",
-            ratio: 20.0,
-          },
-        },
+        data: {},
         success: true,
         message: "请求成功",
         status: 200,
@@ -1344,8 +1316,8 @@
           callEndTime: 1622610000000,
           illnessDescription: "12222222222222222222222222",
           patientId: "609c9fa5c8bfb64fc52378fe",
-          orderStatus: "10001",
-          // orderStatus: "20001",
+          // orderStatus: "10001",
+          orderStatus: "20001",
           isOnline: "yes",
           doctorName: "公司刘建国",
           illnessImages: ["https://pic.wenwo.com/fimg/30512163.jpg"],
@@ -1373,7 +1345,7 @@
       },
     },
 
-    "/api/patient/h5/phoneConsult/createOrder": {
+    "/api/gateway/doctor/p/h5/phone/consult/createPhoneConsult": {
       body: {
         data: {
           payOrderId: "20210602114533195002000001",
