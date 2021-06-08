@@ -1,6 +1,6 @@
 (function getApis() {
   return {
-    "/api/gateway/d/h5/phone/dialogue/doctorAnswer": {
+    "/api/gateway/doctor/d/h5/phone/dialogue/doctorAnswer": {
       body: {
         data: {},
         status: 200,
@@ -8,7 +8,7 @@
       },
     },
 
-    "/api/gateway/d/h5/phone/dialogue/dashboard": {
+    "/api/gateway/doctor/d/h5/phone/dialogue/dashboard": {
       body: {
         data: {
           orderCount: 10,
@@ -20,26 +20,26 @@
       },
     },
 
-    "/api/gateway/d/h5/phone/dialogue/deleteDialogue": {
+    "/api/gateway/doctor/d/h5/phone/dialogue/deleteDialogue": {
       body: {
         status: 200,
         data: {},
       },
     },
-    "/api/gateway/telephone/consultation/setting/saveDoctorSetting": {
+    "/api/gateway/doctor/telephone/consultation/setting/saveDoctorSetting": {
       body: {
         status: 200,
         data: {},
       },
     },
-    "/api/gateway/d/h5/phone/dialogue/doctorCall": {
+    "/api/gateway/doctor/d/h5/phone/dialogue/doctorCall": {
       body: {
         status: 200,
         data: {},
       },
     },
 
-    "/api/gateway/d/h5/phone/setting/findShowPrice": {
+    "/api/gateway/doctor/d/h5/phone/setting/findShowPrice": {
       body: (data) => {
         return {
           status: 200,
@@ -50,7 +50,7 @@
       },
     },
 
-    "/api/gateway/d/h5/phone/setting/savePhoneSetting": {
+    "/api/gateway/doctor/d/h5/phone/setting/savePhoneSetting": {
       inject: (nameMaps) => [nameMaps.getPhoneSetting],
       body: (data) => {
         return {
@@ -64,7 +64,7 @@
       },
     },
 
-    "/api/gateway/d/h5/phone/setting/getPhoneSetting": {
+    "/api/gateway/doctor/d/h5/phone/setting/getPhoneSetting": {
       name: (nameMaps) => nameMaps.getPhoneSetting,
       getData() {
         return {
@@ -90,7 +90,7 @@
       },
     },
 
-    "/api/gateway/telephone/consultation/dialogue/saveAnswer": {
+    "/api/gateway/doctor/telephone/consultation/dialogue/saveAnswer": {
       body: {
         status: 200,
         message: "请求成功",
@@ -134,7 +134,7 @@
       },
     },
 
-    "/api/gateway/telephone/consultation/order/cancelOrderByPayId": {
+    "/api/gateway/doctor/telephone/consultation/order/cancelOrderByPayId": {
       body: {
         status: 200,
         message: "请求成功",
@@ -179,7 +179,7 @@
       },
     },
 
-    "/api/gateway/telephone/consultation/order/doctorOrderPage": {
+    "/api/gateway/doctor/telephone/consultation/order/doctorOrderPage": {
       body: {
         status: 200,
         message: "请求成功",
@@ -576,7 +576,7 @@
       },
     },
 
-    "/api/gateway/telephone/consultation/information/getInformation": {
+    "/api/gateway/doctor/telephone/consultation/information/getInformation": {
       body: {
         status: 200,
         message: "请求成功",
@@ -609,7 +609,7 @@
       },
     },
 
-    "/api/gateway/telephone/consultation/setting/getDoctorSetting": {
+    "/api/gateway/doctor/telephone/consultation/setting/getDoctorSetting": {
       body: {
         status: 200,
         message: "请求成功",
@@ -634,7 +634,7 @@
       },
     },
 
-    "/api/gateway/telephone/consultation/dialogue/patientDialoguePage": {
+    "/api/gateway/doctor/telephone/consultation/dialogue/patientDialoguePage": {
       body: {
         status: 200,
         message: "请求成功",
@@ -1049,7 +1049,7 @@
       },
     },
 
-    "/api/gateway/telephone/consultation/order/doctorConfirm": {
+    "/api/gateway/doctor/d/h5/phone/consult/doctorConfirmPhoneConsult": {
       body: {
         status: 200,
         message: "请求成功",
@@ -1094,7 +1094,7 @@
       },
     },
 
-    "/api/gateway/telephone/consultation/dialogue/doctorPatientDialoguePage": {
+    "/api/gateway/doctor/telephone/consultation/dialogue/doctorPatientDialoguePage": {
       body: {
         status: 200,
         message: "请求成功",
@@ -1296,14 +1296,14 @@
       },
     },
 
-    "/api/gateway/telephone/consultation/dialogue/doctorIsRead": {
+    "/api/gateway/doctor/telephone/consultation/dialogue/doctorIsRead": {
       body: {
         status: 200,
         data: {},
       },
     },
 
-    "/api/gateway/telephone/consultation/order/findOrder": {
+    "/api/gateway/doctor/telephone/consultation/order/findOrder": {
       body: {
         status: 200,
         message: "请求成功",
