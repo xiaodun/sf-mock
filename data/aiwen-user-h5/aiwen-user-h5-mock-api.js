@@ -8,13 +8,6 @@
       },
     },
 
-    "/api/patient/h5/phoneConsult/createDialogue": {
-      body: {
-        status: 200,
-        data: {},
-      },
-    },
-
     "/api/patient/v3/doctor/getDoctorCommonweal": {
       body: {
         data: {
@@ -1237,13 +1230,14 @@
       },
     },
 
-    "/api/patient/h5/phoneConsult/getDialogue": {
+    "/api/gateway/doctor/d/h5/phone/patientDialogue/getDialogue": {
       body: {
         data: {
           total: 2,
           totalPage: 1,
           pageSize: 12,
-          list: [
+          pageNum: 1,
+          rows: [
             {
               orderId: "1622605532798667",
               patientId: "609c9fa5c8bfb64fc52378fe",
@@ -1251,7 +1245,7 @@
               showTime: "11:45",
               remainTime: 0,
               updateTime: 1622605533000,
-              type: 50001,
+              type: "TIME",
               doctorIsRead: "20001",
               doctorIsVisible: "20001",
               createTime: 1622605533000,
@@ -1263,12 +1257,12 @@
               orderId: "1622605532798667",
               patientId: "609c9fa5c8bfb64fc52378fe",
               patientIsRead: "20001",
-              orderStatus: "20001",
+              orderStatus: "PATIENT_PAID",
               phoneNum: "13584963122",
               remainTime: 0,
               updateTime: 1622605534000,
               wantPhoneTime: "2021-06-02 12:00-13:00",
-              type: 30001,
+              type: "ORDER",
               doctorIsRead: "20001",
               doctorIsVisible: "10001",
               doctorId: "5fb72e9b97a1c000066c9ebb",
@@ -1278,14 +1272,13 @@
               status: 10001,
             },
           ],
-          pageNum: 1,
           order: {
             payOrderId: "20210602114533195002000001",
             callEndTime: 1622610000000,
             illnessDescription: "12222222222222222222222222",
             patientId: "609c9fa5c8bfb64fc52378fe",
             inquiryPatientPhone: "13584963122",
-            orderStatus: "20001",
+            orderStatus: "PATIENT_PAID",
             callBeginTime: 1622606400000,
             remainTime: 0,
             updateTime: 1622605533000,
@@ -1316,8 +1309,8 @@
           callEndTime: 1622610000000,
           illnessDescription: "12222222222222222222222222",
           patientId: "609c9fa5c8bfb64fc52378fe",
-          // orderStatus: "10001",
-          orderStatus: "20001",
+          // orderStatus: "INIT",
+          orderStatus: "PATIENT_PAID",
           isOnline: "yes",
           doctorName: "公司刘建国",
           illnessImages: ["https://pic.wenwo.com/fimg/30512163.jpg"],
@@ -1354,9 +1347,9 @@
           patientId: "609c9fa5c8bfb64fc52378fe",
           inquiryPatientPhone: "13584963122",
           //联系医生
-          // orderStatus: "20001",
+          // orderStatus: "PATIENT_PAID",
           //去支付
-          orderStatus: "10001",
+          orderStatus: "INIT",
           callBeginTime: 1622606400000,
           remainTime: 1000,
           updateTime: 1622605533000,
