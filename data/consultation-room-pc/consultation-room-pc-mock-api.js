@@ -59,12 +59,12 @@
               channelName: "私信通知",
               channelType: "wei_bo_channel",
               describe: "通过【新浪爱问医生助理】微博向您发送私信通知",
-              checked: true,
+              checked: false,
             },
             {
               channelName: "微信服务号通知",
               channelType: "wei_xin_service_channel",
-              checked: true,
+              checked: false,
               describe: "通过【爱问医联】微信服务号发送通知",
             },
           ],
@@ -75,7 +75,7 @@
             },
             {
               name: "李四",
-              checked: false,
+              checked: true,
             },
             {
               name: "王五",
@@ -126,37 +126,6 @@
       body: {
         status: 200,
         data: {},
-      },
-    },
-
-    "/api/d/web/message/service/getServiceMessageDetails": {
-      body: {
-        data: {
-          businessChannel: {
-            smsChannel: true,
-            weiBoChannel: true,
-            weiXinServiceChannel: true,
-          },
-          business: new Array(10).fill(1).map((item, index) => {
-            return {
-              name: "品牌推广" + index,
-              type: index,
-              checked: Math.random() > 0.5 ? false : true,
-            };
-          }),
-          doctorId: "",
-          pushChannel: true,
-          restStartTimeInterval: "23:00",
-          restEndTimeInterval: "01:00",
-          restSwitch: true,
-          serviceChannel: {
-            smsChannel: true,
-            weiBoChannel: true,
-            weiXinServiceChannel: true,
-          },
-        },
-        message: "",
-        status: 200,
       },
     },
 

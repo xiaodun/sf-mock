@@ -134,7 +134,7 @@
       },
     },
 
-    "/api/gateway/doctor/telephone/consultation/order/cancelOrderByPayId": {
+    "/api/gateway/doctor/d/h5/phone/consult/doctorCancelPhoneConsult": {
       body: {
         status: 200,
         message: "请求成功",
@@ -634,7 +634,7 @@
       },
     },
 
-    "/api/gateway/doctor/telephone/consultation/dialogue/patientDialoguePage": {
+    "/api/gateway/doctor/d/h5/phone/dialogue/patientDialogue": {
       body: {
         status: 200,
         message: "请求成功",
@@ -643,7 +643,7 @@
           totalPage: 0,
           pageSize: 10,
           total: 9,
-          list: [
+          rows: [
             {
               id: "60b7482ab7fa750006d35752",
               createTime: "2021-06-02T08:58:18.504+0000",
@@ -653,7 +653,7 @@
               updateDate: 1622624567179,
               updateTimes: null,
               status: 10001,
-              type: 20001,
+              type: "ORDINARY",
               content: "121212",
               contentSource: null,
               doctorId: "5cd943b5efe6c60008412a99",
@@ -697,7 +697,7 @@
               updateDate: 1622516539245,
               updateTimes: null,
               status: 10001,
-              type: 70001,
+              type: "FINISH",
               content: "本次咨询已取消",
               contentSource: null,
               doctorId: "5cd943b5efe6c60008412a99",
@@ -740,7 +740,7 @@
               updateDate: 1601124853000,
               updateTimes: null,
               status: 10001,
-              type: 70001,
+              type: "FINISH",
               content: "本次咨询已取消",
               contentSource: null,
               doctorId: "5cd943b5efe6c60008412a99",
@@ -774,7 +774,7 @@
               updateDate: 1601037104485,
               updateTimes: null,
               status: 10001,
-              type: 70001,
+              type: "FINISH",
               content: "本次咨询已退款结束",
               contentSource: null,
               doctorId: "5cd943b5efe6c60008412a99",
@@ -808,7 +808,7 @@
               updateDate: 1601037185883,
               updateTimes: null,
               status: 10001,
-              type: 70001,
+              type: "FINISH",
               content: "本次咨询已取消",
               contentSource: null,
               doctorId: "5cd943b5efe6c60008412a99",
@@ -851,7 +851,7 @@
               updateDate: 1598513876390,
               updateTimes: null,
               status: 10001,
-              type: 70001,
+              type: "FINISH",
               content: "本次咨询已取消",
               contentSource: null,
               doctorId: "5cd943b5efe6c60008412a99",
@@ -885,7 +885,7 @@
               updateDate: 1598513882309,
               updateTimes: null,
               status: 10001,
-              type: 60001,
+              type: "CALL",
               content: "未接通",
               contentSource: null,
               doctorId: "5cd943b5efe6c60008412a99",
@@ -919,7 +919,7 @@
               updateDate: 1598513888736,
               updateTimes: null,
               status: 10001,
-              type: 30001,
+              type: "ORDER",
               content: null,
               contentSource: null,
               doctorId: "5cd943b5efe6c60008412a99",
@@ -1005,7 +1005,7 @@
               updateDate: 1598513887400,
               updateTimes: null,
               status: 10001,
-              type: 70001,
+              type: "FINISH",
               content: "本次咨询已取消",
               contentSource: null,
               doctorId: "5cd943b5efe6c60008412a99",
@@ -1043,7 +1043,7 @@
           ],
           dialogueStatus: null,
         },
-        total: 9,
+        total: 109,
         page: 1,
         size: 10,
       },
@@ -1094,7 +1094,7 @@
       },
     },
 
-    "/api/gateway/doctor/telephone/consultation/dialogue/doctorPatientDialoguePage": {
+    "/api/gateway/doctor/d/h5/phone/dialogue/doctorPatientDialogue": {
       body: {
         status: 200,
         message: "请求成功",
@@ -1103,7 +1103,7 @@
           totalPage: 0,
           pageSize: 13,
           total: 3,
-          list: [
+          rows: [
             {
               id: "60b7482ab7fa750006d35752",
               createTime: "2021-06-02T08:58:18.504+0000",
@@ -1113,7 +1113,7 @@
               updateDate: 1622624298504,
               updateTimes: null,
               status: 10001,
-              type: 20001,
+              type: "ORDINARY",
               content: "121212",
               contentSource: "doctor",
               doctorId: "5cd943b5efe6c60008412a99",
@@ -1157,7 +1157,7 @@
               updateDate: 1622624234795,
               updateTimes: null,
               status: 10001,
-              type: 20001,
+              type: "ORDINARY",
               content: "大大撒打算\n",
               contentSource: "user",
               doctorId: "5cd943b5efe6c60008412a99",
@@ -1201,7 +1201,7 @@
               updateDate: 1622624234795,
               updateTimes: null,
               status: 10001,
-              type: 30001,
+              type: "ORDER",
               content: null,
               contentSource: null,
               doctorId: "5cd943b5efe6c60008412a99",
@@ -1290,9 +1290,6 @@
             inquiryPatientId: "60b7466a5ad4622b8fcd9d02",
           },
         },
-        total: 3,
-        page: 1,
-        size: 13,
       },
     },
 
