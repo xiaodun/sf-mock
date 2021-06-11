@@ -1,5 +1,91 @@
 (function getApis() {
   return {
+    "/api/gateway/doctor/d/h5/phone/appraise/getAppraiseTag": {
+      body: {
+        data: {},
+        status: 200,
+        message: "",
+      },
+    },
+
+    "/api/gateway/doctor/d/h5/phone/appraise/saveAppraise": {
+      body: {
+        data: {},
+        status: 200,
+        message: "",
+      },
+    },
+
+    "/api/gateway/doctor/p/h5/phone/consult/getPhoneConsultDetail": {
+      body: {
+        data: {
+          auditStatus: "",
+          callBeginTime: "1977-12-14 07:27:40",
+          callEndTime: "2016-10-17 22:13:54",
+          callNumber: 0,
+          cancelReason: "",
+          cancelSource: "",
+          createTime: "1987-01-05 05:35:10",
+          doctorId: "",
+          doctorName: "",
+          id: "",
+          illnessDescription: "",
+          inquiryPatientAge: 0,
+          inquiryPatientId: "",
+          inquiryPatientName: "",
+          inquiryPatientPhone: "",
+          inquiryPatientSex: "",
+          isOnline: "",
+          orderStatus: "",
+          patientId: "",
+          payOrderId: "",
+          payStatus: "",
+          refundStatus: "",
+          remainTime: 0,
+          serviceTime: 0,
+          sickTime: "",
+          updateTime: "2017-06-30 01:10:20",
+        },
+        status: 200,
+        message: "",
+      },
+    },
+
+    "/api/gateway/doctor/p/h5/phone/consult/getPhoneConsultDetail": {
+      body: {
+        data: {
+          auditStatus: "",
+          callBeginTime: "1994-09-27 02:39:49",
+          callEndTime: "1990-06-28 16:55:41",
+          callNumber: 0,
+          cancelReason: "",
+          cancelSource: "",
+          createTime: "2015-02-10 18:51:57",
+          doctorId: "",
+          doctorName: "",
+          id: "",
+          illnessDescription: "",
+          inquiryPatientAge: 0,
+          inquiryPatientId: "",
+          inquiryPatientName: "",
+          inquiryPatientPhone: "",
+          inquiryPatientSex: "",
+          isOnline: "",
+          orderStatus: "",
+          patientId: "",
+          payOrderId: "",
+          payStatus: "",
+          refundStatus: "",
+          remainTime: 0,
+          serviceTime: 0,
+          sickTime: "",
+          updateTime: "2020-02-26 18:39:29",
+        },
+        status: 200,
+        message: "",
+      },
+    },
+
     "/api/gateway/doctor/d/h5/phone/patientDialogue/createDialogue": {
       body: {
         data: {},
@@ -910,13 +996,18 @@
       },
     },
 
-    "/api/patient/h5/appraise/getAppraises": {
+    "/api/gateway/doctor/d/h5/phone/appraise/getAppraiseTag": {
       body: {
         data: [
           {
-            id: "",
+            id: "0",
             show: 0,
             tag: "测试",
+          },
+          {
+            id: "1",
+            show: 0,
+            tag: "真牛",
           },
         ],
         message: "",
@@ -1222,7 +1313,7 @@
       },
     },
 
-    "/api/patient/h5/phoneConsult/pay": {
+    "/api/gateway/doctor/p/h5/phone/consult/payOrder": {
       body: {
         message: "",
         status: 200,
@@ -1302,15 +1393,15 @@
       },
     },
 
-    "/api/patient/h5/phoneConsult/getOrder": {
+    "/api/gateway/doctor/p/h5/phone/consult/getPhoneConsultDetail": {
       body: {
         data: {
           payOrderId: "20210602114533195002000001",
           callEndTime: 1622610000000,
           illnessDescription: "12222222222222222222222222",
           patientId: "609c9fa5c8bfb64fc52378fe",
-          // orderStatus: "INIT",
-          orderStatus: "PATIENT_PAID",
+          orderStatus: "INIT",
+          // orderStatus: "PATIENT_PAID",
           isOnline: "yes",
           doctorName: "公司刘建国",
           illnessImages: ["https://pic.wenwo.com/fimg/30512163.jpg"],

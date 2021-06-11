@@ -28,7 +28,7 @@
             },
           },
           hospitalLevel: "",
-          id: "",
+          id: "123123",
           medicalInstitutions: "北京协和医院",
           realName: "扁鹊",
           titles: "主治医师",

@@ -179,7 +179,7 @@
       },
     },
 
-    "/api/gateway/doctor/telephone/consultation/order/doctorOrderPage": {
+    "/api/gateway/doctor/d/h5/phone/consult/getPhoneConsultList": {
       body: {
         status: 200,
         message: "请求成功",
@@ -188,7 +188,7 @@
           totalPage: 0,
           pageSize: 10,
           total: 20,
-          list: [
+          rows: [
             {
               id: "1621330047574251",
               createTime: "2021-05-18T09:27:27.000+0000",
@@ -571,8 +571,6 @@
           dialogueStatus: null,
         },
         total: 20,
-        page: 1,
-        size: 10,
       },
     },
 
@@ -1300,7 +1298,7 @@
       },
     },
 
-    "/api/gateway/doctor/telephone/consultation/order/findOrder": {
+    "/api/gateway/doctor/d/h5/phone/consult/getNewestPhoneConsult": {
       body: {
         status: 200,
         message: "请求成功",
