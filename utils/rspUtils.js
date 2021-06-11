@@ -236,7 +236,7 @@
                 response.setHeader("Set-Cookie", cookieList);
               }
               response.writeHead(200, headers);
-              response.end(JSON.stringify(rspBody));
+              response.end(rspBody);
             }, mockData.response.delaySeconds * 1000);
           }
         } else {
