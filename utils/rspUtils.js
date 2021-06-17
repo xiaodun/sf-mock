@@ -236,7 +236,11 @@
                 response.setHeader("Set-Cookie", cookieList);
               }
               response.writeHead(200, headers);
-              response.end(rspBody);
+              if (typeof rspBody === "string") {
+                response.end(rspBody);
+              } else {
+                response.end(JSON.stringify(rspBody));
+              }
             }, mockData.response.delaySeconds * 1000);
           }
         } else {
@@ -246,9 +250,8 @@
               programName: mockFile.programName,
               url,
             };
-            copySwaggerParams.generateRspData = await copySwaggerUtils.getRspData(
-              copySwaggerParams
-            );
+            copySwaggerParams.generateRspData =
+              await copySwaggerUtils.getRspData(copySwaggerParams);
             if (copySwaggerParams.generateRspData) {
               //成功找到了
               copySwaggerConfig.transformRspData(copySwaggerParams);
