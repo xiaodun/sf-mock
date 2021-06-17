@@ -1,6 +1,29 @@
 (function getApis() {
   return {
-    "/api/gateway/doctor/d/h5/phone/dialogue/doctorAnswer": {
+    "/api/api/doctor/application/h5/telephone/consultation/dialogue/doctorIsRead":
+      {
+        body: {
+          status: 200,
+          data: {},
+        },
+      },
+
+    "/api/api/doctor/application/h5/telephone/consultation/information/getInformation":
+      {
+        body: {
+          status: 200,
+          data: {},
+        },
+      },
+
+    "/api/telephone/consultation/information/getInformation": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
+    "/api/api/gateway/doctor/d/h5/phone/dialogue/doctorAnswer": {
       body: {
         data: {},
         status: 200,
@@ -8,7 +31,7 @@
       },
     },
 
-    "/api/gateway/doctor/d/h5/phone/dialogue/dashboard": {
+    "/api/api/gateway/doctor/d/h5/phone/dialogue/dashboard": {
       body: {
         data: {
           orderCount: 10,
@@ -20,26 +43,27 @@
       },
     },
 
-    "/api/gateway/doctor/d/h5/phone/dialogue/deleteDialogue": {
+    "/api/api/gateway/doctor/d/h5/phone/dialogue/deleteDialogue": {
       body: {
         status: 200,
         data: {},
       },
     },
-    "/api/gateway/doctor/telephone/consultation/setting/saveDoctorSetting": {
-      body: {
-        status: 200,
-        data: {},
+    "/api/api/gateway/doctor/telephone/consultation/setting/saveDoctorSetting":
+      {
+        body: {
+          status: 200,
+          data: {},
+        },
       },
-    },
-    "/api/gateway/doctor/d/h5/phone/dialogue/doctorCall": {
+    "/api/api/gateway/doctor/d/h5/phone/dialogue/doctorCall": {
       body: {
         status: 200,
         data: {},
       },
     },
 
-    "/api/gateway/doctor/d/h5/phone/setting/findShowPrice": {
+    "/api/api/gateway/doctor/d/h5/phone/setting/findShowPrice": {
       body: (data) => {
         return {
           status: 200,
@@ -50,7 +74,7 @@
       },
     },
 
-    "/api/gateway/doctor/d/h5/phone/setting/savePhoneSetting": {
+    "/api/api/gateway/doctor/d/h5/phone/setting/savePhoneSetting": {
       inject: (nameMaps) => [nameMaps.getPhoneSetting],
       body: (data) => {
         return {
@@ -64,7 +88,7 @@
       },
     },
 
-    "/api/gateway/doctor/d/h5/phone/setting/getPhoneSetting": {
+    "/api/api/gateway/doctor/d/h5/phone/setting/getPhoneSetting": {
       name: (nameMaps) => nameMaps.getPhoneSetting,
       getData() {
         return {
@@ -90,7 +114,7 @@
       },
     },
 
-    "/api/gateway/doctor/telephone/consultation/dialogue/saveAnswer": {
+    "/api/api/gateway/doctor/telephone/consultation/dialogue/saveAnswer": {
       body: {
         status: 200,
         message: "请求成功",
@@ -134,7 +158,7 @@
       },
     },
 
-    "/api/gateway/doctor/d/h5/phone/consult/doctorCancelPhoneConsult": {
+    "/api/api/gateway/doctor/d/h5/phone/consult/doctorCancelPhoneConsult": {
       body: {
         status: 200,
         message: "请求成功",
@@ -179,7 +203,7 @@
       },
     },
 
-    "/api/gateway/doctor/d/h5/phone/consult/getPhoneConsultList": {
+    "/api/api/gateway/doctor/d/h5/phone/consult/getPhoneConsultList": {
       body: {
         status: 200,
         message: "请求成功",
@@ -574,40 +598,41 @@
       },
     },
 
-    "/api/gateway/doctor/telephone/consultation/information/getInformation": {
-      body: {
-        status: 200,
-        message: "请求成功",
-        data: {
-          id: null,
-          realName: "朱智鹏",
-          userId: "5cd943b5efe6c60008412a99",
-          headPic: "https://pic.wenwo.com/fimg/425865752.jpg",
-          headPicUrl:
-            "https://tvax3.sinaimg.cn/crop.247.119.568.568.50/85b6fffdly8g2w01y8ghdj20sg0rftbj.jpg?KID=imgbed,tva&Expires=1603377656&ssig=yggWBOPj3S",
-          gender: "DEFALT",
-          areasOfExpertise: "包治百病哦哦哦默默哦哦哦哦舞台",
-          expertiseDisease: "骨质增生",
-          illnessTagIds: null,
-          titles: "初级药师",
-          province: "北京",
-          city: null,
-          workUnit: "东城区东四医院",
-          departId: null,
-          departName: "12314564",
-          ticketImg: null,
-          ticketImgId: "null",
-          honor: "小小开发咯哦哦12",
-          summary:
-            "非常温12333333333333331211fsdfddfs  fdsdf哦哦哦哦哦我哦哦哦来咯一直以为哦哦哦了13131313789sfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfd",
+    "/api/api/gateway/doctor/telephone/consultation/information/getInformation":
+      {
+        body: {
+          status: 200,
+          message: "请求成功",
+          data: {
+            id: null,
+            realName: "朱智鹏",
+            userId: "5cd943b5efe6c60008412a99",
+            headPic: "https://pic.wenwo.com/fimg/425865752.jpg",
+            headPicUrl:
+              "https://tvax3.sinaimg.cn/crop.247.119.568.568.50/85b6fffdly8g2w01y8ghdj20sg0rftbj.jpg?KID=imgbed,tva&Expires=1603377656&ssig=yggWBOPj3S",
+            gender: "DEFALT",
+            areasOfExpertise: "包治百病哦哦哦默默哦哦哦哦舞台",
+            expertiseDisease: "骨质增生",
+            illnessTagIds: null,
+            titles: "初级药师",
+            province: "北京",
+            city: null,
+            workUnit: "东城区东四医院",
+            departId: null,
+            departName: "12314564",
+            ticketImg: null,
+            ticketImgId: "null",
+            honor: "小小开发咯哦哦12",
+            summary:
+              "非常温12333333333333331211fsdfddfs  fdsdf哦哦哦哦哦我哦哦哦来咯一直以为哦哦哦了13131313789sfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfd",
+          },
+          total: 0,
+          page: 1,
+          size: 10,
         },
-        total: 0,
-        page: 1,
-        size: 10,
       },
-    },
 
-    "/api/gateway/doctor/telephone/consultation/setting/getDoctorSetting": {
+    "/api/api/gateway/doctor/telephone/consultation/setting/getDoctorSetting": {
       body: {
         status: 200,
         message: "请求成功",
@@ -632,7 +657,7 @@
       },
     },
 
-    "/api/gateway/doctor/d/h5/phone/dialogue/patientDialogue": {
+    "/api/api/gateway/doctor/d/h5/phone/dialogue/patientDialogue": {
       body: {
         status: 200,
         message: "请求成功",
@@ -1047,7 +1072,7 @@
       },
     },
 
-    "/api/gateway/doctor/d/h5/phone/consult/doctorConfirmPhoneConsult": {
+    "/api/api/gateway/doctor/d/h5/phone/consult/doctorConfirmPhoneConsult": {
       body: {
         status: 200,
         message: "请求成功",
@@ -1092,7 +1117,7 @@
       },
     },
 
-    "/api/gateway/doctor/d/h5/phone/dialogue/doctorPatientDialogue": {
+    "/api/api/gateway/doctor/d/h5/phone/dialogue/doctorPatientDialogue": {
       body: {
         status: 200,
         message: "请求成功",
@@ -1291,14 +1316,14 @@
       },
     },
 
-    "/api/gateway/doctor/telephone/consultation/dialogue/doctorIsRead": {
+    "/api/api/gateway/doctor/telephone/consultation/dialogue/doctorIsRead": {
       body: {
         status: 200,
         data: {},
       },
     },
 
-    "/api/gateway/doctor/d/h5/phone/consult/getNewestPhoneConsult": {
+    "/api/api/gateway/doctor/d/h5/phone/consult/getNewestPhoneConsult": {
       body: {
         status: 200,
         message: "请求成功",

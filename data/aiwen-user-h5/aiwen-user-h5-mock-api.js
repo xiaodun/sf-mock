@@ -1,22 +1,6 @@
 (function getApis() {
   return {
-    "/api/gateway/doctor/d/h5/phone/appraise/getAppraiseTag": {
-      body: {
-        data: {},
-        status: 200,
-        message: "",
-      },
-    },
-
-    "/api/gateway/doctor/d/h5/phone/appraise/saveAppraise": {
-      body: {
-        data: {},
-        status: 200,
-        message: "",
-      },
-    },
-
-    "/api/gateway/doctor/p/h5/phone/consult/getPhoneConsultDetail": {
+    "/api/api/gateway/doctor/p/h5/phone/consult/getPhoneConsultDetail": {
       body: {
         data: {
           auditStatus: "",
@@ -51,7 +35,7 @@
       },
     },
 
-    "/api/gateway/doctor/p/h5/phone/consult/getPhoneConsultDetail": {
+    "/api/api/gateway/doctor/p/h5/phone/consult/getPhoneConsultDetail": {
       body: {
         data: {
           auditStatus: "",
@@ -86,7 +70,7 @@
       },
     },
 
-    "/api/gateway/doctor/d/h5/phone/patientDialogue/createDialogue": {
+    "/api/api/gateway/doctor/p/h5/phone/patientDialogue/createDialogue": {
       body: {
         data: {},
         status: 200,
@@ -996,7 +980,7 @@
       },
     },
 
-    "/api/gateway/doctor/d/h5/phone/appraise/getAppraiseTag": {
+    "/api/api/gateway/doctor/p/h5/phone/appraise/getAppraiseTag": {
       body: {
         data: [
           {
@@ -1304,7 +1288,7 @@
       },
     },
 
-    "/api/gateway/doctor/p/h5/phone/consult/cancelPhoneConsult": {
+    "/api/api/gateway/doctor/p/h5/phone/consult/cancelPhoneConsult": {
       body: {
         data: {},
         success: true,
@@ -1313,7 +1297,7 @@
       },
     },
 
-    "/api/gateway/doctor/p/h5/phone/consult/payOrder": {
+    "/api/api/gateway/doctor/p/h5/phone/consult/payOrder": {
       body: {
         message: "",
         status: 200,
@@ -1321,7 +1305,7 @@
       },
     },
 
-    "/api/gateway/doctor/d/h5/phone/patientDialogue/getDialogue": {
+    "/api/api/gateway/doctor/p/h5/phone/patientDialogue/getDialogue": {
       body: {
         data: {
           total: 2,
@@ -1393,7 +1377,7 @@
       },
     },
 
-    "/api/gateway/doctor/p/h5/phone/consult/getPhoneConsultDetail": {
+    "/api/api/gateway/doctor/p/h5/phone/consult/getPhoneConsultDetail": {
       body: {
         data: {
           payOrderId: "20210602114533195002000001",
@@ -1429,7 +1413,7 @@
       },
     },
 
-    "/api/gateway/doctor/p/h5/phone/consult/createPhoneConsult": {
+    "/api/api/gateway/doctor/p/h5/phone/consult/createPhoneConsult": {
       body: {
         data: {
           payOrderId: "20210602114533195002000001",
