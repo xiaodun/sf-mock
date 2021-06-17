@@ -1,5 +1,12 @@
 (function getApis() {
   return {
+    "/api/api/gateway/doctor/p/h5/phone/appraise/saveAppraise": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
     "/api/api/gateway/doctor/p/h5/phone/consult/getPhoneConsultDetail": {
       body: {
         data: {
@@ -982,18 +989,7 @@
 
     "/api/api/gateway/doctor/p/h5/phone/appraise/getAppraiseTag": {
       body: {
-        data: [
-          {
-            id: "0",
-            show: 0,
-            tag: "测试",
-          },
-          {
-            id: "1",
-            show: 0,
-            tag: "真牛",
-          },
-        ],
+        data: ["回复快", "很专业"],
         message: "",
         status: 200,
         success: false,
