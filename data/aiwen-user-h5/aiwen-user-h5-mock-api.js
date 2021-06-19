@@ -7,76 +7,6 @@
       },
     },
 
-    "/api/api/gateway/doctor/p/h5/phone/consult/getPhoneConsultDetail": {
-      body: {
-        data: {
-          auditStatus: "",
-          callBeginTime: "1977-12-14 07:27:40",
-          callEndTime: "2016-10-17 22:13:54",
-          callNumber: 0,
-          cancelReason: "",
-          cancelSource: "",
-          createTime: "1987-01-05 05:35:10",
-          doctorId: "",
-          doctorName: "",
-          id: "",
-          illnessDescription: "",
-          inquiryPatientAge: 0,
-          inquiryPatientId: "",
-          inquiryPatientName: "",
-          inquiryPatientPhone: "",
-          inquiryPatientSex: "",
-          isOnline: "",
-          orderStatus: "",
-          patientId: "",
-          payOrderId: "",
-          payStatus: "",
-          refundStatus: "",
-          remainTime: 0,
-          serviceTime: 0,
-          sickTime: "",
-          updateTime: "2017-06-30 01:10:20",
-        },
-        status: 200,
-        message: "",
-      },
-    },
-
-    "/api/api/gateway/doctor/p/h5/phone/consult/getPhoneConsultDetail": {
-      body: {
-        data: {
-          auditStatus: "",
-          callBeginTime: "1994-09-27 02:39:49",
-          callEndTime: "1990-06-28 16:55:41",
-          callNumber: 0,
-          cancelReason: "",
-          cancelSource: "",
-          createTime: "2015-02-10 18:51:57",
-          doctorId: "",
-          doctorName: "",
-          id: "",
-          illnessDescription: "",
-          inquiryPatientAge: 0,
-          inquiryPatientId: "",
-          inquiryPatientName: "",
-          inquiryPatientPhone: "",
-          inquiryPatientSex: "",
-          isOnline: "",
-          orderStatus: "",
-          patientId: "",
-          payOrderId: "",
-          payStatus: "",
-          refundStatus: "",
-          remainTime: 0,
-          serviceTime: 0,
-          sickTime: "",
-          updateTime: "2020-02-26 18:39:29",
-        },
-        status: 200,
-        message: "",
-      },
-    },
-
     "/api/api/gateway/doctor/p/h5/phone/patientDialogue/createDialogue": {
       body: {
         data: {},
@@ -1295,9 +1225,9 @@
 
     "/api/api/gateway/doctor/p/h5/phone/consult/payOrder": {
       body: {
-        message: "",
         status: 200,
-        success: true,
+        message: "请求成功",
+        data: '<form name="punchout_form" method="post" action="https://openapi.alipay.com/gateway.do?charset=UTF-8&method=alipay.trade.wap.pay&sign=MYGrJ1Qcf44hq8WWTuE5iXodg%2FjvtAMJwcBWoio%2F13EcYB1lAahdjyyqr%2FmXcjs7%2FjkQnsZKila3nS1KZDG0NY6j4aIvhrWifTzCxsl4ZQ9ZQeVSf2NZqwObRINkecAEzb8%2BTB09jnxwRsnwfJ0lT1CPqPH4x0qjnRp8Bq7FnKBVzPtjvK%2B1opiSLkqWORfhaurTc7sL4p5u%2BAYNE0NmNslqx6wE2qr0wvgkuMRUY0OYx%2BIe0olq6Yf1ROUvJSIScLwXCzmxIKvMLFsKu7y1XcgNAhGjuW2BKTUiF2SfVNT%2Bc9RVHUqZ2gCbKbknQMtrER82ra1DtTX9q%2F3TOGkdAw%3D%3D&return_url=http%3A%2F%2Ftradedev.tunnel.wenwo.com%2FpayOrder%2Falipay%2Freturn_url_accept&notify_url=http%3A%2F%2Ftradedev.tunnel.wenwo.com%2FpayOrder%2Falipay%2Fpay_notify_accept&version=1.0&app_id=2016051201394645&sign_type=RSA2&timestamp=2021-06-18+20%3A04%3A02&alipay_sdk=alipay-sdk-java-4.7.11.ALL&format=json">\n<input type="hidden" name="biz_content" value="{&quot;out_trade_no&quot;:&quot;20210618200402053002000005&quot;,&quot;product_code&quot;:&quot;QUICK_WAP_PAY&quot;,&quot;subject&quot;:&quot;电话咨询订单&quot;,&quot;timeout_express&quot;:&quot;300m&quot;,&quot;total_amount&quot;:&quot;6.00&quot;}">\n<input type="submit" value="立即支付" style="display:none" >\n</form>\n<script>document.forms[0].submit();</script>',
       },
     },
 
