@@ -1,5 +1,27 @@
 (function getApis() {
   return {
+    "/api/api/doctor/application/h5/telephone/consultation/order/findOrder": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
+    "/api/api/doctor/application/h5/telephone/consultation/dialogue/doctorPatientDialoguePage":
+      {
+        body: {
+          status: 200,
+          data: {},
+        },
+      },
+
+    "/api/api/doctor/application/h5/telephone/consultation/order/findOrder": {
+      body: {
+        status: 200,
+        data: {},
+      },
+    },
+
     "/api/api/doctor/application/h5/file/uploadImg": {
       body: {
         status: 200,
@@ -114,7 +136,7 @@
       },
       body(data) {
         return {
-          status: 200,
+          status: 401,
           data: data.inject.getPhoneSetting,
           message: "请求成功",
         };

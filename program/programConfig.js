@@ -90,7 +90,7 @@
     saas_server_admin: {
       withNginxConf: true,
       withFileStructure: true,
-      apiPrefix: ["/api", "/medic-admin"],
+      apiPrefix: ["/api", "/medic-admin", "/v1"],
       programPrefix: "/",
       mockListenPort: 9040,
       jointListenPort: 9041,
