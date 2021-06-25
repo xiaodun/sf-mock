@@ -1148,7 +1148,7 @@
 
     "/api/api/gateway/doctor/d/h5/phone/dialogue/doctorPatientDialogue": {
       body: {
-        status: 401,
+        status: 200,
         message: "请求成功122121",
         data: {
           total: 4,
@@ -1265,7 +1265,7 @@
                 servicePrice: 0,
                 doctorPrice: 0,
                 serviceTime: 30,
-                orderStatus: "CANCEL_BY_TIMEOUT_CONFIRM",
+                orderStatus: "PATIENT_PAID",
                 callNumber: 0,
                 ratio: 0.0,
                 payOrderId: "dr_telePhone_60cc1188e6d5422045b3722f",
@@ -1398,6 +1398,7 @@
                 doctorPrice: 0,
                 serviceTime: 30,
                 orderStatus: "CANCEL_BY_TIMEOUT_CONFIRM",
+                // orderStatus: "PATIENT_PAID",
                 callNumber: 0,
                 ratio: 0.0,
                 payOrderId: "dr_telePhone_60cc0fb2e6d5422045b3722c",
@@ -1442,7 +1443,7 @@
     },
 
     "/api/api/gateway/doctor/d/h5/phone/consult/getNewestPhoneConsult": {
-      body: { status: 401, message: "大萨达撒多", data: null },
+      body: { status: 200, message: "大萨达撒多", data: null },
     },
 
     "/api/gateway/area/getAllArea": {
