@@ -3,6 +3,7 @@
   const darkUtils = require("./utils/darkUtils");
   const pageUtils = require("./utils/pageUtils");
   const editJsUtils = require("./utils/editJsUtils");
+  const copySwaggerUtils = require("./utils/copySwaggerUtils");
   const _ = require("lodash");
   const querystring = require("querystring");
   const defaultConfig = eval(
@@ -10,6 +11,9 @@
   );
   const serviceConfig = eval(
     fs.readFileSync("./config/serviceConfig.js", "utf-8")
+  );
+  const copySwaggerConfig = eval(
+    fs.readFileSync("./config/copySwaggerConfig.js", "utf-8")
   );
 
   return function (params = {}) {
@@ -58,18 +62,22 @@
             "application/x-www-form-urlencoded"
           ) {
             data = querystring.parse(data);
-            Object.keys(data).forEach((key) => {
-              let value = data[key];
-              //是否需要解析
-              try {
-                const parseData = JSON.parse(data[key]);
-                if (typeof parseData == "object") {
-                  value = parseData;
+            if (typeof data != "object") {
+              Object.keys(data).forEach((key) => {
+                let value = data[key];
+                //是否需要解析
+                try {
+                  const parseData = JSON.parse(data[key]);
+                  if (typeof parseData == "object") {
+                    value = parseData;
+                  }
+                } catch (e) {
+                  console.log("参数解析错误", e);
                 }
-              } catch (e) {}
 
-              data[key] = value;
-            });
+                data[key] = value;
+              });
+            }
           } else {
             data = JSON.parse(data || null);
           }
@@ -86,7 +94,7 @@
       startParse();
     }
 
-    function startParse() {
+    async function startParse() {
       try {
         //获取mock文件
         const mockFile = darkUtils.getMockFile(request.url);
@@ -195,7 +203,7 @@
             if (mockData.body == null) {
               rspBody = mockData.body;
             } else if (typeof mockData.body === "number") {
-              rspBody = mockData.body + "";
+              rspBody = mockData.body;
             } else if (Array.isArray(mockData.body)) {
               rspBody = mockData.body;
             } else {
@@ -228,10 +236,38 @@
                 response.setHeader("Set-Cookie", cookieList);
               }
               response.writeHead(200, headers);
-              response.end(JSON.stringify(rspBody));
+              if (typeof rspBody === "string") {
+                response.end(rspBody);
+              } else {
+                response.end(JSON.stringify(rspBody));
+              }
             }, mockData.response.delaySeconds * 1000);
           }
         } else {
+          if (copySwaggerConfig.isOpen) {
+            //开启了自动copy swagger文档响应体的功能
+            const copySwaggerParams = {
+              programName: mockFile.programName,
+              url,
+            };
+            copySwaggerParams.generateRspData =
+              await copySwaggerUtils.getRspData(copySwaggerParams);
+            if (copySwaggerParams.generateRspData) {
+              //成功找到了
+              copySwaggerConfig.transformRspData(copySwaggerParams);
+
+              editJsUtils.addApi({
+                ...copySwaggerParams,
+                copySwaggerConfig,
+                defaultConfig,
+              });
+              programDatas[mockFile.programName].createdAPi[url] = true;
+              startParse();
+              return;
+            }
+          }
+          //swagger 文档没有接着尝试自动生成
+
           //开启在404的时候自动创建
           if (defaultConfig.autoCreateSettings["404"]) {
             //还没被自动创建过,可能因为程序的原因自动创建失败，所以要标记一下
