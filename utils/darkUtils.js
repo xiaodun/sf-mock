@@ -91,16 +91,6 @@ const darkUtils = {
     }
     return value;
   },
-  getProgramConfig(reqUrl) {
-    const { programName } = this.parseUrl(reqUrl);
-    const programConfig = eval(
-      fs.readFileSync(
-        path.join(__dirname, "../program/programConfig.js"),
-        "utf-8"
-      )
-    )[programName];
-    return programConfig;
-  },
   writeFile(reqUrl, data = "") {
     const { programName, api } = this.parseUrl(reqUrl);
     const mockFileData = fs

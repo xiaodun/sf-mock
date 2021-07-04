@@ -5,7 +5,10 @@ const fs = require("fs");
 const path = require("path");
 const prettier = require("prettier");
 const programConfig = eval(
-  fs.readFileSync(path.resolve(__dirname, "../programConfig.js"), "utf-8")
+  fs.readFileSync(
+    path.resolve(__dirname, "../config/programConfig.js"),
+    "utf-8"
+  )
 );
 const dataFolderPath = path.resolve(__dirname, "../data");
 //生成data文件夹
