@@ -8,7 +8,7 @@ const nginxConfContent = fs.readFileSync(
   "utf-8"
 );
 const nginxConfRegexp = /#program-service-start([\s\S]*?)#program-service-end/g;
-const programConfig = eval(
+const programConfigJs = eval(
   fs.readFileSync("../config/programConfig.js", "utf-8")
 );
 const serviceConfig = eval(
@@ -18,34 +18,23 @@ const commonUtils = require("../utils/commonUtils");
 const ip = commonUtils.getIp();
 const mockServiceUrl = "http://" + ip + ":" + serviceConfig.startPort;
 const serverConfigList = [];
-for (const programName in programConfig) {
-  const { mockListenPort, jointListenPort, jointServiceUrl, ...values } =
-    programConfig[programName];
-  if (values.withNginxConf) {
-    const apiPrefix = Array.isArray(values.apiPrefix)
-      ? values.apiPrefix
-      : [values.apiPrefix];
-    //生成本地测试服务器对应的server配置
-    const mockConfig = generateServerConfig({
-      isServer: false,
-      programName,
-      listenPort: mockListenPort,
-      serviceUrl: mockServiceUrl,
-      ...values,
-      apiPrefix,
-    });
-    //生成联调服务器对应的server配置
-    const jointConfig = generateServerConfig({
-      isServer: true,
-      programName,
-      listenPort: jointListenPort,
-      serviceUrl: jointServiceUrl,
-      ...values,
-      apiPrefix,
-    });
-    serverConfigList.push(mockConfig);
-    serverConfigList.push(jointConfig);
-  }
+for (const programName in programConfigJs) {
+  const programConfigs = programConfigJs[programName];
+
+  programConfigs.serverList.forEach((serverConfig) => {
+    let url = serverConfig.isMock ? mockServiceUrl : serverConfig.url;
+    serverConfigList.push(
+      generateServerConfig({
+        programPrefix: programConfigs.programPrefix,
+        programUrl: programConfigs.programUrl,
+        apiPrefixList: programConfigs.apiPrefixList,
+        programName,
+        ...serverConfig,
+        url,
+        webpackHotUrl: programConfigs.webpackHotUrl,
+      })
+    );
+  });
 }
 const generateNginxConfContent = nginxConfContent.replace(
   nginxConfRegexp,
@@ -59,11 +48,11 @@ function generateServerConfig(config) {
   /**
    * /sockjs-node  用于webpack的热更新
    */
-  const jointConfigs = config.apiPrefix
+  const jointConfigs = config.apiPrefixList
     .map((prefix) => {
       return `location ${prefix} {
-      proxy_pass ${config.serviceUrl}${
-        config.isServer ? "" : "/" + config.programName
+      proxy_pass ${config.url}${
+        config.isMock ? "/" + config.programName : ""
       }${prefix};
       client_max_body_size 64m;
    }`;
@@ -71,7 +60,7 @@ function generateServerConfig(config) {
     .join("");
   const serverConfig = `
     server {
-        listen ${config.listenPort};
+        listen ${config.port};
         #WebServer
         ${jointConfigs}
         location ${config.programPrefix} {
