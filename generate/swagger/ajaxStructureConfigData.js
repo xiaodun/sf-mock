@@ -4,11 +4,12 @@
 const fs = require("fs");
 const axios = require("axios");
 const copyToClipboard = require("sf-copy-to-clipboard");
-const moduleName = "电话咨询设置相关接口";
-const reqUrl = "http://10.200.0.3:59080/v2/api-docs?group=doctor-H5";
+const moduleName = "账号相关接口";
+const reqUrl = "http://10.200.0.3:59080/v2/api-docs?group=doctor-PC";
 
 // const programName = "";
-const programName = "aiwen_doctor_app_h5";
+// const programName = "aiwen_doctor_app_h5";
+const programName = "consultation-room-pc";
 (async () => {
   const { data: structureRsp } = await axios.get(reqUrl);
   let configList = [];
@@ -31,6 +32,13 @@ const programName = "aiwen_doctor_app_h5";
           methods: method,
           name: url.split("/").pop(),
           url,
+          desc: reqDescribe.summary,
+        });
+      } else if (programName === "consultation-room-pc") {
+        configList.push({
+          method: method,
+          name: url.split("/").pop(),
+          url: "/gateway/doctor" + url,
           desc: reqDescribe.summary,
         });
       }

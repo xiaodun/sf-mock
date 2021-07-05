@@ -1,8 +1,60 @@
 (function getApis() {
   return {
+    "/api/gateway/doctor/d/web/message/announcement/getAnnouncement": {
+      body: {
+        data: {
+          detailsText: 0,
+          introduce: "",
+          title: "",
+        },
+        status: 200,
+        message: "",
+      },
+    },
+
+    "/api/gateway/doctor/d/web/account/withdrawCancelApply": {
+      body: {
+        data: {},
+        status: 200,
+        message: "",
+      },
+    },
+
+    "/api/gateway/doctor/d/web/account/createCancelApply": {
+      body: {
+        data: {},
+        status: 200,
+        message: "",
+      },
+    },
+
+    "/api/gateway/doctor/d/web/account/getCancelCondition": {
+      body: {
+        // data: null,
+        data: [
+          {
+            title: "您有未完成的服务订单",
+            content:
+              "系统检测到您存在未完成的服务订单（图文咨询/电话咨询/门诊预约/公益咨询），为保证患者权益，请完成服务订单后再注销账号。",
+          },
+          {
+            title: "您参加的社区活动尚未结束",
+            content:
+              "系统检测到您已报名参加社区活动，您与社区都存在履约的义务，请在活动结束后再注销账号。",
+          },
+          {
+            title: "其他原因",
+            content:
+              "您的账号是社区管理员账号，或者您与爱问平台存在商业合作，暂不支持注销",
+          },
+        ],
+        status: 200,
+        message: "",
+      },
+    },
+
     "/api/message/createCode": {
-      body:
-        "gQFB8TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAycjNobWNZYkM4Yl8xRmdLUWh3Y0cAAgSYorRgAwS4CwAA",
+      body: "gQFB8TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAycjNobWNZYkM4Yl8xRmdLUWh3Y0cAAgSYorRgAwS4CwAA",
     },
 
     "/api/message/weixinFocus": {
@@ -1089,8 +1141,7 @@
       body: {
         status: 200,
         message: "请求成功",
-        data:
-          "https://api.weibo.com/oauth2/authorize?client_id=1595087667&display=pc&forcelogin=true&response_type=code&redirect_uri=https%3A%2F%2Fwww.wenwo.com%2FthirdLogin%2Fweibo%3FuserType%3Ddoctor%26source%3Dpc",
+        data: "https://api.weibo.com/oauth2/authorize?client_id=1595087667&display=pc&forcelogin=true&response_type=code&redirect_uri=https%3A%2F%2Fwww.wenwo.com%2FthirdLogin%2Fweibo%3FuserType%3Ddoctor%26source%3Dpc",
         total: 0,
         page: 1,
         size: 10,
@@ -1143,8 +1194,7 @@
         message: "请求成功",
         data: {
           id: Math.random() + "",
-          url:
-            "https://pic.wenwo.com/fimg/996e6cbdefc0312c8d5cce885a4dd8c2.jpg",
+          url: "https://pic.wenwo.com/fimg/996e6cbdefc0312c8d5cce885a4dd8c2.jpg",
         },
         total: 0,
         page: 1,
