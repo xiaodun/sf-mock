@@ -4,7 +4,7 @@
 const fs = require("fs");
 const axios = require("axios");
 const copyToClipboard = require("sf-copy-to-clipboard");
-const moduleName = "账号相关接口";
+const moduleName = "我的钱包相关接口";
 const reqUrl = "http://10.200.0.3:59080/v2/api-docs?group=doctor-PC";
 
 // const programName = "";

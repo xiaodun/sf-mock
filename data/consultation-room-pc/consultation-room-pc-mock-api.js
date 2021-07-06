@@ -1,5 +1,82 @@
 (function getApis() {
   return {
+    "/api/gateway/doctor/d/web/wallet/incomeDetail": {
+      body: {
+        data: {
+          nextPageNum: 0,
+          pageNum: 1,
+          pageSize: 10,
+          rows: [
+            {
+              id: 0,
+              incomeAmount: 10,
+              incomeType: "coin_income",
+              remark: "",
+              tradeDate: "2013-11-26 19:59:39",
+              taxAmount: 0,
+              tradeStatus: "TRADE_SUCCESS",
+              tradeTime: 0,
+              title: "图文",
+              remark: "标题",
+            },
+            {
+              id: 1,
+              incomeAmount: 3,
+              incomeType: "coin_pay",
+              remark: "",
+              tradeDate: "2013-11-26 19:59:39",
+              tradeStatus: "AUDITING",
+              taxAmount: 10,
+              tradeTime: 0,
+              title: "兑现-银行卡兑现",
+              remark: "爱问****3690",
+            },
+            {
+              id: 1,
+              incomeAmount: 3,
+              incomeType: "coin_frozen",
+              remark: "",
+              tradeDate: "2013-11-26 19:59:39",
+              tradeStatus: "AUDITING",
+              taxAmount: 10,
+              tradeTime: 0,
+              title: "图文",
+              remark: "标题",
+            },
+            {
+              id: 1,
+              incomeAmount: 50,
+              incomeType: "coin_pay",
+              taxAmount: 12,
+              remark: "",
+              tradeDate: "2013-11-26 19:59:39",
+              tradeStatus: "AUDIT_FAIL",
+              tradeTime: 0,
+              title: "兑现-银行卡兑现",
+              remark: "爱问****3690",
+            },
+          ],
+          total: 100,
+          totalPage: 10,
+        },
+        status: 200,
+        message: "",
+      },
+    },
+
+    "/api/gateway/doctor/d/web/wallet/goldStatistics": {
+      body: {
+        data: {
+          amountIncome: 10,
+          freezingGold: 20,
+          remainGold: 30,
+          todayIncome: 40,
+        },
+        status: 200,
+        message: "",
+      },
+    },
+
     "/api/gateway/doctor/d/web/message/announcement/getAnnouncement": {
       body: {
         data: {
