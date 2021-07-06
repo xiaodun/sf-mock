@@ -38,7 +38,9 @@ const editJsUtils = {
         mockFileStr.slice(pos);
       fs.writeFileSync(
         path.resolve(__dirname, moclFilepath),
-        prettier.format(content)
+        prettier.format(content, {
+          parser: "babel",
+        })
       );
     }
   },

@@ -1,13 +1,3 @@
-# 待解决的问题
-
-- 完善自动生成功能，包括项目基础文件结构、nginx 配置内容
-
-- 支持运行期间的增加、删除等操作,服务器重启则失效
-
-- 可以使用 chrome 浏览器调试
-
-- nginx 代理时，上传较大文件容易报 502
-
 # 优势何在
 
 - 不用承担连接另一台电脑的任何风险，运行在本地，互不干扰。
@@ -82,6 +72,30 @@ isOpen:true,
 - getMatchUrl mock 服务器获得的 url 可能与 swagger 地址存在差异，比如后者缺少一些共有头部，这时就需要手动处理下
 - transformRspData 已经解析完成的数据结构，在这里可以做一些特性化处理
 - getMockStructure 这时已经准备写入到文件里，可以组合成 mock 服务器支持的任意数据结构
+
+# 自动生成
+
+## programConfig.js
+
+只需新增
+
+```
+    example:{}
+```
+
+example 是项目的名字，运行 createFileStructure.js 就会自动生成 example-mock-api.js、example-name-map.js
+
+## 实现代码上的零入侵
+
+通过 nginx，可以实现不更改代码的情况下将请求转发到 mock 服务器，配置好 programConfig.js 后,运行
+writeNginxConfig.js 即可，有配置示例
+
+启动: start nginx.exe
+更新: nginx -s reload
+停止: nginx -s stop
+
+注意执行 writeNginxConfig.js 后要重启 nginx 才能生效，当上述命令无法奏效时，
+可以先运行 start killNginx,再启动
 
 # 关于跨域问题的解决
 
