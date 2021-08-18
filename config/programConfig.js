@@ -4,7 +4,7 @@
   return {
     example: {
       //项目地址
-      programUrl: "http://192.168.10.197:8000",
+      programUrl: "http://localhost:8000",
       //项目的公共前缀
       programPrefix: "/",
       //ajax请求的前缀，用于转发到服务器
@@ -23,6 +23,21 @@
           url: "http://192.168.10.197:8880",
         },
       ],
+      WindowsTerminal: {
+        isOpen: true,
+        tabList: [
+          {
+            address: `D:\\github\\sf-notes`,
+            startCommad: "npm run dev",
+            isSelf: true,
+          },
+          {
+            address: `D:\\github\\sf-notes\\service\\app`,
+            startCommad: "node service.js",
+            titleName: "notes-service",
+          },
+        ],
+      },
       webpackHotUrl,
     },
   };
