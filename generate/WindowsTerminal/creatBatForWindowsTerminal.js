@@ -25,7 +25,7 @@ programConfig["sf-mock"] = {
       },
       {
         address: path.resolve(__dirname, "../../nginx-1.19.6"),
-        startCommad: "start killNginx.bat  start nginx",
+        startCommad: "start nginx",
         titleName: "nginx-1.19.6",
       },
     ],
