@@ -13,7 +13,7 @@ const programConfig = eval(
 );
 
 const batPath = path.resolve(__dirname, "../../bat");
-//生成程序自身的
+//加入程序自身的
 programConfig["sf-mock"] = {
   WindowsTerminal: {
     isOpen: true,
@@ -32,14 +32,25 @@ programConfig["sf-mock"] = {
   },
 };
 //生成每个项目自己的启动命令
+const singleTabCommandList = [];
 for (const programName in programConfig) {
   const configs = programConfig[programName];
   const wT = configs["WindowsTerminal"];
   if (wT && wT.isOpen) {
     wT.tabList.forEach((tabs) => {
       let titleName = tabs.isSelf ? programName : tabs.titleName;
-      let batContent = `wt -w 0 nt --title ${titleName} -d ${tabs.address} cmd /k ${tabs.startCommad}`;
+      const singleTabCommand = `nt --title ${titleName} -d ${tabs.address} cmd /k ${tabs.startCommad}`;
+      let batContent = `wt -w 0 ${singleTabCommand}`;
+      singleTabCommandList.push(singleTabCommand);
       fs.writeFileSync(path.resolve(batPath, `${titleName}.bat`), batContent);
     });
   }
 }
+// 生成启动全部以配置项目的命令,适用于电脑重启等场景
+
+const allStartProgramContent = `wt -w 0 ${singleTabCommandList.join(";")}`;
+
+fs.writeFileSync(
+  path.resolve(batPath, `allStartProgram.bat`),
+  allStartProgramContent
+);
