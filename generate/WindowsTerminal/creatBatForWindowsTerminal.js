@@ -13,6 +13,9 @@ const programConfig = eval(
 );
 
 const batPath = path.resolve(__dirname, "../../bat");
+if (!fs.existsSync(batPath)) {
+  fs.mkdirSync(batPath);
+}
 //加入程序自身的
 programConfig["sf-mock"] = {
   WindowsTerminal: {
