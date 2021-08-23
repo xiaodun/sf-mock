@@ -29,16 +29,18 @@ const editJsUtils = {
       let urlValues, dirValues;
       if (params.generateRspData) {
         urlValues = params.copySwaggerConfig.getMockStructure(params);
-        dirValues = urlValues;
-      } else if (params.defaultConfig.useDirMode) {
-        urlValues = params.defaultConfig.dirModeData.getDefaultValues();
-        dirValues =
-          params.defaultConfig.autoCreateSettings.getDefaultValues("js");
+        dirValues = params.defaultConfig.autoCreateSettings.getDefaultValues(
+          "js",
+          params.generateRspData
+        );
       } else {
         urlValues = params.defaultConfig.autoCreateSettings.getDefaultValues();
+        dirValues =
+          params.defaultConfig.autoCreateSettings.getDefaultValues("js");
       }
 
       if (params.defaultConfig.useDirMode) {
+        urlValues = params.defaultConfig.dirModeData.getDefaultValues();
         dirUtils.generate(params, dirValues);
       }
       let content =

@@ -14,7 +14,7 @@
     autoCreateSettings: {
       //当api不存在的时候自动创建
       404: true,
-      getDefaultValues(type) {
+      getDefaultValues(type, contentValue) {
         //自动创建url对应的值
         const baseData = {
           status: 200,
@@ -23,7 +23,7 @@
         if (type === "js") {
           return `(function () {
             return (data) => {
-              return ${JSON.stringify(baseData)};
+              return ${JSON.stringify(contentValue || baseData)};
             };
           })();
           `;
