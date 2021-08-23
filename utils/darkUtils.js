@@ -59,7 +59,12 @@ const darkUtils = {
           mockData.inject.push(mockData.name);
         }
       }
+      //处理useDirMode
+      if (mockData.useDirMode) {
+        mockData.body = api.substring(1) + ".js";
+      }
       newApis[key] = mockData;
+      console.log("wx", mockData);
     }
     return {
       apis: newApis,
