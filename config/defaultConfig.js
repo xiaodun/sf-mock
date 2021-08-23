@@ -1,15 +1,35 @@
 (function () {
   return {
+    /**
+     * 程序将把路径注册解析为文件夹,最后创建一个js文件存储数据
+     */
+    useDirMode: true,
+    dirModeData: {
+      getDefaultValues() {
+        return {
+          useDirMode: true,
+        };
+      },
+    },
     autoCreateSettings: {
       //当api不存在的时候自动创建
       404: true,
-      getDefaultValues() {
+      getDefaultValues(type) {
         //自动创建url对应的值
+        const baseData = {
+          status: 200,
+          data: {},
+        };
+        if (type === "js") {
+          return `(function () {
+            return (data) => {
+              return ${JSON.stringify(baseData)};
+            };
+          })();
+          `;
+        }
         return {
-          body: {
-            status: 200,
-            data: {},
-          },
+          body: baseData,
         };
       },
     },

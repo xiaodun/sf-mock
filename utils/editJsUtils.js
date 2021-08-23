@@ -5,11 +5,13 @@ const { default: babelTraverse } = require("@babel/traverse");
 const prettier = require("prettier");
 const editJsUtils = {
   addApi(params = {}) {
+    const dirUtils = global.getModuleUtils.dirUtils();
     const moclFilepath = `../data/${params.programName}/${params.programName}-mock-api.js`;
     const mockFileStr = fs
       .readFileSync(path.resolve(__dirname, moclFilepath), "utf-8")
       .toString();
     let pos = null;
+
     const ast = babelParser.parse(mockFileStr);
     babelTraverse(ast, {
       FunctionExpression(path) {
@@ -24,11 +26,20 @@ const editJsUtils = {
     });
     if (pos !== null) {
       //在头部自动写入
-      let urlValues;
+      let urlValues, dirValues;
       if (params.generateRspData) {
         urlValues = params.copySwaggerConfig.getMockStructure(params);
+        dirValues = urlValues;
+      } else if (params.defaultConfig.useDirMode) {
+        urlValues = params.defaultConfig.dirModeData.getDefaultValues();
+        dirValues =
+          params.defaultConfig.autoCreateSettings.getDefaultValues("js");
       } else {
         urlValues = params.defaultConfig.autoCreateSettings.getDefaultValues();
+      }
+
+      if (params.defaultConfig.useDirMode) {
+        dirUtils.generate(params, dirValues);
       }
       let content =
         mockFileStr.slice(0, pos) +

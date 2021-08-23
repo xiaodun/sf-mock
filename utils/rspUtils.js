@@ -15,7 +15,6 @@
   const copySwaggerConfig = eval(
     fs.readFileSync("./config/copySwaggerConfig.js", "utf-8")
   );
-
   return function (params = {}) {
     const { request, response, dealError } = params;
     if (["/favicon.ico"].includes(request.url)) {

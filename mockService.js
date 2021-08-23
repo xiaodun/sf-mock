@@ -1,7 +1,8 @@
 const http = require("http");
 const fs = require("fs");
 const commonUtils = require("./utils/commonUtils");
-
+const getModuleUtils = require("./utils/getModuleUtils");
+global.getModuleUtils = getModuleUtils;
 const ip = commonUtils.getIp();
 const serviceConfig = eval(
   fs.readFileSync("./config/serviceConfig.js", "utf-8")
