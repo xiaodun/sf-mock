@@ -64,7 +64,6 @@ const darkUtils = {
         mockData.body = api.substring(1) + ".js";
       }
       newApis[key] = mockData;
-      console.log("wx", mockData);
     }
     return {
       apis: newApis,
