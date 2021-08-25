@@ -10,7 +10,11 @@ const babelParser = require("@babel/parser");
 const { default: babelTraverse } = require("@babel/traverse");
 const prettier = require("prettier");
 for (const programName in programConfig) {
+  console.log("项目名", programName);
   const mockApiPath = getModuleUtils.getMockApiPath(programName);
+  if (!fs.existsSync(mockApiPath)) {
+    continue;
+  }
   const mockApis = eval(getModuleUtils.pogramMockApiStr(programName));
   for (const apiPath in mockApis) {
     const apiValues = mockApis[apiPath];
@@ -61,7 +65,9 @@ for (const programName in programConfig) {
               bodyNode.value.start,
               bodyNode.value.end
             );
-
+            console.log({
+              [programName]: apiPath,
+            });
             //替换mock-api文件
             mockFileStr = mockFileStr.replace(
               bodyNodeValueStr,
