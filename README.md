@@ -34,6 +34,14 @@ clone 项目到本地，执行`npm install`,执行`node mockService.js`,即可�
 
 同样，如果您想新增一个"sf-vue"项目，也只需新建一个 sf-vue 文件夹，在新建一个 sf-vue-mock-api.js 的文件即可
 
+# useDirMode
+
+程序默认映射形式,可在`defaultConfig.js`中关闭
+
+已'/api/simple/object'为例,会创建目录'\api\simple'+object.js
+
+`convertDirModule.js` 提供将**特定的普通形式**转换为'useDirMode'形式,具体情况已执行结果为准,不一一列举
+
 # 关于分页
 
 方便测试表格分页和上拉加载,能够实现真正的分页。
