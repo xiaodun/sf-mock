@@ -17,8 +17,23 @@ function _getInstance(fileName, type) {
 
   return eval(fs.readFileSync(readPath, "utf-8"));
 }
+function _getMockApiPath(programName) {
+  let mockApiPath = path.resolve(
+    _getProgramPath(programName),
+    `${programName}-mock-api.js`
+  );
+  return mockApiPath;
+}
 const getModuleUtils = {
   getProgramPath: _getProgramPath,
+  getMockApiPath: _getMockApiPath,
+  pogramMockApiStr(programName) {
+    let mockApiPath = _getMockApiPath(programName);
+    return fs.readFileSync(mockApiPath, "utf-8");
+  },
+  programConfig() {
+    return _getInstance("programConfig", "config");
+  },
   defaultConfig() {
     return _getInstance("defaultConfig", "config");
   },
