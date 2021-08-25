@@ -106,7 +106,7 @@
         }
         const apis = mockFile.apis;
         //url带有查询参数在匹配的时候将被忽略
-        let url = mockFile.url.split("?")[0];
+        let url = mockFile.url;
         let mockData = apis[url];
 
         if (mockData == undefined) {

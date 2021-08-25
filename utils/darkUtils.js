@@ -16,7 +16,7 @@ const darkUtils = {
     //获取项目名称
     const programName = result[1];
     //获取api路径
-    const api = result[2];
+    const api = result[2].split("?")[0];
     return {
       programName,
       api,
@@ -33,7 +33,6 @@ const darkUtils = {
     const { programName, api } = this.parseUrl(reqUrl);
 
     console.log("项目名:", programName);
-
     //获取mock数据
     const apis = eval(
       fs.readFileSync(
