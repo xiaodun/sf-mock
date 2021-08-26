@@ -32,12 +32,16 @@
             isSelf: true,
           },
           {
+            withCreateAllBat: false, //默认为true 生成启动自身的bat文件
+            withCreateSingleBat: false, //默认为true 是否和其它项目一起启动
             address: `D:\\github\\sf-notes\\service\\app`,
             startCommad: "node service.js",
             titleName: "notes-service",
           },
         ],
       },
+      withFileStructure: false, //默认为true 关联createFileStructure的行为
+      withNginxConfig: false, //默认为true 关联writeNginxConfig的行为
       webpackHotUrl,
     },
   };

@@ -21,8 +21,10 @@ for (const programName in programConfig) {
   if (!fs.existsSync(programPath)) {
     fs.mkdir(programPath, () => {});
   }
-  // 生成承载mock数据的js文件
-
+  const programValues = programConfig[programName];
+  if (programValues.withFileStructure === false) {
+    continue;
+  }
   createFile({
     path: `${programPath}/${programName}-mock-api.js`,
     content: `

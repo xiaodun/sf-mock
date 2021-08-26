@@ -44,8 +44,12 @@ for (const programName in programConfig) {
       let titleName = tabs.isSelf ? programName : tabs.titleName;
       const singleTabCommand = `nt --title ${titleName} -d ${tabs.address} cmd /k ${tabs.startCommad}`;
       let batContent = `wt -w 0 ${singleTabCommand}`;
-      singleTabCommandList.push(singleTabCommand);
-      fs.writeFileSync(path.resolve(batPath, `${titleName}.bat`), batContent);
+      if (tabs.withCreateAllBat !== false) {
+        singleTabCommandList.push(singleTabCommand);
+      }
+      if (tabs.withCreateSingleBat !== false) {
+        fs.writeFileSync(path.resolve(batPath, `${titleName}.bat`), batContent);
+      }
     });
   }
 }

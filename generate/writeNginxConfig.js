@@ -20,7 +20,10 @@ const mockServiceUrl = "http://" + ip + ":" + serviceConfig.startPort;
 const serverConfigList = [];
 for (const programName in programConfigJs) {
   const programConfigs = programConfigJs[programName];
-
+  const programValues = programConfigJs[programName];
+  if (programValues.withNginxConfig === false) {
+    continue;
+  }
   programConfigs.serverList.forEach((serverConfig) => {
     let url = serverConfig.isMock ? mockServiceUrl : serverConfig.url;
     serverConfigList.push(
