@@ -12,10 +12,14 @@ const copySwaggerConfig = eval(
 const copySwaggerUtils = {
   getResourceList: async function () {
     //获得swagger文档上有哪些组
-    const rsp = await axios.get(
-      copySwaggerConfig.getDocLink() + "/swagger-resources"
-    );
-    return rsp.data;
+    const rsp = await axios
+      .get(copySwaggerConfig.getDocLink() + "/swagger-resources")
+      .catch((error) => {
+        console.error(error);
+        console.log("获取文档失败");
+        return {};
+      });
+    return rsp.data || "";
   },
   getGroupRspCollection: async function (groupUrl) {
     //获得swagger对单个组的描述
@@ -96,9 +100,8 @@ const copySwaggerUtils = {
         if (rsp200.schema && rsp200.schema.$ref) {
           const rsp200SchemaStr = rsp200.schema.$ref;
           console.log("topDefinition : " + rsp200SchemaStr);
-          const structureName = copySwaggerUtils.getStructureName(
-            rsp200SchemaStr
-          );
+          const structureName =
+            copySwaggerUtils.getStructureName(rsp200SchemaStr);
           rspDes = copySwaggerUtils.fillDefinitions(structureName, groupRsp);
         } else {
           rspDes = {};
@@ -151,9 +154,8 @@ const copySwaggerUtils = {
             ableResults[propertyKey].push(able(propertyDescs.items));
           }
         } else {
-          ableResults[propertyKey] = copySwaggerUtils.getDefaultValue(
-            propertyDescs
-          );
+          ableResults[propertyKey] =
+            copySwaggerUtils.getDefaultValue(propertyDescs);
         }
       }
       return ableResults;
