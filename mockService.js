@@ -28,7 +28,7 @@ function start() {
 
   server.setTimeout(0);
   server.listen(serviceConfig.startPort, function () {
-    console.log(`service is running ${ip}:${serviceConfig.startPort}`);
+    console.log(`service is running http://${ip}:${serviceConfig.startPort}`);
   });
   server.on("error", function (error) {
     console.log(error);
