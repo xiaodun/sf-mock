@@ -40,17 +40,40 @@ for (const programName in programConfig) {
   const configs = programConfig[programName];
   const wT = configs["WindowsTerminal"];
   if (wT && wT.isOpen) {
+    let selfName = false;
+    let programTabCommandList = [];
     wT.tabList.forEach((tabs) => {
       let titleName = tabs.isSelf ? programName : tabs.titleName;
+      if (tabs.isSelf) {
+        selfName = programName;
+      }
       const singleTabCommand = `nt --title ${titleName} -d ${tabs.address} cmd /k ${tabs.startCommad}`;
       let batContent = `wt -w 0 ${singleTabCommand}`;
       if (tabs.withCreateAllBat !== false) {
         singleTabCommandList.push(singleTabCommand);
       }
+
       if (tabs.withCreateSingleBat !== false) {
-        fs.writeFileSync(path.resolve(batPath, `${titleName}.bat`), batContent);
+        programTabCommandList.push({
+          titleName,
+          batContent,
+        });
       }
     });
+
+    if (selfName) {
+      const batContent = programTabCommandList
+        .map((item) => item.batContent)
+        .join(";");
+      fs.writeFileSync(path.resolve(batPath, `${selfName}.bat`), batContent);
+    } else {
+      programTabCommandList.forEach((item) => {
+        fs.writeFileSync(
+          path.resolve(batPath, `${item.titleName}.bat`),
+          item.batContent
+        );
+      });
+    }
   }
 }
 // 生成启动全部以配置项目的命令,适用于电脑重启等场景
