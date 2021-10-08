@@ -38,7 +38,7 @@ const copySwaggerUtils = {
     const name = schemaStr.split("#/definitions/")[1];
     return name;
   },
-  fillDefinitions(topStructureName, groupRsp) {
+  fillDefinitions(topStructureName, groupRsp, type = "object") {
     //结构体的定义都是独立出来的  存在嵌套使用的情况 所以需要递归解析
 
     function able(structureName) {
@@ -72,6 +72,9 @@ const copySwaggerUtils = {
           }
         }
       }
+      if (type === "array") {
+        return [rspData];
+      }
       return rspData;
     }
 
@@ -97,12 +100,21 @@ const copySwaggerUtils = {
         const matchMethodInfos = matchPathInfos[method];
         //获得http状态为200的结构体
         const rsp200 = matchMethodInfos.responses["200"];
-        if (rsp200.schema && rsp200.schema.$ref) {
-          const rsp200SchemaStr = rsp200.schema.$ref;
+        if (rsp200.schema) {
+          let type = "object";
+          let rsp200SchemaStr = rsp200.schema.$ref;
+          if (rsp200.schema.type === "array") {
+            type = "array";
+            rsp200SchemaStr = rsp200.schema.items.$ref;
+          }
           console.log("topDefinition : " + rsp200SchemaStr);
           const structureName =
             copySwaggerUtils.getStructureName(rsp200SchemaStr);
-          rspDes = copySwaggerUtils.fillDefinitions(structureName, groupRsp);
+          rspDes = copySwaggerUtils.fillDefinitions(
+            structureName,
+            groupRsp,
+            type
+          );
         } else {
           rspDes = {};
         }
@@ -111,6 +123,7 @@ const copySwaggerUtils = {
         console.log("匹配失败");
       }
     }
+
     return rspDes;
   },
   getDefaultValue(propertyDescs) {
@@ -138,7 +151,12 @@ const copySwaggerUtils = {
       console.log("没有获得响应的结构体");
     }
     function able(desc) {
-      const ableResults = {};
+      let ableResults = {};
+      let isArray = false;
+      if (Array.isArray(desc)) {
+        desc = desc[0];
+        isArray = true;
+      }
       for (let propertyKey in desc) {
         if (propertyKey === "definition$ref") {
           continue;
@@ -157,6 +175,9 @@ const copySwaggerUtils = {
           ableResults[propertyKey] =
             copySwaggerUtils.getDefaultValue(propertyDescs);
         }
+      }
+      if (isArray) {
+        return [ableResults];
       }
       return ableResults;
     }
