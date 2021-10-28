@@ -83,6 +83,10 @@ isOpen:true,
 - transformRspData 已经解析完成的数据结构，在这里可以做一些特性化处理
 - getMockStructure 这时已经准备写入到文件里，可以组合成 mock 服务器支持的任意数据结构
 
+## ajaxStructureConfigData
+
+用于将 swagger 文档上分类下的接口映射为项目上的形式,可根据脚本里的注释做本地化的定制
+
 # 自动生成
 
 ## programConfig.js
