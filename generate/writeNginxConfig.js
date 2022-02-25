@@ -32,8 +32,9 @@ for (const programName in programConfigJs) {
         programUrl: programConfigs.programUrl,
         apiPrefixList: programConfigs.apiPrefixList,
         programName,
-        ...serverConfig,
         url,
+        ...serverConfig,
+        autoAddPrefix: serverConfig.autoAddPrefix !== false ? true : false,
         webpackHotUrl: programConfigs.webpackHotUrl,
       })
     );
@@ -54,9 +55,9 @@ function generateServerConfig(config) {
   const jointConfigs = config.apiPrefixList
     .map((prefix) => {
       return `location ${prefix} {
-      proxy_pass ${config.url}${
-        config.isMock ? "/" + config.programName : ""
-      }${prefix};
+      proxy_pass ${config.url}${config.isMock ? "/" + config.programName : ""}${
+        config.autoAddPrefix ? prefix : "/"
+      };
       client_max_body_size 64m;
    }`;
     })
