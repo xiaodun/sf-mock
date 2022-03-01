@@ -1,10 +1,4 @@
-doc 文件夹下有详细教程，也可以通过其它平台(更新会有滞后)查看
-
-简书: https://www.jianshu.com/c/ecfa47b5ece9
-
-掘金: https://juejin.cn/post/7016908200838430756
-
-知乎: https://www.zhihu.com/column/c_1443514729596129280
+doc 文件夹下有详细文档
 
 # 优势何在
 
