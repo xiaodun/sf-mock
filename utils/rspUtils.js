@@ -275,6 +275,7 @@
                 programName: mockFile.programName,
                 url,
                 defaultConfig,
+                functionArgams,
               });
               programDatas[mockFile.programName].createdAPi[url] = true;
               startParse();

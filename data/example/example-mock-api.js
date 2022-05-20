@@ -137,7 +137,7 @@
 
     //分页
     "/api/page": {
-      // /example/api/page?pageNum=6&pageSize=30
+      // /example/api/page?pageNum=1&pageSize=30
       name: (nameMaps) => nameMaps.heroPage,
       pageable: true,
       getData() {

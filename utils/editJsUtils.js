@@ -28,6 +28,7 @@ const editJsUtils = {
       //在头部自动写入
       let urlValues, dirValues;
       if (params.generateRspData) {
+        //copySwagger文档
         urlValues = params.copySwaggerConfig.getMockStructure(params);
         dirValues = params.defaultConfig.autoCreateSettings.getDefaultValues(
           "js",
@@ -35,8 +36,12 @@ const editJsUtils = {
         );
       } else {
         urlValues = params.defaultConfig.autoCreateSettings.getDefaultValues();
-        dirValues =
-          params.defaultConfig.autoCreateSettings.getDefaultValues("js");
+
+        dirValues = params.defaultConfig.autoCreateSettings.getDefaultValues(
+          "js",
+          //从sf-note携带的数据
+          params.functionArgams?.params?.mockFileData
+        );
       }
 
       if (params.defaultConfig.useDirMode) {
