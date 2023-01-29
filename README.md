@@ -5,7 +5,7 @@
 
 sf-mock 功能可视化的能力由 sf-notes 逐步提供,可参见: https://github.com/xiaodun/sf-notes/blob/master/manual/1项目管理/0.项目列表.md,
 
-支持批量生成 mokc 文件,提示使用体验和开发效率 https://github.com/xiaodun/sf-notes/blob/master/manual/1项目管理/1.Swagger.md
+支持批量生成 mokc 文件,提升使用体验和开发效率 https://github.com/xiaodun/sf-notes/blob/master/manual/1项目管理/1.Swagger.md
 
 
 tutorial 文件夹下有详细的使用说明
