@@ -1,4 +1,5 @@
-const os = require("os");
+const os = require("os"),
+  fs = require("fs");
 
 //解析真实链接获取到环境信息
 
@@ -18,6 +19,12 @@ function getEnvKeyByUrl(url) {
 }
 
 module.exports = {
+  getBase64(filePath) {
+    const fileContent = fs.readFileSync(filePath);
+    const buffer = Buffer.from(fileContent);
+    const base64Str = buffer.toString("base64");
+    return base64Str;
+  },
   getProxyDomain(serverConfig, programName) {
     let envKey = serverConfig.envKey;
     if (!envKey) {
