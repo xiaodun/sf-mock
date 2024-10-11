@@ -1,10 +1,8 @@
-[**中文**](https://github.com/xiaodun/sf-mock) | [English](https://github.com/xiaodun/sf-mock/blob/master/README-en.md)
-
 此项目是为了弱化前端开发时调用接口带来的痛楚逐步成形的,能够帮助前端更好的自测,更好的借助接口文档与后端并行开发,逐步减少联调带来的时间耗损
 
 sf-mock 功能可视化的能力由 sf-notes 逐步提供,可参见: https://github.com/xiaodun/sf-notes/blob/master/manual/1项目管理/0.项目列表.md,
 
-支持批量生成 mokc 文件,提示使用体验和开发效率 https://github.com/xiaodun/sf-notes/blob/master/manual/1项目管理/1.Swagger.md
+支持批量生成 mock 文件,提升使用体验和开发效率 https://github.com/xiaodun/sf-notes/blob/master/manual/1项目管理/1.Swagger.md
 
 tutorial 文件夹下有详细的使用说明
 
@@ -38,8 +36,10 @@ tutorial 文件夹下有详细的使用说明
 - 8 节介绍接入 swagger 文档的流程,可以把返回格式自动写入到 mock 文件里 [阅读](./tutorial/8.按照swagger文档的返回格式生成基础数据.md)
 
 - 9 节介绍了如何集成 WindowTermail,从而做到通过 bat 文件启动项目 [阅读](./tutorial/9.集成WindowTermail.md)
+- 10 节介绍了为每个环境配置域名访问的实现细节 [阅读](./tutorial/10.生成环境对应的域名.md)
+- 11 节介绍了对文件处理的支持，获取上传的文件名，返回 base64、文件流[阅读](./tutorial/11.对文件的处理.md)
 
-通常六分钟阅读完 1-3 节即可体验 mock 服务器,八分钟阅读完 4-5 节并集成即可满足大部分场景的使用,6-7 节是高级用法,8-9 时更加人性化的功能。
+通常六分钟阅读完 1-3 节即可体验 mock 服务器,八分钟阅读完 4-5 节并集成即可满足大部分场景的使用,6-7 节是高级用法,8-11 是更加人性化的功能。
 
 # 关于跨域问题的解决
 

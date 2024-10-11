@@ -18,12 +18,13 @@
   },
   "homepage": "https://github.com/xiaodun/sf-mock#readme",
   "dependencies": {
-    "lodash": "^4.17.20",
     "@babel/parser": "^7.14.0",
     "@babel/traverse": "^7.14.0",
     "axios": "^0.21.1",
     "iconv-lite": "^0.6.2",
+    "lodash": "^4.17.20",
     "mockjs": "^1.1.0",
+    "multiparty": "^4.2.3",
     "prettier": "^2.3.1",
     "sf-copy-to-clipboard": "^1.0.0"
   }

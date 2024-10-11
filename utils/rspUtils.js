@@ -1,5 +1,8 @@
 (function () {
+  const multiparty = require("multiparty");
+  const path = require("path");
   const url = require("url");
+  const commonUtils = require("./utils/commonUtils");
   const darkUtils = require("./utils/darkUtils");
   const pageUtils = require("./utils/pageUtils");
   const editJsUtils = require("./utils/editJsUtils");
@@ -45,9 +48,26 @@
       headers,
       pageInfos: {},
       inject: {},
+      fun: {
+        getResourceBase64: (fileName) => {
+          const filePath = path.join(__dirname, `/resource/${fileName}`);
+          return commonUtils.getBase64(filePath);
+        },
+      },
     };
     const method = request.method.toLowerCase();
-    if (["post", "put"].includes(method)) {
+    if (request.headers["content-type"]?.includes("multipart/form-data")) {
+      const form = new multiparty.Form();
+      form.encoding = "utf-8";
+
+      form.parse(request, (err, fields, files) => {
+        functionArgams.params = {
+          fileName: files.file[0].originalFilename,
+        };
+        startParse();
+      });
+      return;
+    } else if (["post", "put"].includes(method)) {
       let data = "";
 
       request.on("data", function (chunk) {
@@ -235,7 +255,12 @@
                 response.setHeader("Set-Cookie", cookieList);
               }
               response.writeHead(200, headers);
-              if (typeof rspBody === "string") {
+              if (mockData.response.type == "binary") {
+                const stream = fs.createReadStream(
+                  path.join(__dirname, `/resource/${mockData.body}`)
+                );
+                stream.pipe(response);
+              } else if (typeof rspBody === "string") {
                 response.end(rspBody);
               } else {
                 response.end(JSON.stringify(rspBody));
