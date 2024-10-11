@@ -1,12 +1,10 @@
 [**中文**](https://github.com/xiaodun/sf-mock) | [English](https://github.com/xiaodun/sf-mock/blob/master/README-en.md)
 
-
 此项目是为了弱化前端开发时调用接口带来的痛楚逐步成形的,能够帮助前端更好的自测,更好的借助接口文档与后端并行开发,逐步减少联调带来的时间耗损
 
 sf-mock 功能可视化的能力由 sf-notes 逐步提供,可参见: https://github.com/xiaodun/sf-notes/blob/master/manual/1项目管理/0.项目列表.md,
 
 支持批量生成 mokc 文件,提示使用体验和开发效率 https://github.com/xiaodun/sf-notes/blob/master/manual/1项目管理/1.Swagger.md
-
 
 tutorial 文件夹下有详细的使用说明
 
@@ -46,9 +44,3 @@ tutorial 文件夹下有详细的使用说明
 # 关于跨域问题的解决
 
 在 serviceConfig.js,`remoteOrigin`和`reqHeaders`的值是程序给的，理论上已不会出现被"同源策略"拦截的情况
-
-
-
-每收到您的一块钱赞助，深夜敲代码的作者就会掉一根头发。
-
-![](./images/zfb.png)
