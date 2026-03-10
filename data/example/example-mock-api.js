@@ -1,5 +1,9 @@
 (function getApis() {
   return {
+    "/sfNotesTestStart": {
+      useDirMode: true,
+    },
+
     //简单使用
     "/api/simple/object": {
       body: {
