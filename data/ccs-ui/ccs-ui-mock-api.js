@@ -1,5 +1,25 @@
 (function getApis() {
   return {
+    "/api/proxy-gateway/api/v5/mt4/groups/companies": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt4/groups": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/system/brands": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/system/field-risk-levels": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/permissions/me": {
+      useDirMode: true,
+    },
+
     "/api/proxy-gateway/api/v3/role": {
       useDirMode: true,
     },
