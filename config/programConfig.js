@@ -44,5 +44,28 @@
       withNginxConfig: false, //默认为true 关联writeNginxConfig的行为
       webpackHotUrl,
     },
+    "affluence-lottery-client": {
+      //项目地址
+      programUrl: "http://localhost:5173",
+      //项目的公共前缀
+      programPrefix: "/",
+      //ajax请求的前缀，用于转发到服务器
+      apiPrefixList: ["/api"],
+      //数组的一项代表nginx上的一个服务
+      serverList: [
+        {
+          //监听端口
+          port: 9100,
+          //转发到mock服务器，地址有程序自动生成
+          isMock: true,
+        }
+      ],
+      WindowsTerminal: {
+        isOpen: false,
+      },
+      withFileStructure: true, 
+      withNginxConfig: true, 
+      webpackHotUrl,
+    }
   };
 })();
