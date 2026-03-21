@@ -109,6 +109,9 @@ function generateServerConfig(config) {
         ${jointConfigs}
         location ${config.programPrefix} {
            proxy_pass ${config.programUrl};
+           proxy_http_version 1.1;
+           proxy_set_header Upgrade $http_upgrade;
+           proxy_set_header Connection "upgrade";
         }
         location /sockjs-node {
            proxy_set_header X-Real-IP $remote_addr;
