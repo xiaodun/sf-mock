@@ -31,7 +31,7 @@
       withNginxConfig: false, //默认为true 关联writeNginxConfig的行为
       webpackHotUrl,
     },
-    "ccs-ui": {
+    "ccs-app": {
       //项目地址
       programUrl: "http://localhost:3000",
       //项目的公共前缀
