@@ -1,3 +1,69 @@
+/**
+ * Mock: GET /api/proxy-gateway/api/v5/permissions/me
+ *
+ * 字段说明：
+ *   enable: true        → 直接有权限，无需审批
+ *   enable: false       → 无直接权限
+ *   triggerApprove: true  → 可发起审批申请（走审批流）
+ *   triggerApprove: false → 无权限且不能发起审批
+ *
+ * ── Group 权限 (category: "Group") ────────────────────────────
+ *   permissionId  1  → Approve for High    审批高风险变更
+ *   permissionId  2  → Read                查看
+ *   permissionId  3  → Create              创建
+ *   permissionId  4  → Duplicate           复制
+ *   permissionId  5  → Transfer New        转移（新建）
+ *   permissionId  6  → Transfer Settings   转移（同步设置）
+ *   permissionId  7  → Import              导入
+ *   permissionId  8  → Export              导出
+ *   permissionId  9  → Delete              删除
+ *   permissionId 10  → Update Low          编辑低风险字段
+ *   permissionId 11  → Update Medium       编辑中风险字段
+ *   permissionId 12  → Update High         编辑高风险字段
+ *   permissionId 32  → Approve for Medium  审批中风险变更
+ *
+ * ── Symbol 权限 (category: "Symbol") ──────────────────────────
+ *   permissionId 13  → Approve for High    审批高风险变更
+ *   permissionId 14  → Read                查看
+ *   permissionId 15  → Create              创建
+ *   permissionId 16  → Duplicate           复制
+ *   permissionId 17  → Transfer New        转移（新建）
+ *   permissionId 18  → Transfer Settings   转移（同步设置）
+ *   permissionId 19  → Import              导入
+ *   permissionId 20  → Export              导出
+ *   permissionId 21  → Delete              删除
+ *   permissionId 22  → Update Low          编辑低风险字段
+ *   permissionId 23  → Update Medium       编辑中风险字段
+ *   permissionId 24  → Update High         编辑高风险字段
+ *   permissionId 31  → Move                移动（改变分组）
+ *   permissionId 33  → Approve for Medium  审批中风险变更
+ *
+ * ── Security 权限 (category: "Security") ─────────────────────
+ *   permissionId 26  → Read
+ *   permissionId 27  → Export
+ *   permissionId 28  → Update Low
+ *   permissionId 29  → Update Medium
+ *   permissionId 30  → Update High
+ *   permissionId 34  → Approve for High
+ *   permissionId 35  → Approve for Medium
+ *
+ * ── Order 权限 (category: "Order") ───────────────────────────
+ *   permissionId 36  → Read
+ *   permissionId 37  → Export
+ *   permissionId 38  → Report
+ *   permissionId 39  → Delete
+ *   permissionId 40  → Restore
+ *   permissionId 41  → Update Low
+ *   permissionId 42  → Update Medium
+ *   permissionId 43  → Update High
+ *   permissionId 44  → Reopen
+ *   permissionId 45  → To History
+ *   permissionId 46  → Approve for Medium
+ *   permissionId 47  → Approve for High
+ *
+ * ── 系统权限 (systemRolePermissions) ─────────────────────────
+ *   permissionId 25  → CCP Management / Admin
+ */
 (function () {
   return (data) => {
     return {
@@ -50,8 +116,7 @@
                     {
                       "permissionId": 9,
                       "name": "Delete",
-                      "enable": false,
-                      "triggerApprove": true
+                      "enable": true
                     },
                     {
                       "permissionId": 10,
@@ -123,8 +188,7 @@
                     {
                       "permissionId": 21,
                       "name": "Delete",
-                      "enable": false,
-                      "triggerApprove": true
+                      "enable": true
                     },
                     {
                       "permissionId": 22,
@@ -319,8 +383,7 @@
                     {
                       "permissionId": 9,
                       "name": "Delete",
-                      "enable": false,
-                      "triggerApprove": true
+                      "enable": true
                     },
                     {
                       "permissionId": 10,
@@ -392,8 +455,7 @@
                     {
                       "permissionId": 21,
                       "name": "Delete",
-                      "enable": false,
-                      "triggerApprove": true
+                      "enable": true
                     },
                     {
                       "permissionId": 22,
@@ -588,8 +650,7 @@
                     {
                       "permissionId": 9,
                       "name": "Delete",
-                      "enable": false,
-                      "triggerApprove": true
+                      "enable": true
                     },
                     {
                       "permissionId": 10,
@@ -661,8 +722,7 @@
                     {
                       "permissionId": 21,
                       "name": "Delete",
-                      "enable": false,
-                      "triggerApprove": true
+                      "enable": true
                     },
                     {
                       "permissionId": 22,
@@ -857,8 +917,7 @@
                     {
                       "permissionId": 9,
                       "name": "Delete",
-                      "enable": false,
-                      "triggerApprove": true
+                      "enable": true
                     },
                     {
                       "permissionId": 10,
@@ -930,8 +989,7 @@
                     {
                       "permissionId": 21,
                       "name": "Delete",
-                      "enable": false,
-                      "triggerApprove": true
+                      "enable": true
                     },
                     {
                       "permissionId": 22,
@@ -1126,8 +1184,7 @@
                     {
                       "permissionId": 9,
                       "name": "Delete",
-                      "enable": false,
-                      "triggerApprove": true
+                      "enable": true
                     },
                     {
                       "permissionId": 10,
@@ -1199,8 +1256,7 @@
                     {
                       "permissionId": 21,
                       "name": "Delete",
-                      "enable": false,
-                      "triggerApprove": true
+                      "enable": true
                     },
                     {
                       "permissionId": 22,
@@ -1395,8 +1451,7 @@
                     {
                       "permissionId": 9,
                       "name": "Delete",
-                      "enable": false,
-                      "triggerApprove": true
+                      "enable": true
                     },
                     {
                       "permissionId": 10,
@@ -1468,8 +1523,7 @@
                     {
                       "permissionId": 21,
                       "name": "Delete",
-                      "enable": false,
-                      "triggerApprove": true
+                      "enable": true
                     },
                     {
                       "permissionId": 22,
@@ -1664,8 +1718,7 @@
                     {
                       "permissionId": 9,
                       "name": "Delete",
-                      "enable": false,
-                      "triggerApprove": true
+                      "enable": true
                     },
                     {
                       "permissionId": 10,
@@ -1737,8 +1790,7 @@
                     {
                       "permissionId": 21,
                       "name": "Delete",
-                      "enable": false,
-                      "triggerApprove": true
+                      "enable": true
                     },
                     {
                       "permissionId": 22,
