@@ -24,6 +24,7 @@ const serviceConfig = eval(
 );
 const commonUtils = require("../utils/commonUtils");
 const ip = commonUtils.getIp();
+const skipWriteHosts = process.env.SF_MOCK_SKIP_HOSTS_WRITE === "1";
 const mockServiceUrl = "http://" + ip + ":" + serviceConfig.startPort;
 const serverConfigList = [];
 const server_nameList = [];
@@ -58,30 +59,28 @@ const generateNginxConfContent = nginxConfContent.replace(
 );
 
 fs.writeFileSync("../nginx-1.19.6/conf/nginx.conf", generateNginxConfContent);
-
-let generateHostsFileContent;
-const hostsFileContent = fs.readFileSync(hostsFilePath, "utf-8");
-let server_nameWriteHostsContent = server_nameList
-  .map((item) => `${ip} ${item}`)
-  .join("\n");
-if (mockServiceAreaRegexp.test(hostsFileContent)) {
-  //替换
-  generateHostsFileContent = hostsFileContent.replace(
-    mockServiceAreaRegexp,
-    (all, group1) =>
-      all.replace(group1, "\n" + server_nameWriteHostsContent + "\n")
-  );
-} else {
-  //添加
-  generateHostsFileContent = [
-    hostsFileContent,
-    mockServicePrefixFlag,
-    server_nameWriteHostsContent,
-    mockServiceSuffixFlag,
-  ].join("\n");
+if (!skipWriteHosts) {
+  let generateHostsFileContent;
+  const hostsFileContent = fs.readFileSync(hostsFilePath, "utf-8");
+  let server_nameWriteHostsContent = server_nameList
+    .map((item) => `${ip} ${item}`)
+    .join("\n");
+  if (mockServiceAreaRegexp.test(hostsFileContent)) {
+    generateHostsFileContent = hostsFileContent.replace(
+      mockServiceAreaRegexp,
+      (all, group1) =>
+        all.replace(group1, "\n" + server_nameWriteHostsContent + "\n")
+    );
+  } else {
+    generateHostsFileContent = [
+      hostsFileContent,
+      mockServicePrefixFlag,
+      server_nameWriteHostsContent,
+      mockServiceSuffixFlag,
+    ].join("\n");
+  }
+  fs.writeFileSync(hostsFilePath, generateHostsFileContent);
 }
-
-fs.writeFileSync(hostsFilePath, generateHostsFileContent);
 
 /**
  * 生成nginx.conf 的 server配置
