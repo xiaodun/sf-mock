@@ -73,7 +73,7 @@
       serverList: [
         {
           //监听端口
-          port: 9200,
+          port: 9300,
           //转发到mock服务器，地址有程序自动生成
           isMock: true,
         }
