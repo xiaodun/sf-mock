@@ -22,7 +22,7 @@
             "dealer": 0,
             "timeExpiration": 0,
             "comment": "[AL-SL_at_14.200000]",
-            "highlight": false,
+            "highlight": true,
             "volume": "0.0023 / 0.0023"
           },
           {
@@ -44,7 +44,7 @@
             "dealer": 0,
             "timeExpiration": 0,
             "comment": "[AL-SL_at_14.200000]",
-            "highlight": false,
+            "highlight": true,
             "volume": "0.0023 / 0.0023"
           },
           {
@@ -88,7 +88,7 @@
             "dealer": 0,
             "timeExpiration": 0,
             "comment": "[AL-SL_at_14.200000]",
-            "highlight": false,
+            "highlight": true,
             "volume": "0.01 / 0.01"
           },
           {

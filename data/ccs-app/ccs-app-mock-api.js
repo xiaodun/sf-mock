@@ -1,5 +1,17 @@
 (function getApis() {
   return {
+    "/api/proxy-gateway/api/v5/mt5/orders/backups": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt5/network-server/backup-servers": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt4/orders": {
+      useDirMode: true,
+    },
+
     "/api/proxy-gateway/api/v5/mt5/symbol-folder": {
       useDirMode: true,
     },
