@@ -1,5 +1,13 @@
 (function getApis() {
   return {
+    "/api/proxy-gateway/api/v5/mt5/symbol-folder": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt4/symbols": {
+      useDirMode: true,
+    },
+
     "/api/proxy-gateway/api/v5/common/rsa-public-key": {
       useDirMode: true,
     },
