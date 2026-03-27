@@ -1,6 +1,7 @@
 (function () {
   return (data) => {
-    if (data.params.version == 5) {
+    console.log('wx', data.params)
+    if (data.params.mtVersion == 5) {
       return {
         "data": {
           "data": [
@@ -8,12 +9,12 @@
               "brand": "Brand3",
               "servers": [
                 {
-                  "serverName": "MT5 TPTest",
+                  "serverName": "MT5_TPTest",
                   "serverId": 20001,
                   "mtVersion": 5
                 },
                 {
-                  "serverName": "MT5 TPTest 2",
+                  "serverName": "MT5_TPTest_2",
                   "serverId": 20002,
                   "mtVersion": 5
                 }
@@ -34,7 +35,7 @@
         },
         "status": 200,
         "tokenStatus": {
-          "expiresAt": 1773884640602,
+          "expiresAt": 1774668572478,
           "isValid": true
         }
       };

@@ -1,5 +1,25 @@
 (function getApis() {
   return {
+    "/api/proxy-gateway/api/v5/common/rsa-public-key": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt4/backups": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt5/orders/list": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt5/symbols": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt5/groups": {
+      useDirMode: true,
+    },
+
     "/api/proxy-gateway/api/v5/mt4/groups/J_ENF_AUD": {
       useDirMode: true,
     },
@@ -10,8 +30,11 @@
 
     // ─── MT4 Groups (v5) ────────────────────────────────────────────────────
     // GET list / POST create / PUT update
+    // 切换 412 测试模式: 取消下面 response 行注释 → GET/PUT/POST 均返回 HTTP 412
+    // 恢复正常: 注释掉 response 行，保留 useDirMode: true
     "/api/proxy-gateway/api/v5/mt4/groups": {
       useDirMode: true,
+      response: { statusCode: 412 }, // [412-TEST] 取消注释模拟 RSA key expired
     },
 
     // GET /api/v5/mt4/groups/companies

@@ -1,6 +1,9 @@
 (function () {
   return (data) => {
     // POST (create) / PUT (update) — return success
+    // 注意: 要测试 412，在 ccs-app-mock-api.js 里取消注释:
+    //   response: { statusCode: 412 }  // [412-TEST]
+    // 那样 sf-mock 会在路由层直接返回 HTTP 412，不会走到这里
     if (data && (data.method === "POST" || data.method === "PUT")) {
       return {
         "data": {
