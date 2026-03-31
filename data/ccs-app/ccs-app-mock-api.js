@@ -32,6 +32,10 @@
       useDirMode: true,
     },
 
+    "/api/proxy-gateway/api/v5/mt5/positions/list": {
+      useDirMode: true,
+    },
+
     "/api/proxy-gateway/api/v5/mt5/symbols": {
       useDirMode: true,
     },
