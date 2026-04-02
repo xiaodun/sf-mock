@@ -1,5 +1,37 @@
 (function getApis() {
   return {
+    "/api/proxy-gateway/api/v5/mt5/positions/3135021": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/common/enum/0/101": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt5/orders/3135679": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt5/account/info": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt5/deals/5976014": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt5/orders/100014919": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt5/ticket/tree": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt5/network-server/trade-servers": {
+      useDirMode: true,
+    },
+
     "/api/proxy-gateway/api/v5/mt5/orders/backups": {
       useDirMode: true,
     },
@@ -36,6 +68,10 @@
       useDirMode: true,
     },
 
+    "/api/proxy-gateway/api/v5/mt5/ticks/history": {
+      useDirMode: true,
+    },
+
     "/api/proxy-gateway/api/v5/mt5/symbols": {
       useDirMode: true,
     },
@@ -58,7 +94,7 @@
     // 恢复正常: 注释掉 response 行，保留 useDirMode: true
     "/api/proxy-gateway/api/v5/mt4/groups": {
       useDirMode: true,
-      response: { statusCode: 412 }, // [412-TEST] 取消注释模拟 RSA key expired
+      // response: { statusCode: 412 }, // [412-TEST] 静态412已移至 groups.js 动态处理（第1次写返回412，第2次返回200）
     },
 
     // GET /api/v5/mt4/groups/companies

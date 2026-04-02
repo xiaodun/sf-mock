@@ -1,19 +1,22 @@
 (function () {
+  // [412-TEST] Counter — first PUT/POST returns 412, second returns 200
+  // Reset by reloading sf-mock. Set to 0 to disable 412 simulation.
+  let _mutationCount = 0;
+
   return (data) => {
-    // POST (create) / PUT (update) — return success
-    // 注意: 要测试 412，在 ccs-app-mock-api.js 里取消注释:
-    //   response: { statusCode: 412 }  // [412-TEST]
-    // 那样 sf-mock 会在路由层直接返回 HTTP 412，不会走到这里
-    if (data && (data.method === "POST" || data.method === "PUT")) {
-      return {
-        "data": {
-          "data": null,
-          "code": "0",
-          "message": "success"
-        },
-        "status": 200,
-        "tokenStatus": { "expiresAt": 1900000000000, "isValid": true }
-      };
+    const method = (data.method || "GET").toUpperCase();
+
+    // [412-TEST] Simulate RSA key expired: first write returns 412, retry returns 200
+    if (method === "PUT" || method === "POST") {
+      _mutationCount++;
+      console.log(`[412-TEST] groups ${method} call #${_mutationCount}`);
+      if (_mutationCount === 1) {
+        console.log("[412-TEST] returning 412");
+        return { statusCode: 412, data: { message: "RSA key expired" } };
+      }
+      console.log("[412-TEST] returning 200 (retry succeeded)");
+      _mutationCount = 0; // reset for next test
+      return { data: { data: null, message: "success" } };
     }
 
     // GET — return group list (IMT4GroupListItem[])
