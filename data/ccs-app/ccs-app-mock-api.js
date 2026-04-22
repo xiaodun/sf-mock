@@ -1,5 +1,45 @@
 (function getApis() {
   return {
+    "/api/proxy-gateway/api/v5/system/configs/import-limits": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt5/orders/100014920": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt5/positions/backups": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/common/enum/5/11": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/common/enum/5/10": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt4/securities": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/common/enum/5/8": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt5/orders/3135800": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt5/orders/3135021": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt5/deals/5975991": {
+      useDirMode: true,
+    },
+
     "/api/proxy-gateway/api/v5/mt5/positions/3135021": {
       useDirMode: true,
     },
@@ -57,6 +97,10 @@
     },
 
     "/api/proxy-gateway/api/v5/mt4/backups": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt5/orders/to-history": {
       useDirMode: true,
     },
 

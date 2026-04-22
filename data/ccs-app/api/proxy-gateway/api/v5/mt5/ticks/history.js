@@ -1,59 +1,28 @@
 (function () {
   return (data) => {
+    // Base time: 2025-10-15T10:30:00.000Z = 1760524200000
+    const base = 1760524200000;
+    const ticks = [];
+    let bid = 1.14735;
+    let ask = 1.14749;
+    let last = 1.14743;
+    for (let i = 0; i < 600; i++) {
+      bid += (Math.random() - 0.5) * 0.00004;
+      ask = bid + 0.00013 + Math.random() * 0.00004;
+      last = bid + 0.00005 + (Math.random() - 0.5) * 0.00006;
+      ticks.push({
+        datetime: new Date(base + i * 1000 + Math.floor(Math.random() * 900)).toISOString(),
+        bid: Math.round(bid * 100000) / 100000,
+        ask: Math.round(ask * 100000) / 100000,
+        last: Math.round(last * 100000) / 100000,
+        volume: 0,
+        volumeExt: 0,
+        flags: [2, 4, 130, 134][Math.floor(Math.random() * 4)]
+      });
+    }
     return {
       "data": {
-        "data": [
-          { "datetimeMsc": 1774935311036, "bid": 1.14738, "ask": 1.14751, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 130 },
-          { "datetimeMsc": 1774935311662, "bid": 1.14735, "ask": 1.14748, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 134 },
-          { "datetimeMsc": 1774935311980, "bid": 1.14735, "ask": 1.14749, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 4 },
-          { "datetimeMsc": 1774935312102, "bid": 1.14734, "ask": 1.14748, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 134 },
-          { "datetimeMsc": 1774935312858, "bid": 1.14735, "ask": 1.14748, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 130 },
-          { "datetimeMsc": 1774935313385, "bid": 1.14736, "ask": 1.14749, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 134 },
-          { "datetimeMsc": 1774935314162, "bid": 1.14734, "ask": 1.14748, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 134 },
-          { "datetimeMsc": 1774935314272, "bid": 1.14737, "ask": 1.14751, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 134 },
-          { "datetimeMsc": 1774935314554, "bid": 1.14738, "ask": 1.14751, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 130 },
-          { "datetimeMsc": 1774935315603, "bid": 1.14737, "ask": 1.14751, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 130 },
-          { "datetimeMsc": 1774935316960, "bid": 1.14736, "ask": 1.1475,  "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 134 },
-          { "datetimeMsc": 1774935318460, "bid": 1.14737, "ask": 1.1475,  "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 130 },
-          { "datetimeMsc": 1774935319273, "bid": 1.14736, "ask": 1.1475,  "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 130 },
-          { "datetimeMsc": 1774935319385, "bid": 1.14737, "ask": 1.14751, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 134 },
-          { "datetimeMsc": 1774935322507, "bid": 1.14736, "ask": 1.14749, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 134 },
-          { "datetimeMsc": 1774935322611, "bid": 1.14735, "ask": 1.14749, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 130 },
-          { "datetimeMsc": 1774935325681, "bid": 1.14735, "ask": 1.14748, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 4 },
-          { "datetimeMsc": 1774935326548, "bid": 1.14734, "ask": 1.14748, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 130 },
-          { "datetimeMsc": 1774935326961, "bid": 1.14735, "ask": 1.14748, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 130 },
-          { "datetimeMsc": 1774935327793, "bid": 1.14734, "ask": 1.14748, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 130 },
-          { "datetimeMsc": 1774935327892, "bid": 1.14735, "ask": 1.14749, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 134 },
-          { "datetimeMsc": 1774935328413, "bid": 1.14734, "ask": 1.14748, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 134 },
-          { "datetimeMsc": 1774935329151, "bid": 1.14735, "ask": 1.14749, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 134 },
-          { "datetimeMsc": 1774935329652, "bid": 1.14734, "ask": 1.14748, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 134 },
-          { "datetimeMsc": 1774935330398, "bid": 1.14735, "ask": 1.14748, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 130 },
-          { "datetimeMsc": 1774935330514, "bid": 1.14735, "ask": 1.14749, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 4 },
-          { "datetimeMsc": 1774935330704, "bid": 1.14734, "ask": 1.14748, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 134 },
-          { "datetimeMsc": 1774935331019, "bid": 1.14735, "ask": 1.14748, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 130 },
-          { "datetimeMsc": 1774935331120, "bid": 1.14736, "ask": 1.14749, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 134 },
-          { "datetimeMsc": 1774935331271, "bid": 1.14738, "ask": 1.14751, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 134 },
-          { "datetimeMsc": 1774935331602, "bid": 1.14735, "ask": 1.14749, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 134 },
-          { "datetimeMsc": 1774935332355, "bid": 1.14734, "ask": 1.14748, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 134 },
-          { "datetimeMsc": 1774935332731, "bid": 1.14735, "ask": 1.14749, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 134 },
-          { "datetimeMsc": 1774935338512, "bid": 1.14734, "ask": 1.14747, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 134 },
-          { "datetimeMsc": 1774935345919, "bid": 1.14734, "ask": 1.14748, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 4 },
-          { "datetimeMsc": 1774935348897, "bid": 1.14736, "ask": 1.1475,  "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 134 },
-          { "datetimeMsc": 1774935349013, "bid": 1.14736, "ask": 1.14749, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 4 },
-          { "datetimeMsc": 1774935349305, "bid": 1.14738, "ask": 1.14752, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 134 },
-          { "datetimeMsc": 1774935350763, "bid": 1.14738, "ask": 1.14751, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 4 },
-          { "datetimeMsc": 1774935351280, "bid": 1.14737, "ask": 1.14751, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 130 },
-          { "datetimeMsc": 1774935351969, "bid": 1.14738, "ask": 1.14752, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 134 },
-          { "datetimeMsc": 1774935352074, "bid": 1.14736, "ask": 1.14749, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 134 },
-          { "datetimeMsc": 1774935352853, "bid": 1.14737, "ask": 1.14751, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 134 },
-          { "datetimeMsc": 1774935352960, "bid": 1.14738, "ask": 1.14751, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 130 },
-          { "datetimeMsc": 1774935353701, "bid": 1.14737, "ask": 1.1475,  "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 134 },
-          { "datetimeMsc": 1774935354129, "bid": 1.14737, "ask": 1.14751, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 4 },
-          { "datetimeMsc": 1774935354264, "bid": 1.14736, "ask": 1.1475,  "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 134 },
-          { "datetimeMsc": 1774935355819, "bid": 1.14737, "ask": 1.14751, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 134 },
-          { "datetimeMsc": 1774935355922, "bid": 1.14737, "ask": 1.1475,  "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 4 },
-          { "datetimeMsc": 1774935356140, "bid": 1.14737, "ask": 1.14751, "last": 1.14743, "volume": 0, "volumeExt": 0, "flags": 4 }
-        ]
+        "data": ticks
       }
     };
   };

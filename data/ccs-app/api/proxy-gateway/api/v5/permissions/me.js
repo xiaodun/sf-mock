@@ -291,7 +291,7 @@
                       "permissionId": 39,
                       "name": "Delete",
                       "enable": true,
-                      "triggerApprove": false
+                      "triggerApprove": true
                     },
                     {
                       "permissionId": 40,
@@ -560,7 +560,7 @@
                       "permissionId": 39,
                       "name": "Delete",
                       "enable": true,
-                      "triggerApprove": false
+                      "triggerApprove": true
                     },
                     {
                       "permissionId": 40,
@@ -829,7 +829,7 @@
                       "permissionId": 39,
                       "name": "Delete",
                       "enable": true,
-                      "triggerApprove": false
+                      "triggerApprove": true
                     },
                     {
                       "permissionId": 40,
@@ -1098,7 +1098,7 @@
                       "permissionId": 39,
                       "name": "Delete",
                       "enable": true,
-                      "triggerApprove": false
+                      "triggerApprove": true
                     },
                     {
                       "permissionId": 40,
@@ -1367,7 +1367,7 @@
                       "permissionId": 39,
                       "name": "Delete",
                       "enable": true,
-                      "triggerApprove": false
+                      "triggerApprove": true
                     },
                     {
                       "permissionId": 40,
@@ -1636,7 +1636,7 @@
                       "permissionId": 39,
                       "name": "Delete",
                       "enable": true,
-                      "triggerApprove": false
+                      "triggerApprove": true
                     },
                     {
                       "permissionId": 40,
