@@ -13,7 +13,7 @@
               "name": "coverage"
             },
             "success": true,
-            // "message": "success"
+            "message": "success"
           },
           {
             "identifier": {
@@ -25,7 +25,7 @@
           }
         ]
       },
-      "status": 200,
+      "status": 207,
       "tokenStatus": { "expiresAt": 1900000000000, "isValid": true }
     };
   };
