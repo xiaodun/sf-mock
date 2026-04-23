@@ -3,31 +3,27 @@
     // POST (transfer new) / PUT (transfer settings) — same response shape
     return {
       "data": {
-        "data": {
-          "totalCount": 2,
-          "sucessCount": 2,
-          "failedCount": 0,
-          "details": [
-            {
-              "identifier": {
-                "serverId": 10002,
-                "name": "R_STD_USD"
-              },
-              "success": true,
-              "message": "success"
+        "totalCount": 2,
+        "sucessCount": 1,
+        "failedCount": 1,
+        "details": [
+          {
+            "identifier": {
+              "serverId": 10002,
+              "name": "coverage"
             },
-            {
-              "identifier": {
-                "serverId": 10002,
-                "name": "R_ECN_USD"
-              },
-              "success": true,
-              "message": "success"
-            }
-          ]
-        },
-        "code": "0",
-        "message": "success"
+            "success": true,
+            // "message": "success"
+          },
+          {
+            "identifier": {
+              "serverId": 10002,
+              "name": "M_GFT_USD"
+            },
+            "success": false,
+            "message": "Transfer failed: group configuration conflict"
+          }
+        ]
       },
       "status": 200,
       "tokenStatus": { "expiresAt": 1900000000000, "isValid": true }
