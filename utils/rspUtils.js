@@ -254,12 +254,39 @@
                 );
                 response.setHeader("Set-Cookie", cookieList);
               }
-              response.writeHead(200, headers);
+              const pluginHubDownload =
+                rspBody &&
+                typeof rspBody === "object" &&
+                rspBody.__pluginHubFileDownload === true;
+              const outHeaders =
+                pluginHubDownload && rspBody.filePath && rspBody.downloadName
+                  ? Object.assign({}, headers, {
+                      "Content-Type": "application/octet-stream",
+                      "Content-Disposition":
+                        'attachment; filename="' +
+                        String(rspBody.downloadName).replace(/"/g, "") +
+                        '"',
+                    })
+                  : headers;
+
+              response.writeHead(200, outHeaders);
               if (mockData.response.type == "binary") {
                 const stream = fs.createReadStream(
                   path.join(__dirname, `/resource/${mockData.body}`)
                 );
                 stream.pipe(response);
+              } else if (pluginHubDownload && rspBody.filePath) {
+                const abs = path.join(process.cwd(), rspBody.filePath);
+                if (!fs.existsSync(abs)) {
+                  response.end(
+                    JSON.stringify({
+                      data: { data: null, message: "mock file missing: " + abs },
+                      status: 500,
+                    })
+                  );
+                } else {
+                  fs.createReadStream(abs).pipe(response);
+                }
               } else if (typeof rspBody === "string") {
                 response.end(rspBody);
               } else {

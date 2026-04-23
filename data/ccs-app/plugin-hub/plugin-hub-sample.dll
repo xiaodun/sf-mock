@@ -1,0 +1,2 @@
+MOCK_PLUGIN_BINARY_V1
+This file is returned for every /plugin-hub/files/{id}/download in sf-mock (same bytes; filename comes from IPluginFile.fileName).

@@ -1,5 +1,13 @@
 (function getApis() {
   return {
+    "/api/proxy-gateway/api/v5/roles/role-groups": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/roles": {
+      useDirMode: true,
+    },
+
     "/api/proxy-gateway/api/v5/system/configs/import-limits": {
       useDirMode: true,
     },
@@ -232,6 +240,21 @@
     "/api/proxy-gateway/api/v5/permissions/me": {
       useDirMode: true,
     },
+
+    // ─── Plugin Hub — Plugin Library (v5) ───────────────────────────────────
+    // GET .../plugin-hub/plugins?platform=MT4|MT5  → IV5APIResponse<IPlugin[]>
+    "/api/proxy-gateway/api/v5/plugin-hub/plugins": {
+      useDirMode: true,
+    },
+    // GET .../plugins/{id} | .../plugins/{id}/versions | .../versions/{id}/files | .../files/{id}/preview | download
+    "/api/proxy-gateway/api/v5/plugin-hub/(plugins/\\d+|plugins/\\d+/versions|versions/\\d+/files|files/\\d+/preview|files/\\d+/download)$":
+      {
+        useDirMode: false,
+        options: {
+          supportRegexp: true,
+        },
+        body: "plugin-hub/plugin-hub-router.js",
+      },
 
     // ─── Roles / Users ───────────────────────────────────────────────────────
     "/api/proxy-gateway/api/v3/role": {
