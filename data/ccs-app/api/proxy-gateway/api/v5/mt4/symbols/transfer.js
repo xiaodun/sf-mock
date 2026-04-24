@@ -11,7 +11,7 @@
         "details": [
           {
             "identifier": {
-              "serverId": 10004,
+              "serverId": 10002,
               "name": "_DJI"
             },
             "success": false,
