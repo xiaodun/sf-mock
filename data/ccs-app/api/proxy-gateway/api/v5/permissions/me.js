@@ -609,6 +609,138 @@
               ]
             },
             {
+              "serverId": 10014,
+              "roleId": 73,
+              "roleName": "Management",
+              "rolePermissions": [
+                {
+                  "category": "Group",
+                  "permissions": [
+                    { "permissionId": 2, "name": "Read", "enable": true },
+                    { "permissionId": 3, "name": "Create", "enable": true },
+                    { "permissionId": 4, "name": "Duplicate", "enable": true },
+                    { "permissionId": 5, "name": "Transfer New", "enable": true },
+                    { "permissionId": 6, "name": "Transfer Settings", "enable": true },
+                    { "permissionId": 7, "name": "Import", "enable": true },
+                    { "permissionId": 8, "name": "Export", "enable": true },
+                    { "permissionId": 9, "name": "Delete", "enable": true, "triggerApprove": false },
+                    { "permissionId": 10, "name": "Update Low", "enable": true },
+                    { "permissionId": 11, "name": "Update Medium", "enable": true, "triggerApprove": false },
+                    { "permissionId": 12, "name": "Update High", "enable": true, "triggerApprove": false },
+                    { "permissionId": 32, "name": "Approve for Medium", "enable": true },
+                    { "permissionId": 1, "name": "Approve for High", "enable": true }
+                  ]
+                },
+                {
+                  "category": "Symbol",
+                  "permissions": [
+                    { "permissionId": 14, "name": "Read", "enable": true },
+                    { "permissionId": 15, "name": "Create", "enable": true },
+                    { "permissionId": 16, "name": "Duplicate", "enable": true },
+                    { "permissionId": 17, "name": "Transfer New", "enable": true },
+                    { "permissionId": 18, "name": "Transfer Settings", "enable": true },
+                    { "permissionId": 19, "name": "Import", "enable": true },
+                    { "permissionId": 20, "name": "Export", "enable": true },
+                    { "permissionId": 21, "name": "Delete", "enable": true, "triggerApprove": false },
+                    { "permissionId": 22, "name": "Update Low", "enable": true },
+                    { "permissionId": 23, "name": "Update Medium", "enable": true, "triggerApprove": false },
+                    { "permissionId": 24, "name": "Update High", "enable": true, "triggerApprove": false },
+                    { "permissionId": 31, "name": "Move", "enable": true, "triggerApprove": false },
+                    { "permissionId": 33, "name": "Approve for Medium", "enable": true },
+                    { "permissionId": 13, "name": "Approve for High", "enable": true }
+                  ]
+                }
+              ]
+            },
+            {
+              "serverId": 10015,
+              "roleId": 73,
+              "roleName": "Management",
+              "rolePermissions": [
+                {
+                  "category": "Group",
+                  "permissions": [
+                    { "permissionId": 2, "name": "Read", "enable": true },
+                    { "permissionId": 3, "name": "Create", "enable": true },
+                    { "permissionId": 4, "name": "Duplicate", "enable": true },
+                    { "permissionId": 5, "name": "Transfer New", "enable": true },
+                    { "permissionId": 6, "name": "Transfer Settings", "enable": true },
+                    { "permissionId": 7, "name": "Import", "enable": true },
+                    { "permissionId": 8, "name": "Export", "enable": true },
+                    { "permissionId": 9, "name": "Delete", "enable": true, "triggerApprove": false },
+                    { "permissionId": 10, "name": "Update Low", "enable": true },
+                    { "permissionId": 11, "name": "Update Medium", "enable": true, "triggerApprove": false },
+                    { "permissionId": 12, "name": "Update High", "enable": true, "triggerApprove": false },
+                    { "permissionId": 32, "name": "Approve for Medium", "enable": true },
+                    { "permissionId": 1, "name": "Approve for High", "enable": true }
+                  ]
+                },
+                {
+                  "category": "Symbol",
+                  "permissions": [
+                    { "permissionId": 14, "name": "Read", "enable": true },
+                    { "permissionId": 15, "name": "Create", "enable": true },
+                    { "permissionId": 16, "name": "Duplicate", "enable": true },
+                    { "permissionId": 17, "name": "Transfer New", "enable": true },
+                    { "permissionId": 18, "name": "Transfer Settings", "enable": true },
+                    { "permissionId": 19, "name": "Import", "enable": true },
+                    { "permissionId": 20, "name": "Export", "enable": true },
+                    { "permissionId": 21, "name": "Delete", "enable": true, "triggerApprove": false },
+                    { "permissionId": 22, "name": "Update Low", "enable": true },
+                    { "permissionId": 23, "name": "Update Medium", "enable": true, "triggerApprove": false },
+                    { "permissionId": 24, "name": "Update High", "enable": true, "triggerApprove": false },
+                    { "permissionId": 31, "name": "Move", "enable": true, "triggerApprove": false },
+                    { "permissionId": 33, "name": "Approve for Medium", "enable": true },
+                    { "permissionId": 13, "name": "Approve for High", "enable": true }
+                  ]
+                }
+              ]
+            },
+            {
+              "serverId": 10016,
+              "roleId": 73,
+              "roleName": "Management",
+              "rolePermissions": [
+                {
+                  "category": "Group",
+                  "permissions": [
+                    { "permissionId": 2, "name": "Read", "enable": true },
+                    { "permissionId": 3, "name": "Create", "enable": true },
+                    { "permissionId": 4, "name": "Duplicate", "enable": true },
+                    { "permissionId": 5, "name": "Transfer New", "enable": true },
+                    { "permissionId": 6, "name": "Transfer Settings", "enable": true },
+                    { "permissionId": 7, "name": "Import", "enable": true },
+                    { "permissionId": 8, "name": "Export", "enable": true },
+                    { "permissionId": 9, "name": "Delete", "enable": true, "triggerApprove": false },
+                    { "permissionId": 10, "name": "Update Low", "enable": true },
+                    { "permissionId": 11, "name": "Update Medium", "enable": true, "triggerApprove": false },
+                    { "permissionId": 12, "name": "Update High", "enable": true, "triggerApprove": false },
+                    { "permissionId": 32, "name": "Approve for Medium", "enable": true },
+                    { "permissionId": 1, "name": "Approve for High", "enable": true }
+                  ]
+                },
+                {
+                  "category": "Symbol",
+                  "permissions": [
+                    { "permissionId": 14, "name": "Read", "enable": true },
+                    { "permissionId": 15, "name": "Create", "enable": true },
+                    { "permissionId": 16, "name": "Duplicate", "enable": true },
+                    { "permissionId": 17, "name": "Transfer New", "enable": true },
+                    { "permissionId": 18, "name": "Transfer Settings", "enable": true },
+                    { "permissionId": 19, "name": "Import", "enable": true },
+                    { "permissionId": 20, "name": "Export", "enable": true },
+                    { "permissionId": 21, "name": "Delete", "enable": true, "triggerApprove": false },
+                    { "permissionId": 22, "name": "Update Low", "enable": true },
+                    { "permissionId": 23, "name": "Update Medium", "enable": true, "triggerApprove": false },
+                    { "permissionId": 24, "name": "Update High", "enable": true, "triggerApprove": false },
+                    { "permissionId": 31, "name": "Move", "enable": true, "triggerApprove": false },
+                    { "permissionId": 33, "name": "Approve for Medium", "enable": true },
+                    { "permissionId": 13, "name": "Approve for High", "enable": true }
+                  ]
+                }
+              ]
+            },
+            {
               "serverId": 10004,
               "roleId": 73,
               "roleName": "Management",

@@ -56,6 +56,21 @@
                   "serverName": "MT4_TEST",
                   "serverId": 10002,
                   "mtVersion": 4
+                },
+                {
+                  "serverName": "MT4_PU1",
+                  "serverId": 10014,
+                  "mtVersion": 4
+                },
+                {
+                  "serverName": "MT4_PU2",
+                  "serverId": 10015,
+                  "mtVersion": 4
+                },
+                {
+                  "serverName": "MT4_PU3",
+                  "serverId": 10016,
+                  "mtVersion": 4
                 }
               ]
             },
