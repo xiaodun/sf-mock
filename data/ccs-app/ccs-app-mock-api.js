@@ -1,5 +1,17 @@
 (function getApis() {
   return {
+    "/api/proxy-gateway/api/v5/mt5/symbols/transfer": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt4/symbols/transfer": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt5/groups/transfer": {
+      useDirMode: true,
+    },
+
     "/api/proxy-gateway/api/v5/roles/role-groups": {
       useDirMode: true,
     },
