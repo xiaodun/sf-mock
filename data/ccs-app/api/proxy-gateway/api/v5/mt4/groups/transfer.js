@@ -8,7 +8,7 @@
   // details 条数 = 前端勾选的 toServerIds × groupNames/symbols 笛卡尔积，
   // 单 server/多 server 直接由前端决定。
   // ====================================================================
-  const MODE = "validation";
+  const MODE = "partial";
 
   return (data) => {
     const params = data.params || {};
