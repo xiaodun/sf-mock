@@ -1,0 +1,92 @@
+(function () {
+  return (data) => {
+    return {
+      data: {
+        data: {
+          "orders": [
+            {
+              "order": 100014919,
+              "login": 85003439,
+              "symbol": "EURUSD",
+              "digits": 5,
+              "timeSetup": "2026-03-27T06:38:38.000+00:00",
+              "timeSetupMsc": "2026-03-27T06:38:38.787+00:00",
+              "timeDone": "2026-03-27T06:38:38.000+00:00",
+              "timeDoneMsc": "2026-03-27T06:38:38.787+00:00",
+              "timeExpiration": "",
+              "externalID": "",
+              "type": "Buy",
+              "typeFill": "Return",
+              "typeTime": "GTC",
+              "volume": "1.00 / 1.00",
+              "priceOrder": "1.08523",
+              "priceTrigger": "0.00000",
+              "priceCurrent": "1.08761",
+              "priceSL": "1.08000",
+              "priceTP": "1.09500",
+              "dealer": 0,
+              "positionID": 99992100,
+              "positionByID": 0,
+              "reason": "Client",
+              "state": "Filled",
+              "comment": "manual",
+              "digitsCurrency": 2,
+              "contractSize": 100000,
+              "volumeInitialExt": 1.00,
+              "volumeCurrentExt": 0,
+              "expertID": 0,
+              "activationMode": 0,
+              "activationTime": "",
+              "activationPrice": 0,
+              "activationFlags": "",
+              "modificationFlags": "None",
+              "rateMargin": 1
+            },
+            {
+              "order": 100014920,
+              "login": 85003439,
+              "symbol": "EURUSD",
+              "digits": 5,
+              "timeSetup": "2026-03-27T06:38:41.000+00:00",
+              "timeSetupMsc": "2026-03-27T06:38:41.387+00:00",
+              "timeDone": "2026-03-27T06:38:41.000+00:00",
+              "timeDoneMsc": "2026-03-27T06:38:41.387+00:00",
+              "timeExpiration": "",
+              "externalID": "",
+              "type": "Sell",
+              "typeFill": "Return",
+              "typeTime": "GTC",
+              "volume": "1.00 / 1.00",
+              "priceOrder": "1.08700",
+              "priceTrigger": "0.00000",
+              "priceCurrent": "1.08761",
+              "priceSL": "0.00000",
+              "priceTP": "0.00000",
+              "dealer": 0,
+              "positionID": 99992100,
+              "positionByID": 0,
+              "reason": "Client",
+              "state": "Filled",
+              "comment": "manual",
+              "digitsCurrency": 2,
+              "contractSize": 100000,
+              "volumeInitialExt": 1.00,
+              "volumeCurrentExt": 0,
+              "expertID": 0,
+              "activationMode": 0,
+              "activationTime": "",
+              "activationPrice": 0,
+              "activationFlags": "",
+              "modificationFlags": "None",
+              "rateMargin": 1
+            }
+          ],
+          "closeByPositionIds": []
+        },
+        "message": "success"
+      },
+      "status": 200,
+      "tokenStatus": { "expiresAt": 1900000000000, "isValid": true }
+    };
+  };
+})();

@@ -1,5 +1,29 @@
 (function getApis() {
   return {
+    "/api/proxy-gateway/api/v5/mt5/positions/99992100": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt5/ticket/orders": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt5/ticket/deals": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt5/ticket/position": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt5/ticket/resolve": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt5/deals/list": {
+      useDirMode: true,
+    },
+
     "/api/proxy-gateway/api/v5/plugin-config/text/files/5003": {
       useDirMode: true,
     },
