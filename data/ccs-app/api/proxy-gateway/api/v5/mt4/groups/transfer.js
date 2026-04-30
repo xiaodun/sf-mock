@@ -30,7 +30,7 @@
           message = null;
         } else if (MODE === "allFailed") {
           success = false;
-          message = Math.random() +` Mock transfer error for ${name} on server ${serverId}`;
+          message = Math.random() + ` Mock transfer error for ${name} on server ${serverId}`;
         } else if (MODE === "validation") {
           success = false;
           message = `Validation failed for ${name} on server ${serverId}`;
@@ -65,18 +65,70 @@
     }
 
     // Post-transfer envelope (200 full success / 207 partial or all-failed).
-    return {
-      data: {
-        data: { totalCount, sucessCount, failedCount, details },
-        message:
-          sucessCount === totalCount
-            ? "success"
-            : sucessCount === 0
-              ? "failed"
-              : "partial success",
+    return    {
+      "data": {
+        "data": {
+          "totalCount": 6,
+            "sucessCount": 4,
+              "failedCount": 2,
+                "details": [
+                  {
+                    "identifier": {
+                      "serverId": 10014,
+                      "name": "coverage"
+                    },
+                    "success": true,
+                    "message": null
+                  },
+                  {
+                    "identifier": {
+                      "serverId": 10015,
+                      "name": "coverage"
+                    },
+                    "success": false,
+                    "message": "Security Forex .sc not found."
+                  },
+                  {
+                    "identifier": {
+                      "serverId": 10016,
+                      "name": "coverage"
+                    },
+                    "success": true,
+                    "message": null
+                  },
+                  {
+                    "identifier": {
+                      "serverId": 10014,
+                      "name": "M_GFT_USD"
+                    },
+                    "success": true,
+                    "message": null
+                  },
+                  {
+                    "identifier": {
+                      "serverId": 10015,
+                      "name": "M_GFT_USD"
+                    },
+                    "success": false,
+                    "message": "Security Forex .sc not found."
+                  },
+                  {
+                    "identifier": {
+                      "serverId": 10016,
+                      "name": "M_GFT_USD"
+                    },
+                    "success": true,
+                    "message": null
+                  }
+                ]
+        },
+        "message": "partial success"
       },
-      status: sucessCount === totalCount ? 200 : 207,
-      tokenStatus: { expiresAt: 1900000000000, isValid: true },
+      "status": 207,
+        "tokenStatus": {
+        "expiresAt": 1777400060924,
+          "isValid": true
+      }
     };
   };
 })();

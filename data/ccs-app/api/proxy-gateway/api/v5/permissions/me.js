@@ -63,6 +63,13 @@
  *
  * ── 系统权限 (systemRolePermissions) ─────────────────────────
  *   permissionId 25  → CCP Management / Admin
+ *
+ * ── Plugin Hub - Plugin Library ───────────────────────────────
+ *   permissionId 57  → Read
+ *   permissionId 58  → Create
+ *   permissionId 59  → Update
+ *   permissionId 60  → Delete
+ *   permissionId 61  → Download
  */
 (function () {
   return (data) => {
@@ -2093,6 +2100,36 @@
                 {
                   "permissionId": 25,
                   "name": "Admin",
+                  "enable": true
+                }
+              ]
+            },
+            {
+              "category": "Plugin Hub - Plugin Library",
+              "permissions": [
+                {
+                  "permissionId": 57,
+                  "name": "Read",
+                  "enable": true
+                },
+                {
+                  "permissionId": 58,
+                  "name": "Create",
+                  "enable": true
+                },
+                {
+                  "permissionId": 59,
+                  "name": "Update",
+                  "enable": true
+                },
+                {
+                  "permissionId": 60,
+                  "name": "Delete",
+                  "enable": true
+                },
+                {
+                  "permissionId": 61,
+                  "name": "Download",
                   "enable": true
                 }
               ]

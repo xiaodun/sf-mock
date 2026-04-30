@@ -1,18 +1,26 @@
 /**
- * Dynamic Plugin Hub routes (detail, versions, files, preview, download).
- * Matched via regexp in ccs-app-mock-api.js
+ * Dynamic Plugin Hub routes (detail, file preview, file download).
+ * Matched via regexp in ccs-app-mock-api.js.
+ *
+ * Versions and files are returned embedded in the plugin detail payload
+ * (`GET /api/v5/plugins/{id}`) — independent /versions and /files GET
+ * endpoints no longer exist.
  */
 (function () {
   const path = require("path");
   const fs = require("fs");
 
-  const hub = require(path.join(
+  const hubPath = path.join(
     process.cwd(),
     "data",
     "ccs-app",
     "plugin-hub",
     "plugin-hub-mock-data.js"
-  ));
+  );
+  try {
+    delete require.cache[require.resolve(hubPath)];
+  } catch (_) {}
+  const hub = require(hubPath);
 
   function apiPathFromRequest(reqUrl) {
     const raw = (reqUrl || "").split("?")[0];
@@ -26,7 +34,7 @@
   return (data) => {
     const apiPath = apiPathFromRequest(data.req && data.req.url);
 
-    const mDetail = /^\/api\/v5\/plugin-hub\/plugins\/(\d+)$/.exec(apiPath);
+    const mDetail = /^\/api\/v5\/plugins\/(\d+)$/.exec(apiPath);
     if (mDetail) {
       const id = parseInt(mDetail[1], 10);
       const detail = hub.getDetail(id);
@@ -34,12 +42,17 @@
         return hub.envelope(
           {
             id,
-            name: `Plugin #${id} (mock — not in catalog)`,
-            status: "Inactive",
+            name: `plugin_${id}`,
+            displayName: `Plugin #${id} (mock — not in catalog)`,
+            mtVersion: 4,
+            status: 1,
+            latestVersionTag: "",
+            s3Directory: "",
+            isInUse: false,
             createdBy: "-",
-            createdOn: fallbackNow,
-            updatedBy: "-",
-            updatedOn: fallbackNow,
+            createdAt: fallbackNow,
+            modifiedBy: "-",
+            modifiedAt: fallbackNow,
             versions: [],
           },
           "success"
@@ -48,32 +61,17 @@
       return hub.envelope(detail, "success");
     }
 
-    const mVersions = /^\/api\/v5\/plugin-hub\/plugins\/(\d+)\/versions$/.exec(apiPath);
-    if (mVersions) {
-      const id = parseInt(mVersions[1], 10);
-      const versions = hub.getVersions(id);
-      return hub.envelope(versions || [], "success");
-    }
-
-    const mFiles = /^\/api\/v5\/plugin-hub\/versions\/(\d+)\/files$/.exec(apiPath);
-    if (mFiles) {
-      const vid = parseInt(mFiles[1], 10);
-      const files = hub.getFiles(vid);
-      return hub.envelope(files || [], "success");
-    }
-
-    const mPreview = /^\/api\/v5\/plugin-hub\/files\/(\d+)\/preview$/.exec(apiPath);
+    const mPreview = /^\/api\/v5\/files\/(\d+)\/preview$/.exec(apiPath);
     if (mPreview) {
       const fid = parseInt(mPreview[1], 10);
       const meta = hub.getFileMeta(fid);
       const text = meta
         ? hub.getPreviewText(fid)
         : "# Mock preview\nUnknown file id: " + fid + "\n";
-      // IV5APIResponse<string> — JSON body (same Content-Type as other v5 mocks)
       return hub.envelope(text, "success");
     }
 
-    const mDownload = /^\/api\/v5\/plugin-hub\/files\/(\d+)\/download$/.exec(apiPath);
+    const mDownload = /^\/api\/v5\/files\/(\d+)\/download$/.exec(apiPath);
     if (mDownload) {
       const fid = parseInt(mDownload[1], 10);
       const meta = hub.getFileMeta(fid);

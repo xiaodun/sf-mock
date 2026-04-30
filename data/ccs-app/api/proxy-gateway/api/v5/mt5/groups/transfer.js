@@ -66,17 +66,33 @@
 
     // Post-transfer envelope (200 full success / 207 partial or all-failed).
     return {
-      data: {
-        data: { totalCount, sucessCount, failedCount, details },
-        message:
-          sucessCount === totalCount
-            ? "success"
-            : sucessCount === 0
-              ? "failed"
-              : "partial success",
-      },
-      status: sucessCount === totalCount ? 200 : 207,
-      tokenStatus: { expiresAt: 1900000000000, isValid: true },
+      "success": false,
+      "status": 422,
+      "errorDescription": "failed",
+      "requestedUrl": "/api/proxy-gateway/api/v5/mt5/groups/transfer",
+      "data": {
+        "totalCount": 2,
+        "sucessCount": 0,
+        "failedCount": 2,
+        "details": [
+          {
+            "identifier": {
+              "serverId": 20002,
+              "name": "00-00-00315"
+            },
+            "success": false,
+            "message": "Group 'jeffrey\\test001_USD' already exists on server MT5_TPTest_2.MT5_TPTest_2MT5_TPTest_2MT5_TPTest_2"
+          },
+          {
+            "identifier": {
+              "serverId": 20002,
+              "name": "00-00-0200-add-symbol"
+            },
+            "success": false,
+            "message": "Group 'jeffrey\\test002_EUR' already exists on server MT5_TPTest_2.MT5_TPTest_2MT5_TPTest_2MT5_TPTest_2"
+          }
+        ]
+      }
     };
   };
 })();

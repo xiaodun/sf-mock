@@ -1,5 +1,13 @@
 (function getApis() {
   return {
+    "/api/proxy-gateway/api/v5/plugin-config/text/files/5003": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/plugin-config/text/files/5002": {
+      useDirMode: true,
+    },
+
     "/api/proxy-gateway/api/v5/mt5/symbols/transfer": {
       useDirMode: true,
     },
@@ -254,12 +262,18 @@
     },
 
     // ─── Plugin Hub — Plugin Library (v5) ───────────────────────────────────
-    // GET .../plugin-hub/plugins?platform=MT4|MT5  → IV5APIResponse<IPlugin[]>
-    "/api/proxy-gateway/api/v5/plugin-hub/plugins": {
+    // GET .../plugins?mtVersion=4|5  → IV5APIResponse<IPlugin[]>
+    "/api/proxy-gateway/api/v5/plugins": {
       useDirMode: true,
     },
-    // GET .../plugins/{id} | .../plugins/{id}/versions | .../versions/{id}/files | .../files/{id}/preview | download
-    "/api/proxy-gateway/api/v5/plugin-hub/(plugins/\\d+|plugins/\\d+/versions|versions/\\d+/files|files/\\d+/preview|files/\\d+/download)$":
+    // POST .../plugins/inspect-dll-version  → IV5APIResponse<string>
+    "/api/proxy-gateway/api/v5/plugins/inspect-dll-version": {
+      useDirMode: true,
+    },
+    // GET  .../plugins/{id}
+    // GET  .../files/{id}/preview
+    // GET  .../files/{id}/download
+    "/api/proxy-gateway/api/v5/(plugins/\\d+|files/\\d+/preview|files/\\d+/download)$":
       {
         useDirMode: false,
         options: {

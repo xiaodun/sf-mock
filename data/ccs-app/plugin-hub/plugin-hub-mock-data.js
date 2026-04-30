@@ -1,6 +1,16 @@
 /**
- * Plugin Library mock catalog — shared shape matches ccs-ui:
- * @/types/GlobalModule/pluginLibrary (IPlugin, IPluginDetail, IPluginVersion, IPluginFile)
+ * Plugin Library mock catalog — shape matches backend contract.
+ * See ccs-ui @/types/GlobalModule/pluginLibrary.ts
+ *
+ * Endpoints consumed:
+ *   GET /api/v5/plugins?mtVersion=4|5  → listPlugins()
+ *   GET /api/v5/plugins/{id}            → getDetail() (versions[] + files[] embedded)
+ *
+ * plugin.status       0 = Active, 1 = Inactive
+ * plugin.mtVersion    4 = MT4, 5 = MT5
+ * version.isInUse     boolean — true blocks version deletion
+ * file.fileType       0 = Dll, 1 = Config, 2 = Rule, 3 = Other
+ * file.fileSize       bytes (frontend formats via formatBytes)
  */
 (function () {
   const now = "2026-04-20T08:00:00.000Z";
@@ -22,310 +32,309 @@
     };
   }
 
-  /** @type {Record<number, { platform: string, plugin: object, versions: object[], filesByVersionId: Record<number, object[]> }>} */
+  /** @type {Record<number, { plugin: object, versions: object[] }>} */
   const byPluginId = {
     101: {
-      platform: "MT4",
       plugin: {
         id: 101,
-        name: "Virtual Dealer Plugin",
-        latestVersion: "1.2.0",
-        status: "Active",
+        name: "virtual_dealer_plugin",
+        displayName: "Virtual Dealer Plugin",
+        mtVersion: 4,
+        status: 0,
+        latestVersionTag: "1.2.0",
+        s3Directory: "plugins/mt4/virtual_dealer_plugin/",
+        isInUse: true,
         createdBy: user,
-        createdOn: "2026-01-10T10:00:00.000Z",
-        updatedBy: user,
-        updatedOn: now,
+        createdAt: "2026-01-10T10:00:00.000Z",
+        modifiedBy: user,
+        modifiedAt: now,
       },
       versions: [
         {
           id: 1101,
           pluginId: 101,
-          version: "1.2.0",
-          status: "In Use",
+          versionTag: "1.2.0",
           isLatest: true,
+          isInUse: true,
           createdBy: user,
-          createdOn: "2026-03-01T09:00:00.000Z",
+          createdAt: "2026-03-01T09:00:00.000Z",
           updatedBy: user,
-          updatedOn: now,
+          updatedAt: now,
+          files: [
+            {
+              id: 5001,
+              fileName: "VirtualDealer.dll",
+              fileType: 0,
+              fileSize: 524288,
+              checksum: "5001-dll-checksum",
+              sourceVersionId: null,
+              s3Key: "plugins/101/1101/VirtualDealer.dll",
+              createdBy: user,
+              createdAt: now,
+              updatedBy: user,
+              updatedAt: now,
+            },
+            {
+              id: 5002,
+              fileName: "plugin.ini",
+              fileType: 1,
+              fileSize: 2048,
+              checksum: "5002-ini-checksum",
+              sourceVersionId: null,
+              s3Key: "plugins/101/1101/plugin.ini",
+              createdBy: user,
+              createdAt: now,
+              updatedBy: user,
+              updatedAt: now,
+            },
+            {
+              id: 5003,
+              fileName: "manifest.json",
+              fileType: 3,
+              fileSize: 1024,
+              checksum: "5003-json-checksum",
+              sourceVersionId: null,
+              s3Key: "plugins/101/1101/manifest.json",
+              createdBy: user,
+              createdAt: now,
+              updatedBy: user,
+              updatedAt: now,
+            },
+          ],
         },
         {
           id: 1102,
           pluginId: 101,
-          version: "1.1.0",
-          status: "Not In Use",
+          versionTag: "1.1.0",
           isLatest: false,
+          isInUse: false,
           createdBy: user,
-          createdOn: "2026-02-01T09:00:00.000Z",
+          createdAt: "2026-02-01T09:00:00.000Z",
           updatedBy: user,
-          updatedOn: now,
+          updatedAt: now,
+          files: [
+            {
+              id: 5004,
+              fileName: "VirtualDealer_legacy.dll",
+              fileType: 0,
+              fileSize: 491520,
+              checksum: "5004-dll-checksum",
+              sourceVersionId: null,
+              s3Key: "plugins/101/1102/VirtualDealer_legacy.dll",
+              createdBy: user,
+              createdAt: "2026-02-01T09:00:00.000Z",
+              updatedBy: user,
+              updatedAt: "2026-02-01T09:00:00.000Z",
+            },
+          ],
         },
       ],
-      filesByVersionId: {
-        1101: [
-          {
-            id: 5001,
-            versionId: 1101,
-            fileName: "VirtualDealer.dll",
-            size: "512 KB",
-            isMainFile: true,
-            fileType: "dll",
-            createdBy: user,
-            createdOn: now,
-            updatedBy: user,
-            updatedOn: now,
-          },
-          {
-            id: 5002,
-            versionId: 1101,
-            fileName: "plugin.ini",
-            size: "2 KB",
-            isMainFile: false,
-            fileType: "ini",
-            createdBy: user,
-            createdOn: now,
-            updatedBy: user,
-            updatedOn: now,
-          },
-          {
-            id: 5003,
-            versionId: 1101,
-            fileName: "manifest.json",
-            size: "1 KB",
-            isMainFile: false,
-            fileType: "json",
-            createdBy: user,
-            createdOn: now,
-            updatedBy: user,
-            updatedOn: now,
-          },
-        ],
-        1102: [
-          {
-            id: 5004,
-            versionId: 1102,
-            fileName: "VirtualDealer_legacy.dll",
-            size: "480 KB",
-            isMainFile: true,
-            fileType: "dll",
-            createdBy: user,
-            createdOn: "2026-02-01T09:00:00.000Z",
-            updatedBy: user,
-            updatedOn: now,
-          },
-        ],
-      },
     },
     102: {
-      platform: "MT4",
       plugin: {
         id: 102,
-        name: "Reporting Toolkit",
-        latestVersion: "3.0.1",
-        status: "Inactive",
+        name: "reporting_toolkit",
+        displayName: "Reporting Toolkit",
+        mtVersion: 4,
+        status: 1,
+        latestVersionTag: "3.0.1",
+        s3Directory: "plugins/mt4/reporting_toolkit/",
+        isInUse: false,
         createdBy: user,
-        createdOn: "2025-12-01T12:00:00.000Z",
-        updatedBy: user,
-        updatedOn: now,
+        createdAt: "2025-12-01T12:00:00.000Z",
+        modifiedBy: user,
+        modifiedAt: now,
       },
       versions: [
         {
           id: 1201,
           pluginId: 102,
-          version: "3.0.1",
-          status: "Not In Use",
+          versionTag: "3.0.1",
           isLatest: true,
+          isInUse: false,
           createdBy: user,
-          createdOn: "2025-12-15T12:00:00.000Z",
+          createdAt: "2025-12-15T12:00:00.000Z",
           updatedBy: user,
-          updatedOn: now,
+          updatedAt: now,
+          files: [
+            {
+              id: 5101,
+              fileName: "ReportCore.dll",
+              fileType: 0,
+              fileSize: 1258291,
+              checksum: "5101-dll-checksum",
+              sourceVersionId: null,
+              s3Key: "plugins/102/1201/ReportCore.dll",
+              createdBy: user,
+              createdAt: now,
+              updatedBy: user,
+              updatedAt: now,
+            },
+            {
+              id: 5102,
+              fileName: "defaults.yaml",
+              fileType: 1,
+              fileSize: 3072,
+              checksum: "5102-yaml-checksum",
+              sourceVersionId: null,
+              s3Key: "plugins/102/1201/defaults.yaml",
+              createdBy: user,
+              createdAt: now,
+              updatedBy: user,
+              updatedAt: now,
+            },
+          ],
         },
       ],
-      filesByVersionId: {
-        1201: [
-          {
-            id: 5101,
-            versionId: 1201,
-            fileName: "ReportCore.dll",
-            size: "1.2 MB",
-            isMainFile: true,
-            fileType: "dll",
-            createdBy: user,
-            createdOn: now,
-            updatedBy: user,
-            updatedOn: now,
-          },
-          {
-            id: 5102,
-            versionId: 1201,
-            fileName: "defaults.yaml",
-            size: "3 KB",
-            isMainFile: false,
-            fileType: "yaml",
-            createdBy: user,
-            createdOn: now,
-            updatedBy: user,
-            updatedOn: now,
-          },
-        ],
-      },
     },
     201: {
-      platform: "MT5",
       plugin: {
         id: 201,
-        name: "Bridge Gateway",
-        latestVersion: "2.4.0",
-        status: "Active",
+        name: "bridge_gateway",
+        displayName: "Bridge Gateway",
+        mtVersion: 5,
+        status: 0,
+        latestVersionTag: "2.4.0",
+        s3Directory: "plugins/mt5/bridge_gateway/",
+        isInUse: true,
         createdBy: user,
-        createdOn: "2026-02-20T11:30:00.000Z",
-        updatedBy: user,
-        updatedOn: now,
+        createdAt: "2026-02-20T11:30:00.000Z",
+        modifiedBy: user,
+        modifiedAt: now,
       },
       versions: [
         {
           id: 2101,
           pluginId: 201,
-          version: "2.4.0",
-          status: "In Use",
+          versionTag: "2.4.0",
           isLatest: true,
+          isInUse: true,
           createdBy: user,
-          createdOn: "2026-04-01T08:00:00.000Z",
+          createdAt: "2026-04-01T08:00:00.000Z",
           updatedBy: user,
-          updatedOn: now,
+          updatedAt: now,
+          files: [
+            {
+              id: 6001,
+              fileName: "BridgeGateway64.dll",
+              fileType: 0,
+              fileSize: 917504,
+              checksum: "6001-dll-checksum",
+              sourceVersionId: null,
+              s3Key: "plugins/201/2101/BridgeGateway64.dll",
+              createdBy: user,
+              createdAt: now,
+              updatedBy: user,
+              updatedAt: now,
+            },
+            {
+              id: 6002,
+              fileName: "routing.xml",
+              fileType: 2,
+              fileSize: 4096,
+              checksum: "6002-xml-checksum",
+              sourceVersionId: null,
+              s3Key: "plugins/201/2101/routing.xml",
+              createdBy: user,
+              createdAt: now,
+              updatedBy: user,
+              updatedAt: now,
+            },
+          ],
         },
       ],
-      filesByVersionId: {
-        2101: [
-          {
-            id: 6001,
-            versionId: 2101,
-            fileName: "BridgeGateway64.dll",
-            size: "896 KB",
-            isMainFile: true,
-            fileType: "dll",
-            createdBy: user,
-            createdOn: now,
-            updatedBy: user,
-            updatedOn: now,
-          },
-          {
-            id: 6002,
-            versionId: 2101,
-            fileName: "routing.xml",
-            size: "4 KB",
-            isMainFile: false,
-            fileType: "xml",
-            createdBy: user,
-            createdOn: now,
-            updatedBy: user,
-            updatedOn: now,
-          },
-        ],
-      },
     },
     202: {
-      platform: "MT5",
       plugin: {
         id: 202,
-        name: "News Feed Extension",
-        latestVersion: "1.0.3",
-        status: "Active",
+        name: "news_feed_extension",
+        displayName: "News Feed Extension",
+        mtVersion: 5,
+        status: 0,
+        latestVersionTag: "1.0.3",
+        s3Directory: "plugins/mt5/news_feed_extension/",
+        isInUse: false,
         createdBy: user,
-        createdOn: "2026-03-05T14:00:00.000Z",
-        updatedBy: user,
-        updatedOn: now,
+        createdAt: "2026-03-05T14:00:00.000Z",
+        modifiedBy: user,
+        modifiedAt: now,
       },
       versions: [
         {
           id: 2201,
           pluginId: 202,
-          version: "1.0.3",
-          status: "In Use",
+          versionTag: "1.0.3",
           isLatest: true,
+          isInUse: false,
           createdBy: user,
-          createdOn: now,
+          createdAt: now,
           updatedBy: user,
-          updatedOn: now,
+          updatedAt: now,
+          files: [
+            {
+              id: 6101,
+              fileName: "NewsFeed.dll",
+              fileType: 0,
+              fileSize: 327680,
+              checksum: "6101-dll-checksum",
+              sourceVersionId: null,
+              s3Key: "plugins/202/2201/NewsFeed.dll",
+              createdBy: user,
+              createdAt: now,
+              updatedBy: user,
+              updatedAt: now,
+            },
+            {
+              id: 6102,
+              fileName: "feeds.conf",
+              fileType: 1,
+              fileSize: 1024,
+              checksum: "6102-conf-checksum",
+              sourceVersionId: null,
+              s3Key: "plugins/202/2201/feeds.conf",
+              createdBy: user,
+              createdAt: now,
+              updatedBy: user,
+              updatedAt: now,
+            },
+          ],
         },
       ],
-      filesByVersionId: {
-        2201: [
-          {
-            id: 6101,
-            versionId: 2201,
-            fileName: "NewsFeed.dll",
-            size: "320 KB",
-            isMainFile: true,
-            fileType: "dll",
-            createdBy: user,
-            createdOn: now,
-            updatedBy: user,
-            updatedOn: now,
-          },
-          {
-            id: 6102,
-            versionId: 2201,
-            fileName: "feeds.conf",
-            size: "1 KB",
-            isMainFile: false,
-            fileType: "conf",
-            createdBy: user,
-            createdOn: now,
-            updatedBy: user,
-            updatedOn: now,
-          },
-        ],
-      },
     },
   };
 
+  /** Preview text for config files (fileType === 1). */
   const previewTextByFileId = {
     5002: "; Virtual Dealer — mock preview\n[General]\nEnableLog=1\nSpreadMode=2\n",
-    5003: '{\n  "name": "virtual-dealer",\n  "version": "1.2.0",\n  "entry": "VirtualDealer.dll"\n}\n',
     5102: "# Reporting defaults\nexport:\n  format: xlsx\n  schedule: daily\n",
-    6002: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<routes>\n  <route path=\"/tick\" backend=\"ws://mock:9000\"/>\n</routes>\n",
     6102: "# News feed mock\nprovider=Reuters\npollSeconds=30\n",
   };
 
-  function listPlugins(platform) {
-    const p = (platform || "MT4").toUpperCase();
-    return Object.values(byPluginId)
-      .filter((e) => e.platform === p)
-      .map((e) => e.plugin);
+  /**
+   * @param {number|string|undefined} mtVersion 4 | 5 | omitted (no filter)
+   */
+  function listPlugins(mtVersion) {
+    const entries = Object.values(byPluginId);
+    if (mtVersion === undefined || mtVersion === null || mtVersion === "") {
+      return entries.map((e) => e.plugin);
+    }
+    const v = Number(mtVersion);
+    return entries.filter((e) => e.plugin.mtVersion === v).map((e) => e.plugin);
   }
 
   function getDetail(pluginId) {
     const row = byPluginId[pluginId];
     if (!row) return null;
     return {
-      id: row.plugin.id,
-      name: row.plugin.name,
-      status: row.plugin.status,
-      createdBy: row.plugin.createdBy,
-      createdOn: row.plugin.createdOn,
-      updatedBy: row.plugin.updatedBy,
-      updatedOn: row.plugin.updatedOn,
+      ...row.plugin,
       versions: row.versions,
     };
   }
 
-  function getVersions(pluginId) {
-    const row = byPluginId[pluginId];
-    return row ? row.versions : null;
-  }
-
-  function getFiles(versionId) {
-    for (const row of Object.values(byPluginId)) {
-      const files = row.filesByVersionId[versionId];
-      if (files) return files;
-    }
-    return null;
-  }
-
   function getFileMeta(fileId) {
     for (const row of Object.values(byPluginId)) {
-      for (const files of Object.values(row.filesByVersionId)) {
-        const f = files.find((x) => x.id === fileId);
+      for (const version of row.versions) {
+        const f = version.files.find((x) => x.id === fileId);
         if (f) return f;
       }
     }
@@ -342,8 +351,6 @@
     envelope,
     listPlugins,
     getDetail,
-    getVersions,
-    getFiles,
     getFileMeta,
     getPreviewText,
   };
