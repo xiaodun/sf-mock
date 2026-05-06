@@ -29,7 +29,7 @@
           "actionGateway": 0,
           "reason": 0,
           "storage": -3.20,
-          "profit": 238.00,
+          "profit": 238.20,
           "rateProfit": 1,
           "rateMargin": 1,
           "dealer": 0,

@@ -27,7 +27,7 @@
             "profit": 238.00,
             "comment": "manual",
             "expertPositionID": 0,
-            "timeCreate": 1743033600,
+            "timeCreate": 1743033600000,
             "timeUpdate": 1743076800,
             "timeUpdateMsc": 1743076800000,
             "highlight": false
@@ -56,7 +56,7 @@
             "profit": 164.79,
             "comment": "EA_strategy_01",
             "expertPositionID": 10023,
-            "timeCreate": 1742990400,
+            "timeCreate": 1742990400000,
             "timeUpdate": 1743076800,
             "timeUpdateMsc": 1743076800000,
             "highlight": true
@@ -85,7 +85,7 @@
             "profit": 208.00,
             "comment": "",
             "expertPositionID": 0,
-            "timeCreate": 1742904000,
+            "timeCreate": 1742904000000,
             "timeUpdate": 1743076800,
             "timeUpdateMsc": 1743076800000,
             "highlight": false
@@ -114,7 +114,7 @@
             "profit": 660.00,
             "comment": "[dealer-open]",
             "expertPositionID": 0,
-            "timeCreate": 1742817600,
+            "timeCreate": 1742817600000,
             "timeUpdate": 1743076800,
             "timeUpdateMsc": 1743076800000,
             "highlight": true
@@ -143,7 +143,7 @@
             "profit": 96.00,
             "comment": "",
             "expertPositionID": 0,
-            "timeCreate": 1742731200,
+            "timeCreate": 1742731200000,
             "timeUpdate": 1743076800,
             "timeUpdateMsc": 1743076800000,
             "highlight": false

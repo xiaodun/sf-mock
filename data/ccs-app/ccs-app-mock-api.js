@@ -1,5 +1,21 @@
 (function getApis() {
   return {
+    "/api/proxy-gateway/api/v5/mt5/positions/99992103": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt5/positions/99992101": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt5/positions/99992104": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt5/positions/99992102": {
+      useDirMode: true,
+    },
+
     "/api/proxy-gateway/api/v5/mt5/positions/99992100": {
       useDirMode: true,
     },
