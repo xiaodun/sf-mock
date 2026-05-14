@@ -1,5 +1,29 @@
 (function getApis() {
   return {
+    "/api/proxy-gateway/api/v5/common/enum/0/102": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/plugin-server-overview": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/plugins/102/versions/1201/files/5101/download": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/plugins/102/versions/1201/files/5102/download": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/server-install-paths": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt5/orders/84366022": {
+      useDirMode: true,
+    },
+
     "/api/proxy-gateway/api/v5/mt5/positions/99992103": {
       useDirMode: true,
     },
@@ -311,9 +335,12 @@
       useDirMode: true,
     },
     // GET  .../plugins/{id}
-    // GET  .../files/{id}/preview
+    // GET  .../plugins/{id}/versions/{id}/files/{id}/preview   (unified file preview)
+    // GET  .../plugins/{id}/versions/{id}/config/yaml/files/{id}/rules
+    // GET  .../plugins/{id}/versions/{id}/config/ini/files/{id}/parameters
+    // GET  .../files/{id}/preview  (legacy)
     // GET  .../files/{id}/download
-    "/api/proxy-gateway/api/v5/(plugins/\\d+|files/\\d+/preview|files/\\d+/download)$":
+    "/api/proxy-gateway/api/v5/(plugins/\\d+|plugins/\\d+/versions/\\d+/files/\\d+/preview|plugins/\\d+/versions/\\d+/config/yaml/files/\\d+/rules|plugins/\\d+/versions/\\d+/config/ini/files/\\d+/parameters|files/\\d+/preview|files/\\d+/download)$":
       {
         useDirMode: false,
         options: {

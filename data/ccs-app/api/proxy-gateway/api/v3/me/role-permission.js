@@ -1890,13 +1890,48 @@
             ],
             "systemRolePermissions": [
                 {
-                    "category": "CCP Management",
+                    "category": "CCPManagement",
                     "permissions": [
                         {
                             "permissionId": 25,
                             "name": "Admin",
                             "enable": true
                         }
+                    ]
+                },
+                {
+                    "category": "Plugin Hub - Plugin Library",
+                    "permissions": [
+                        { "permissionId": 101, "name": "Read", "enable": true },
+                        { "permissionId": 102, "name": "Create", "enable": true },
+                        { "permissionId": 103, "name": "Update", "enable": true },
+                        { "permissionId": 104, "name": "Delete", "enable": true },
+                        { "permissionId": 105, "name": "Download", "enable": true }
+                    ]
+                },
+                {
+                    "category": "Plugin Hub - Plugin Server",
+                    "permissions": [
+                        { "permissionId": 106, "name": "Read", "enable": true },
+                        { "permissionId": 107, "name": "Create", "enable": true },
+                        { "permissionId": 108, "name": "Update", "enable": true },
+                        { "permissionId": 109, "name": "Delete", "enable": true }
+                    ]
+                },
+                {
+                    "category": "Plugin Hub - Plugin Config",
+                    "permissions": [
+                        { "permissionId": 110, "name": "Read", "enable": true },
+                        { "permissionId": 111, "name": "Create", "enable": true },
+                        { "permissionId": 112, "name": "Update", "enable": true },
+                        { "permissionId": 113, "name": "Delete", "enable": true }
+                    ]
+                },
+                {
+                    "category": "Plugin Hub - Plugin Priority",
+                    "permissions": [
+                        { "permissionId": 114, "name": "Read", "enable": true },
+                        { "permissionId": 115, "name": "Update", "enable": true }
                     ]
                 }
             ]

@@ -2095,7 +2095,7 @@
           ],
           "systemRolePermissions": [
             {
-              "category": "CCP Management",
+              "category": "CCPManagement",
               "permissions": [
                 {
                   "permissionId": 25,
@@ -2105,33 +2105,38 @@
               ]
             },
             {
-              "category": "Plugin Hub - Plugin Library",
+              "category": "PluginLibrary",
               "permissions": [
-                {
-                  "permissionId": 57,
-                  "name": "Read",
-                  "enable": true
-                },
-                {
-                  "permissionId": 58,
-                  "name": "Create",
-                  "enable": true
-                },
-                {
-                  "permissionId": 59,
-                  "name": "Update",
-                  "enable": true
-                },
-                {
-                  "permissionId": 60,
-                  "name": "Delete",
-                  "enable": true
-                },
-                {
-                  "permissionId": 61,
-                  "name": "Download",
-                  "enable": true
-                }
+                { "permissionId": 57, "name": "Read", "enable": true },
+                { "permissionId": 58, "name": "Create", "enable": true },
+                { "permissionId": 59, "name": "Update", "enable": true },
+                { "permissionId": 60, "name": "Delete", "enable": true },
+                { "permissionId": 61, "name": "Download", "enable": true }
+              ]
+            },
+            {
+              "category": "PluginServerOverview",
+              "permissions": [
+                { "permissionId": 106, "name": "Read", "enable": true },
+                { "permissionId": 107, "name": "Create", "enable": true },
+                { "permissionId": 108, "name": "Update", "enable": true },
+                { "permissionId": 109, "name": "Delete", "enable": true }
+              ]
+            },
+            {
+              "category": "PluginConfigManager",
+              "permissions": [
+                { "permissionId": 110, "name": "Read", "enable": true },
+                { "permissionId": 111, "name": "Create", "enable": true },
+                { "permissionId": 112, "name": "Update", "enable": true },
+                { "permissionId": 113, "name": "Delete", "enable": true }
+              ]
+            },
+            {
+              "category": "PluginPriorityManagement",
+              "permissions": [
+                { "permissionId": 114, "name": "Read", "enable": true },
+                { "permissionId": 115, "name": "Update", "enable": true }
               ]
             }
           ]

@@ -61,6 +61,32 @@
       return hub.envelope(detail, "success");
     }
 
+    // New unified preview: GET /api/v5/plugins/{id}/versions/{id}/files/{id}/preview
+    const mNewPreview = /^\/api\/v5\/plugins\/(\d+)\/versions\/(\d+)\/files\/(\d+)\/preview$/.exec(apiPath);
+    if (mNewPreview) {
+      const fid = parseInt(mNewPreview[3], 10);
+      const meta = hub.getFileMeta(fid);
+      if (!meta) {
+        return hub.envelope(null, "not found");
+      }
+      return hub.envelope(hub.getFilePreview(fid), "success");
+    }
+
+    // YAML rules: GET /api/v5/plugins/{id}/versions/{id}/config/yaml/files/{id}/rules
+    const mYamlRules = /^\/api\/v5\/plugins\/(\d+)\/versions\/(\d+)\/config\/yaml\/files\/(\d+)\/rules$/.exec(apiPath);
+    if (mYamlRules) {
+      const fid = parseInt(mYamlRules[3], 10);
+      return hub.envelope(hub.getYamlRules(fid), "success");
+    }
+
+    // INI parameters: GET /api/v5/plugins/{id}/versions/{id}/config/ini/files/{id}/parameters
+    const mIniParams = /^\/api\/v5\/plugins\/(\d+)\/versions\/(\d+)\/config\/ini\/files\/(\d+)\/parameters$/.exec(apiPath);
+    if (mIniParams) {
+      const fid = parseInt(mIniParams[3], 10);
+      return hub.envelope(hub.getIniParameters(fid), "success");
+    }
+
+    // Legacy preview: GET /api/v5/files/{id}/preview
     const mPreview = /^\/api\/v5\/files\/(\d+)\/preview$/.exec(apiPath);
     if (mPreview) {
       const fid = parseInt(mPreview[1], 10);

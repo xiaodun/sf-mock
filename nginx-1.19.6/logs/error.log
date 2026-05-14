@@ -1164,3 +1164,5 @@
 2026/04/22 20:42:18 [error] 34176#28152: *1764 WSARecv() failed (10054: An existing connection was forcibly closed by the remote host) while proxying upgraded connection, client: 127.0.0.1, server: wx.mock.ccs-app, request: "GET /_next/webpack-hmr HTTP/1.1", upstream: "http://[::1]:3000/_next/webpack-hmr", host: "localhost:9100"
 2026/04/29 20:37:03 [alert] 4484#45512: the event "ngx_master_4484" was not signaled for 5s
 2026/04/29 20:37:03 [alert] 4484#45512: could not respawn worker
+2026/05/09 09:08:04 [alert] 3380#38228: worker process 53828 exited with code C0000142
+2026/05/09 09:08:04 [alert] 3380#38228: could not respawn worker

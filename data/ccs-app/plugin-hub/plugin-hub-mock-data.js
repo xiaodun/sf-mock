@@ -100,6 +100,84 @@
               updatedBy: user,
               updatedAt: now,
             },
+            {
+              id: 5005,
+              fileName: "defaults.yaml",
+              fileType: 1,
+              fileSize: 2560,
+              checksum: "5005-yaml-checksum",
+              sourceVersionId: null,
+              s3Key: "plugins/101/1101/defaults.yaml",
+              createdBy: user,
+              createdAt: now,
+              updatedBy: user,
+              updatedAt: now,
+            },
+            {
+              id: 5006,
+              fileName: "overrides.yml",
+              fileType: 1,
+              fileSize: 1280,
+              checksum: "5006-yml-checksum",
+              sourceVersionId: null,
+              s3Key: "plugins/101/1101/overrides.yml",
+              createdBy: user,
+              createdAt: now,
+              updatedBy: user,
+              updatedAt: now,
+            },
+            {
+              id: 5007,
+              fileName: "settings.cfg",
+              fileType: 1,
+              fileSize: 512,
+              checksum: "5007-cfg-checksum",
+              sourceVersionId: null,
+              s3Key: "plugins/101/1101/settings.cfg",
+              createdBy: user,
+              createdAt: now,
+              updatedBy: user,
+              updatedAt: now,
+            },
+            {
+              id: 5008,
+              fileName: "server.conf",
+              fileType: 1,
+              fileSize: 768,
+              checksum: "5008-conf-checksum",
+              sourceVersionId: null,
+              s3Key: "plugins/101/1101/server.conf",
+              createdBy: user,
+              createdAt: now,
+              updatedBy: user,
+              updatedAt: now,
+            },
+            {
+              id: 5009,
+              fileName: "readme.txt",
+              fileType: 3,
+              fileSize: 256,
+              checksum: "5009-txt-checksum",
+              sourceVersionId: null,
+              s3Key: "plugins/101/1101/readme.txt",
+              createdBy: user,
+              createdAt: now,
+              updatedBy: user,
+              updatedAt: now,
+            },
+            {
+              id: 5010,
+              fileName: "config.xml",
+              fileType: 3,
+              fileSize: 3072,
+              checksum: "5010-xml-checksum",
+              sourceVersionId: null,
+              s3Key: "plugins/101/1101/config.xml",
+              createdBy: user,
+              createdAt: now,
+              updatedBy: user,
+              updatedAt: now,
+            },
           ],
         },
         {
@@ -310,6 +388,208 @@
     6102: "# News feed mock\nprovider=Reuters\npollSeconds=30\n",
   };
 
+  /** Unified file preview response — matches PluginFilePreviewDto */
+  const filePreviewByFileId = {
+    5002: {
+      fileId: 5002,
+      fileName: "plugin.ini",
+      fileType: 1,
+      contentType: "text/plain",
+      fileSize: 2048,
+      text: "; Virtual Dealer — mock preview\n[General]\nEnableLog=1\nSpreadMode=2\nMaxSlippage=3\n",
+      dllMetadata: null,
+      lastModifiedAt: now,
+    },
+    5005: {
+      fileId: 5005,
+      fileName: "defaults.yaml",
+      fileType: 2,
+      contentType: "text/plain",
+      fileSize: 2560,
+      text: "rules:\n  - rule: MT4_USD_Gold_TEST\n    enabled: true\n    filter:\n      groups: [M_VIG_01_USD]\n      symbol_groups: [Gold*]\n    margin:\n      level_type: Fixed\n      leverage: 50\n",
+      dllMetadata: null,
+      lastModifiedAt: now,
+    },
+    5006: {
+      fileId: 5006,
+      fileName: "overrides.yml",
+      fileType: 2,
+      contentType: "text/plain",
+      fileSize: 1280,
+      text: "rules:\n  - rule: Override_Silver\n    enabled: false\n    filter:\n      symbol_groups: [Silver*]\n    margin:\n      level_type: Fixed\n      leverage: 100\n",
+      dllMetadata: null,
+      lastModifiedAt: now,
+    },
+    5102: {
+      fileId: 5102,
+      fileName: "defaults.yaml",
+      fileType: 2,
+      contentType: "text/plain",
+      fileSize: 3072,
+      text: "rules:\n  - rule: Report_Forex\n    enabled: true\n    filter:\n      groups: [M_VIG_01_USD]\n    margin:\n      level_type: Fixed\n      leverage: 100\n",
+      dllMetadata: null,
+      lastModifiedAt: now,
+    },
+  };
+
+  /** YAML rules — matches IYamlRuleRaw from useConfigParamYaml */
+  const yamlRulesByFileId = {
+    // plugin 101 / version 1101 / file 5005 (defaults.yaml)
+    5005: [
+      {
+        id: 1,
+        fileId: 5005,
+        name: "MT4_USD_Gold_NEWS",
+        ordering: 1,
+        definitionJson: JSON.stringify({
+          enabled: true,
+          scheduled: true,
+          category: "News",
+          filter: {
+            groups: ["M_VIG_01_USD", "M_VIG_02_USD"],
+            symbol_groups: ["Gold*"],
+            symbols: [],
+            time: [{ from: "01:00", to: "23:00", days: ["Mon", "Tue", "Wed", "Thu", "Fri"] }],
+          },
+          margin: { level_type: "Fixed", leverage: 50 },
+        }),
+        serverIds: [10001, 10002],
+        modifiedAt: now,
+        lastModifiedBy: user,
+      },
+      {
+        id: 2,
+        fileId: 5005,
+        name: "MT4_USD_Silver_NEWS",
+        ordering: 2,
+        definitionJson: JSON.stringify({
+          enabled: true,
+          scheduled: false,
+          category: "News",
+          filter: {
+            groups: ["M_VIG_01_USD"],
+            symbol_groups: ["Silver*"],
+            symbols: [],
+            time: [],
+          },
+          margin: { level_type: "Fixed", leverage: 100 },
+        }),
+        serverIds: [10001],
+        modifiedAt: now,
+        lastModifiedBy: user,
+      },
+      {
+        id: 3,
+        fileId: 5005,
+        name: "MT4_Forex_Default",
+        ordering: 3,
+        definitionJson: JSON.stringify({
+          enabled: true,
+          scheduled: false,
+          category: "Forex",
+          filter: {
+            groups: ["M_VIG_01_USD", "M_VIG_02_USD", "M_VIG_03_USD"],
+            symbol_groups: ["Forex*"],
+            symbols: ["EURUSD", "GBPUSD"],
+            time: [
+              { from: "00:00", to: "08:00", days: ["Mon", "Tue", "Wed", "Thu", "Fri"] },
+              { from: "20:00", to: "24:00", days: ["Mon", "Tue", "Wed", "Thu", "Fri"] },
+            ],
+          },
+          margin: { level_type: "equity", levels: [{ from: null, to: 10000, leverage: 200 }, { from: 10000, to: 50000, leverage: 100 }, { from: 50000, to: 99999, leverage: 50 }] },
+        }),
+        serverIds: [10001, 10002, 10003],
+        modifiedAt: now,
+        lastModifiedBy: user,
+      },
+      {
+        id: 4,
+        fileId: 5005,
+        name: "MT4_Gold_Premium",
+        ordering: 4,
+        definitionJson: JSON.stringify({
+          enabled: false,
+          scheduled: false,
+          category: "Gold",
+          filter: {
+            groups: ["M_PREM_01_USD"],
+            symbol_groups: ["Gold*"],
+            symbols: [],
+            time: [],
+          },
+          margin: { level_type: "Fixed", leverage: 200 },
+        }),
+        serverIds: [],
+        modifiedAt: now,
+        lastModifiedBy: user,
+      },
+    ],
+    // plugin 102 / version 1201 / file 5102 (defaults.yaml)
+    5102: [
+      {
+        id: 10,
+        fileId: 5102,
+        name: "Report_Forex_Daily",
+        ordering: 1,
+        definitionJson: JSON.stringify({
+          enabled: true,
+          scheduled: true,
+          category: "Forex",
+          filter: {
+            groups: ["M_VIG_01_USD"],
+            symbol_groups: ["Forex*"],
+            symbols: [],
+            time: [{ from: "22:00", to: "23:59", days: ["Mon", "Tue", "Wed", "Thu", "Fri"] }],
+          },
+          margin: { level_type: "Fixed", leverage: 100 },
+        }),
+        serverIds: [20001],
+        modifiedAt: now,
+        lastModifiedBy: user,
+      },
+      {
+        id: 11,
+        fileId: 5102,
+        name: "Report_Indices_Weekly",
+        ordering: 2,
+        definitionJson: JSON.stringify({
+          enabled: true,
+          scheduled: true,
+          category: "Indices",
+          filter: {
+            groups: ["M_VIG_01_USD", "M_VIG_02_USD"],
+            symbol_groups: ["Indices*"],
+            symbols: [],
+            time: [{ from: "20:00", to: "22:00", days: ["Fri"] }],
+          },
+          margin: { level_type: "Fixed", leverage: 50 },
+        }),
+        serverIds: [20001, 20002],
+        modifiedAt: now,
+        lastModifiedBy: user,
+      },
+    ],
+  };
+
+  /** INI parameters — matches IIniParametersResponse */
+  const iniParametersByFileId = {
+    // plugin 101 / version 1101 / file 5002 (plugin.ini)
+    5002: {
+      fileId: 5002,
+      global: [
+        { id: 101, fileId: 5002, key: "EnableLog", value: "1", type: 0, category: 0, lastModifiedBy: user, lastModifiedAt: now },
+        { id: 102, fileId: 5002, key: "SpreadMode", value: "2", type: 0, category: 0, lastModifiedBy: user, lastModifiedAt: now },
+      ],
+      mutableDefault: [
+        { id: 103, fileId: 5002, key: "MaxSlippage", value: "3", type: 0, category: 1, lastModifiedBy: user, lastModifiedAt: now },
+        { id: 104, fileId: 5002, key: "VirtualStopLevel", value: "10", type: 0, category: 1, lastModifiedBy: user, lastModifiedAt: now },
+      ],
+      serverSpecific: [
+        { id: 105, fileId: 5002, key: "ServerAddress", value: "192.168.1.100", type: 1, category: 2, lastModifiedBy: user, lastModifiedAt: now },
+      ],
+    },
+  };
+
   /**
    * @param {number|string|undefined} mtVersion 4 | 5 | omitted (no filter)
    */
@@ -347,11 +627,38 @@
       : "# Mock preview\n(no sample content for this file id)\n";
   }
 
+  function getFilePreview(fileId) {
+    if (filePreviewByFileId[fileId]) return filePreviewByFileId[fileId];
+    const meta = getFileMeta(fileId);
+    if (!meta) return null;
+    return {
+      fileId: meta.id,
+      fileName: meta.fileName,
+      fileType: meta.fileType,
+      contentType: "text/plain",
+      fileSize: meta.fileSize,
+      text: getPreviewText(fileId),
+      dllMetadata: null,
+      lastModifiedAt: now,
+    };
+  }
+
+  function getYamlRules(fileId) {
+    return yamlRulesByFileId[fileId] || [];
+  }
+
+  function getIniParameters(fileId) {
+    return iniParametersByFileId[fileId] || { fileId, global: [], mutableDefault: [], serverSpecific: [] };
+  }
+
   module.exports = {
     envelope,
     listPlugins,
     getDetail,
     getFileMeta,
     getPreviewText,
+    getFilePreview,
+    getYamlRules,
+    getIniParameters,
   };
 })();
