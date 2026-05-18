@@ -72,11 +72,36 @@
       return hub.envelope(hub.getFilePreview(fid), "success");
     }
 
-    // YAML rules: GET /api/v5/plugins/{id}/versions/{id}/config/yaml/files/{id}/rules
+    // YAML rules collection: GET (list) / POST (create)
     const mYamlRules = /^\/api\/v5\/plugins\/(\d+)\/versions\/(\d+)\/config\/yaml\/files\/(\d+)\/rules$/.exec(apiPath);
     if (mYamlRules) {
       const fid = parseInt(mYamlRules[3], 10);
+      const method = (data.req && data.req.method || "GET").toUpperCase();
+      if (method === "POST") {
+        const body = data.params || {};
+        const created = hub.createYamlRule(fid, body.name, body.definitionJson, body.serverIds);
+        return hub.envelope(created, "success");
+      }
       return hub.envelope(hub.getYamlRules(fid), "success");
+    }
+
+    // YAML rule item: DELETE / PUT /api/v5/plugins/{id}/versions/{id}/config/yaml/files/{id}/rules/{ruleId}
+    const mYamlRule = /^\/api\/v5\/plugins\/(\d+)\/versions\/(\d+)\/config\/yaml\/files\/(\d+)\/rules\/(\d+)$/.exec(apiPath);
+    if (mYamlRule) {
+      const fid = parseInt(mYamlRule[3], 10);
+      const rid = parseInt(mYamlRule[4], 10);
+      const method = (data.req && data.req.method || "GET").toUpperCase();
+      if (method === "DELETE") {
+        hub.deleteYamlRule(fid, rid);
+        return hub.envelope("deleted", "success");
+      }
+      if (method === "PUT") {
+        const body = data.params || {};
+        const updated = hub.updateYamlRule(fid, rid, body.name, body.definitionJson, body.serverIds);
+        if (!updated) return hub.envelope(null, "not found");
+        return hub.envelope(updated, "success");
+      }
+      return hub.envelope(null, "method not allowed");
     }
 
     // INI parameters: GET /api/v5/plugins/{id}/versions/{id}/config/ini/files/{id}/parameters

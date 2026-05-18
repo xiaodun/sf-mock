@@ -1,5 +1,20 @@
 (function getApis() {
   return {
+    "/api/proxy-gateway/api/v5/plugins/101/versions/1101/config/yaml/files/5005/rules/rule-3":
+      {
+        useDirMode: true,
+      },
+
+    "/api/proxy-gateway/api/v5/plugins/101/versions/1101/config/yaml/files/5005/rules/rule-1":
+      {
+        useDirMode: true,
+      },
+
+    "/api/proxy-gateway/api/v5/plugins/101/versions/1101/config/yaml/files/5005/rules/rule-5":
+      {
+        useDirMode: true,
+      },
+
     "/api/proxy-gateway/api/v5/common/enum/0/102": {
       useDirMode: true,
     },
@@ -340,7 +355,7 @@
     // GET  .../plugins/{id}/versions/{id}/config/ini/files/{id}/parameters
     // GET  .../files/{id}/preview  (legacy)
     // GET  .../files/{id}/download
-    "/api/proxy-gateway/api/v5/(plugins/\\d+|plugins/\\d+/versions/\\d+/files/\\d+/preview|plugins/\\d+/versions/\\d+/config/yaml/files/\\d+/rules|plugins/\\d+/versions/\\d+/config/ini/files/\\d+/parameters|files/\\d+/preview|files/\\d+/download)$":
+    "/api/proxy-gateway/api/v5/(plugins/\\d+|plugins/\\d+/versions/\\d+/files/\\d+/preview|plugins/\\d+/versions/\\d+/config/yaml/files/\\d+/rules|plugins/\\d+/versions/\\d+/config/yaml/files/\\d+/rules/\\d+|plugins/\\d+/versions/\\d+/config/ini/files/\\d+/parameters|files/\\d+/preview|files/\\d+/download)$":
       {
         useDirMode: false,
         options: {

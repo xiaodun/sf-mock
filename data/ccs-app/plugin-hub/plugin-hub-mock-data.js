@@ -647,6 +647,46 @@
     return yamlRulesByFileId[fileId] || [];
   }
 
+  let nextRuleId = 100;
+
+  function createYamlRule(fileId, name, definitionJson, serverIds) {
+    if (!yamlRulesByFileId[fileId]) yamlRulesByFileId[fileId] = [];
+    const rules = yamlRulesByFileId[fileId];
+    const newRule = {
+      id: nextRuleId++,
+      fileId,
+      name,
+      ordering: rules.length + 1,
+      definitionJson: definitionJson || JSON.stringify({ enabled: true, scheduled: false, category: "Other", filter: { groups: [], symbol_groups: [], symbols: [], time: [] }, margin: { level_type: "Fixed", leverage: 200 } }),
+      serverIds: serverIds || [],
+      modifiedAt: new Date().toISOString(),
+      lastModifiedBy: user,
+    };
+    rules.push(newRule);
+    return newRule;
+  }
+
+  function deleteYamlRule(fileId, ruleId) {
+    const rules = yamlRulesByFileId[fileId];
+    if (!rules) return false;
+    const idx = rules.findIndex((r) => r.id === ruleId);
+    if (idx === -1) return false;
+    rules.splice(idx, 1);
+    return true;
+  }
+
+  function updateYamlRule(fileId, ruleId, name, definitionJson, serverIds) {
+    const rules = yamlRulesByFileId[fileId];
+    if (!rules) return null;
+    const rule = rules.find((r) => r.id === ruleId);
+    if (!rule) return null;
+    if (name !== undefined) rule.name = name;
+    if (definitionJson !== undefined) rule.definitionJson = definitionJson;
+    if (serverIds !== undefined) rule.serverIds = serverIds;
+    rule.modifiedAt = new Date().toISOString();
+    return rule;
+  }
+
   function getIniParameters(fileId) {
     return iniParametersByFileId[fileId] || { fileId, global: [], mutableDefault: [], serverSpecific: [] };
   }
@@ -659,6 +699,9 @@
     getPreviewText,
     getFilePreview,
     getYamlRules,
+    createYamlRule,
+    deleteYamlRule,
+    updateYamlRule,
     getIniParameters,
   };
 })();
