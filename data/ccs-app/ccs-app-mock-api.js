@@ -1,5 +1,20 @@
 (function getApis() {
   return {
+    "/api/proxy-gateway/api/v5/plugins/101/versions/1101/config/yaml/files/5005/rules/reorder":
+      {
+        useDirMode: true,
+      },
+
+    "/api/proxy-gateway/api/v5/plugins/101/versions/1101/config/text/files/5003":
+      {
+        useDirMode: true,
+      },
+
+    "/api/proxy-gateway/api/v5/plugins/101/versions/1101/config/text/files/5006":
+      {
+        useDirMode: true,
+      },
+
     "/api/proxy-gateway/api/v5/plugins/101/versions/1101/config/yaml/files/5005/rules/rule-3":
       {
         useDirMode: true,

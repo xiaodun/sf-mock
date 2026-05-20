@@ -2127,9 +2127,9 @@
               "category": "PluginConfigManager",
               "permissions": [
                 { "permissionId": 110, "name": "Read", "enable": true },
-                { "permissionId": 111, "name": "Create", "enable": true },
-                { "permissionId": 112, "name": "Update", "enable": true },
-                { "permissionId": 113, "name": "Delete", "enable": true }
+                { "permissionId": 111, "name": "Create", "enable": false },
+                { "permissionId": 112, "name": "Update", "enable": false },
+                { "permissionId": 113, "name": "Delete", "enable": false }
               ]
             },
             {
