@@ -1,2 +1,5 @@
 node_modules
 bat
+nginx-1.19.6/logs/access.log
+nginx-1.19.6/logs/error.log
+nginx-1.19.6/logs/nginx.pid
