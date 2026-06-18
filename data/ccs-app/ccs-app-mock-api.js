@@ -1,5 +1,185 @@
 (function getApis() {
   return {
+    "/api/proxy-gateway/api/v5/plugins/101/versions/1102": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/202/rules/1/servers": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/303/rules-by-server": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/303/rules/2/servers": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/303/rules/1/servers": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/303/rules/1/toggle-news": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/303/rules/2/toggle-news": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/303/rules/1": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/303/rules/2": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/303/rules/reorder": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/202/rules-by-server": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/303/rules": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/202/rules": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/101/eligible-servers": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/101/preview-yaml": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/101/sync": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/yaml-file-rules/1": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/dynamic-leverage-yaml-files": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/101/rules/5/servers": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/servers-with-profile": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/101/rules/3/servers": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/101/rules/1/servers": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/101/rules": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/101/rules/reorder": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/101/rules/1/toggle-news": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/101/rules/3/toggle-news": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/101/rules/5/toggle-news": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/101/rules/1": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/101/rules/3": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/101/rules/5": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/101/rules/99": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/101/rules/99/servers": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/101": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/101/rules-by-server": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/profiles/101/rules-with-server": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/audit-logs/list": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt5/groups/getbynames": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/system/configs/company": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/mt5/groups/get-detail": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/common/enum/0/100": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/common/countries": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/roles/admin/users": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/common/enum/5/12": {
+      useDirMode: true,
+    },
+
+    "/api/proxy-gateway/api/v5/plugin-priorities": {
+      useDirMode: true,
+    },
+
     "/api/proxy-gateway/api/v5/plugins/101/versions/1101/config/yaml/files/5005/rules/reorder":
       {
         useDirMode: true,
@@ -437,6 +617,10 @@
     },
 
     // ─── Audit / Field Risk ──────────────────────────────────────────────────
+    "/api/proxy-gateway/api/v5/audit-logs": {
+      useDirMode: true,
+    },
+
     "/api/proxy-gateway/api/v3/audit-logs": {
       useDirMode: true,
     },

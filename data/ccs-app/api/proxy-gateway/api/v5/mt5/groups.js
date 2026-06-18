@@ -62702,6 +62702,72 @@
                 "authModeDisplay": "Normal",
                 "enableConnections": true,
                 "existsPendingApproval": false
+            },
+            {
+                "groupName": "real\\M_VIG_01_USD",
+                "tradeServer": 1,
+                "tradeServerDisplay": "backup server",
+                "company": "Vantage Global Prime Pty Ltd",
+                "currency": "USD",
+                "authMode": 0,
+                "authModeDisplay": "Normal",
+                "enableConnections": true,
+                "existsPendingApproval": false
+            },
+            {
+                "groupName": "real\\M_VIG_02_USD",
+                "tradeServer": 1,
+                "tradeServerDisplay": "backup server",
+                "company": "Vantage Global Prime Pty Ltd",
+                "currency": "USD",
+                "authMode": 0,
+                "authModeDisplay": "Normal",
+                "enableConnections": true,
+                "existsPendingApproval": false
+            },
+            {
+                "groupName": "real\\M_VIG_03_USD",
+                "tradeServer": 1,
+                "tradeServerDisplay": "backup server",
+                "company": "Vantage Global Prime Pty Ltd",
+                "currency": "USD",
+                "authMode": 0,
+                "authModeDisplay": "Normal",
+                "enableConnections": true,
+                "existsPendingApproval": false
+            },
+            {
+                "groupName": "real\\M_PREM_01_USD",
+                "tradeServer": 1,
+                "tradeServerDisplay": "backup server",
+                "company": "VantageFX Pty Ltd.",
+                "currency": "USD",
+                "authMode": 0,
+                "authModeDisplay": "Normal",
+                "enableConnections": true,
+                "existsPendingApproval": false
+            },
+            {
+                "groupName": "real\\M_PREM_02_USD",
+                "tradeServer": 1,
+                "tradeServerDisplay": "backup server",
+                "company": "VantageFX Pty Ltd.",
+                "currency": "USD",
+                "authMode": 0,
+                "authModeDisplay": "Normal",
+                "enableConnections": true,
+                "existsPendingApproval": false
+            },
+            {
+                "groupName": "real\\M_CRYPTO_01",
+                "tradeServer": 1,
+                "tradeServerDisplay": "backup server",
+                "company": "Vantage Global Prime Pty Ltd",
+                "currency": "USD",
+                "authMode": 0,
+                "authModeDisplay": "Normal",
+                "enableConnections": true,
+                "existsPendingApproval": false
             }
         ],
         "message": "success"

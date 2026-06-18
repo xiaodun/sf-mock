@@ -22,6 +22,13 @@
   } catch (_) {}
   const hub = require(hubPath);
 
+  // Set to true to simulate yaml mutation errors for testing error handling
+  const SIMULATE_YAML_ERROR = true;
+
+  function yamlError() {
+    return { __httpStatus: 400, message: "Rule name already exists", errorDescription: "Duplicate rule name" };
+  }
+
   function apiPathFromRequest(reqUrl) {
     const raw = (reqUrl || "").split("?")[0];
     const marker = "/api/proxy-gateway";
@@ -78,6 +85,7 @@
       const fid = parseInt(mYamlRules[3], 10);
       const method = (data.req && data.req.method || "GET").toUpperCase();
       if (method === "POST") {
+        if (SIMULATE_YAML_ERROR) return yamlError();
         const body = data.params || {};
         const created = hub.createYamlRule(fid, body.name, body.definitionJson, body.serverIds);
         return hub.envelope(created, "success");
@@ -92,10 +100,12 @@
       const rid = parseInt(mYamlRule[4], 10);
       const method = (data.req && data.req.method || "GET").toUpperCase();
       if (method === "DELETE") {
+        if (SIMULATE_YAML_ERROR) return yamlError();
         hub.deleteYamlRule(fid, rid);
         return hub.envelope("deleted", "success");
       }
       if (method === "PUT") {
+        if (SIMULATE_YAML_ERROR) return yamlError();
         const body = data.params || {};
         const updated = hub.updateYamlRule(fid, rid, body.name, body.definitionJson, body.serverIds);
         if (!updated) return hub.envelope(null, "not found");

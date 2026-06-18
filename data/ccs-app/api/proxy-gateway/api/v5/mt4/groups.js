@@ -86,6 +86,54 @@
             "securities": "Forex, Gold, Silver, Crypto.w",
             "enable": true,
             "existsPendingApproval": false
+          },
+          {
+            "name": "M_VIG_01_USD",
+            "company": "Vantage Global Prime Pty Ltd",
+            "marginInfo": "100 / 50 %",
+            "securities": "Forex, Gold, Silver, Oil",
+            "enable": true,
+            "existsPendingApproval": false
+          },
+          {
+            "name": "M_VIG_02_USD",
+            "company": "Vantage Global Prime Pty Ltd",
+            "marginInfo": "100 / 50 %",
+            "securities": "Forex, Gold, Silver, Oil",
+            "enable": true,
+            "existsPendingApproval": false
+          },
+          {
+            "name": "M_VIG_03_USD",
+            "company": "Vantage Global Prime Pty Ltd",
+            "marginInfo": "80 / 50 %",
+            "securities": "Forex Major, Gold",
+            "enable": true,
+            "existsPendingApproval": false
+          },
+          {
+            "name": "M_PREM_01_USD",
+            "company": "VantageFX Pty Ltd.",
+            "marginInfo": "80 / 50 %",
+            "securities": "Forex, Gold, Silver",
+            "enable": true,
+            "existsPendingApproval": false
+          },
+          {
+            "name": "M_PREM_02_USD",
+            "company": "VantageFX Pty Ltd.",
+            "marginInfo": "80 / 50 %",
+            "securities": "Forex, Gold",
+            "enable": true,
+            "existsPendingApproval": false
+          },
+          {
+            "name": "M_CRYPTO_01",
+            "company": "Vantage Global Prime Pty Ltd",
+            "marginInfo": "50 / 50 %",
+            "securities": "Crypto",
+            "enable": true,
+            "existsPendingApproval": false
           }
         ],
         "code": "0",

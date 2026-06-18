@@ -70,6 +70,13 @@
  *   permissionId 59  → Update
  *   permissionId 60  → Delete
  *   permissionId 61  → Download
+ *
+ * ── Dynamic Leverage Rules - Profile (category: "Profile") ────
+ *   permissionId 116 → Read    查看 profiles
+ *   permissionId 117 → Create  新建 profile
+ *   permissionId 118 → Delete  删除 profile
+ *   permissionId 119 → Sync    生成 / 同步配置到服务器
+ *   permissionId 120 → Update  编辑规则（RuleView 内所有改动：编辑/排序/标记/重命名）
  */
 (function () {
   return (data) => {
@@ -2127,9 +2134,9 @@
               "category": "PluginConfigManager",
               "permissions": [
                 { "permissionId": 110, "name": "Read", "enable": true },
-                { "permissionId": 111, "name": "Create", "enable": false },
-                { "permissionId": 112, "name": "Update", "enable": false },
-                { "permissionId": 113, "name": "Delete", "enable": false }
+                { "permissionId": 111, "name": "Create", "enable": true },
+                { "permissionId": 112, "name": "Update", "enable": true },
+                { "permissionId": 113, "name": "Delete", "enable": true }
               ]
             },
             {
@@ -2137,6 +2144,16 @@
               "permissions": [
                 { "permissionId": 114, "name": "Read", "enable": true },
                 { "permissionId": 115, "name": "Update", "enable": true }
+              ]
+            },
+            {
+              "category": "Profile",
+              "permissions": [
+                { "permissionId": 116, "name": "Read", "enable": true },
+                { "permissionId": 117, "name": "Create", "enable": true },
+                { "permissionId": 118, "name": "Delete", "enable": true },
+                { "permissionId": 119, "name": "Sync", "enable": true },
+                { "permissionId": 120, "name": "Update", "enable": true }
               ]
             }
           ]

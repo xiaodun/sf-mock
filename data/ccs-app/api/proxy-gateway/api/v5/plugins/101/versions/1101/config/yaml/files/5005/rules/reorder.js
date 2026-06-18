@@ -1,5 +1,5 @@
 (function () {
   return (data) => {
-    return { status: 200, data: {} };
+    return { __httpStatus: 400, message: "Rule name already exists", errorDescription: "Duplicate rule name" };
   };
 })();
